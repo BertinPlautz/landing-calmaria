@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Método Calmaria — Transforme a ansiedade do seu cão em paz e conexão</title>
+<meta name="description" content="O protocolo de 21 dias em casa + 7 dias na rua para transformar a ansiedade do seu cão em calma e conexão profunda. Sem dominância, sem gritos. Método Calmaria — Simbas Pet.">
+<meta property="og:title" content="Método Calmaria — Simbas Pet">
+<meta property="og:description" content="Transforme a ansiedade do seu cão em paz e conexão profunda em 21 dias.">
+<meta property="og:image" content="assets/cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+/* ============ CONFIG DE MARCA & RESET ============ */
+:root {
+  --navy: #0D1B2A; --navy-2: #0A1622; --navy-3: #122236; --navy-card: rgba(17, 31, 48, 0.6);
+  --gold: #C9A84C; --gold-lt: #E9D18B; --gold-deep: #8A6E2E;
+  --cream: #F5F0E8; --cream-dim: #BDB6A6; --ink: #0A0F16;
+  --line: rgba(201, 168, 76, 0.22); --line-soft: rgba(255, 255, 255, 0.08);
+  --shadow-premium: 0 30px 60px rgba(0, 0, 0, 0.6);
+  --maxw: 1120px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--cream); background: var(--navy-2);
+  line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+.serif { font-family: 'Playfair Display', serif; }
+.center { text-align: center; }
+
+/* ============ SELEÇÃO & SCROLLBAR CUSTOMIZADA ============ */
+::selection { background: rgba(201, 168, 76, 0.4); color: #fff; }
+::-moz-selection { background: rgba(201, 168, 76, 0.4); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--navy-2); border-left: 1px solid var(--line-soft); }
+::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.5); border-radius: 10px; border: 2px solid var(--navy-2); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ============ TIPOGRAFIA PREMIUM ============ */
+.eyebrow {
+  font-size: 11.5px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold-lt); opacity: 0.95; display: inline-block;
+  background: rgba(201, 168, 76, 0.15); padding: 6px 14px; border-radius: 50px;
+  border: 1px solid rgba(201, 168, 76, 0.3); margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+h2.title { font-weight: 800; font-size: 32px; line-height: 1.15; text-align: center; color: #fff; letter-spacing: -0.5px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+h2.title em { font-style: italic; font-weight: 600; color: var(--gold); }
+.sub-title { text-align: center; color: var(--cream-dim); max-width: 640px; margin: 18px auto 0; font-size: 17px; }
+.sec-label { font-size: 11.5px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 16px; }
+
+/* ============ BOTÕES & CTAs ============ */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: 'DM Sans', sans-serif; font-weight: 800; letter-spacing: 0.5px; text-align: center;
+  background: linear-gradient(135deg, #F3E5AB, #C9A84C 50%, #8A6E2E);
+  color: #1a1205; padding: 22px 34px; border-radius: 18px; font-size: 17px; line-height: 1.2;
+  box-shadow: 0 15px 35px rgba(201,168,76,0.35), inset 0 2px 0 rgba(255,255,255,0.6);
+  cursor: pointer; border: none; width: 100%; max-width: 480px; overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); text-decoration: none;
+}
+.btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 22px 45px rgba(201,168,76,0.5), inset 0 2px 0 rgba(255,255,255,0.8); }
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn .sub { display: block; font-weight: 700; font-size: 12px; letter-spacing: 1.5px; opacity: 0.8; margin-top: 4px; text-transform: uppercase; }
+.btn::after {
+  content: ''; position: absolute; top: 0; left: -120%; width: 70%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.7), transparent);
+  transform: skewX(-18deg); animation: shine 5s ease-in-out infinite;
+}
+@keyframes shine { 0%, 70% { left: -120%; } 85%, 100% { left: 130%; } }
+.btn-lbl { display: flex; flex-direction: column; align-items: center; }
+
+.pulse { animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 15px 35px rgba(201,168,76,0.35); } 50% { box-shadow: 0 15px 55px rgba(201,168,76,0.65), 0 0 20px rgba(201,168,76,0.4); } }
+
+/* ============ EFEITO GLASSMORPHISM ============ */
+.glass {
+  background: rgba(13, 27, 42, 0.45); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+.glass-hover { transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease; }
+.glass-hover:hover { transform: translateY(-5px); background: rgba(20, 35, 55, 0.6); border-color: rgba(201, 168, 76, 0.3); }
+
+/* ============ SEÇÕES ============ */
+section { position: relative; }
+.sec { padding: 90px 0; }
+.sec-tight { padding: 60px 0; }
+
+/* ============ HERO (CINEMATIC) ============ */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 0 80px; overflow: hidden; }
+.hero-bg-video { position: absolute; inset: 0; z-index: 0; }
+.hero-bg-video video { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) contrast(1.1); }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, rgba(10, 22, 34, 0.9) 0%, rgba(10, 22, 34, 0.5) 45%, rgba(10, 22, 34, 0.95) 90%, var(--navy-2) 100%);
+}
+.hero-overlay::after { content:''; position:absolute; inset:0; background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%); }
+.hero-inner { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.brandbar {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 30px;
+  background: rgba(0,0,0,0.3); padding: 8px 20px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+}
+.brandbar .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.brandbar span { font-size: 11.5px; letter-spacing: 3px; text-transform: uppercase; color: #fff; font-weight: 700; }
+
+.hero h1 {
+  font-weight: 800; font-size: 38px; line-height: 1.15; letter-spacing: -0.5px; margin: 0; color: #fff;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7); max-width: 960px; margin: 0 auto;
+  -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.4);
+}
+.hero h1 em { font-style: italic; font-weight: 600; color: var(--gold-lt); }
+.hero .lead {
+  font-size: 18px; color: var(--cream); margin-top: 24px; max-width: 700px; margin-left: auto; margin-right: auto;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.7); line-height: 1.6; font-weight: 400;
+  -webkit-text-stroke: 0.3px rgba(0, 0, 0, 0.3);
+}
+.hero .lead b { color: #fff; font-weight: 700; }
+
+.price-strip {
+  display: flex; align-items: center; justify-content: center; gap: 18px; margin: 36px 0 12px; flex-wrap: wrap;
+  background: rgba(0,0,0,0.4); padding: 12px 30px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(201, 168, 76, 0.2);
+}
+.price-strip .from { color: var(--cream-dim); text-decoration: line-through; text-decoration-color: var(--gold); font-size: 19px; }
+.price-now { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 46px; color: #fff; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.price-now small { font-size: 20px; font-weight: 600; vertical-align: top; margin-right: 4px; }
+.badge-launch { display: inline-block; background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.5); color: var(--gold-lt); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; }
+
+.cta-block { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 20px; width: 100%; }
+.trust { display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; margin-top: 10px; }
+.trust span { font-size: 13.5px; color: var(--cream); display: flex; align-items: center; gap: 8px; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+.trust svg { width: 18px; height: 18px; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+
+/* ============ PROVA SOCIAL HERO (AVATARES) ============ */
+.social-proof-hero {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 14px;
+  background: rgba(0,0,0,0.4); padding: 8px 24px 8px 10px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+}
+.social-proof-hero img { height: 34px; border-radius: 50px; object-fit: contain; }
+.social-proof-hero span { font-size: 13px; color: var(--cream); line-height: 1.2; }
+.social-proof-hero span b { color: #fff; font-weight: 800; }
+
+/* ============ DORES ============ */
+.bg-deep { background: radial-gradient(circle at 50% -20%, rgba(201, 168, 76, 0.08) 0%, var(--navy-2) 50%, var(--navy) 100%); }
+.pain-list { max-width: 720px; margin: 44px auto 0; display: flex; flex-direction: column; gap: 16px; }
+.pain { display: flex; gap: 30px; align-items: center; border-radius: 16px; padding: 20px 30px; border-left: 4px solid var(--gold); }
+.pain-img-wrap { position: relative; flex-shrink: 0; width: 240px; height: 150px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.pain-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%) contrast(1.1); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.pain:hover .pain-img-wrap img { transform: scale(1.15); filter: grayscale(0%) contrast(1.2); }
+.pain .x { position: absolute; top: 6px; left: 6px; color: var(--gold); font-size: 12px; font-weight: 800; background: rgba(10, 22, 34, 0.85); backdrop-filter: blur(4px); width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(201, 168, 76, 0.3); z-index: 2; }
+.pain p { font-size: 16px; color: var(--cream); flex: 1; margin: 0; }
+@media (max-width: 600px) {
+  .pain { flex-direction: column; text-align: left; align-items: flex-start; padding: 24px; }
+  .pain-img-wrap { width: 100%; height: 160px; }
+}
+.pain p b { color: #fff; font-weight: 700; }
+.pain-turn { max-width: 720px; margin: 40px auto 0; text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 24px; line-height: 1.5; color: var(--cream); padding: 30px; border-radius: 20px; background: rgba(0,0,0,0.2); border: 1px solid var(--line-soft); }
+.pain-turn b { color: var(--gold-lt); font-style: normal; font-weight: 700; }
+
+.kit-mockup-inline { max-width: 720px; margin: 50px auto 24px; }
+.kit-mockup-inline img { width: 100%; filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6)); }
+.kit-mockup-inline-cap { text-align: center; color: var(--cream-dim); font-size: 15px; margin-top: 12px; font-family: 'Playfair Display', serif; font-style: italic; }
+
+/* ============ VIRADA / HISTÓRIA (COM FOTO) ============ */
+.story { background: var(--navy); }
+.story-layout { display: flex; flex-direction: column; gap: 30px; max-width: 1040px; margin: 40px auto 0; }
+.story-img { position: relative; }
+.story-img img { border-radius: 24px; object-fit: cover; width: 100%; max-height: 400px; border: 1px solid var(--line-soft); box-shadow: var(--shadow-premium); filter: contrast(1.1); }
+.story-card { border-radius: 24px; padding: 40px 34px; position: relative; overflow: hidden; flex: 1; }
+.story-card::before { content: '“'; position: absolute; top: -30px; left: 16px; font-family: 'Playfair Display', serif; font-size: 180px; color: var(--gold); opacity: 0.1; line-height: 1; pointer-events: none; }
+.story-card h3 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; margin-bottom: 22px; position: relative; line-height: 1.25; }
+.story-card h3 em { color: var(--gold); font-style: italic; }
+.story-card p { font-size: 16px; color: var(--cream); margin-bottom: 16px; position: relative; line-height: 1.7; }
+.story-card p b { color: #fff; font-weight: 700; }
+.story-sign { margin-top: 30px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold-lt); font-size: 17px; text-align: right; }
+
+/* ============ COMO FUNCIONA ============ */
+.arc { display: flex; flex-direction: column; gap: 24px; max-width: 760px; margin: 44px auto 0; }
+.arc-step { display: flex; gap: 24px; align-items: flex-start; border-radius: 20px; padding: 30px; }
+.arc-num { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 42px; color: var(--gold); line-height: 1; min-width: 90px; text-align: center; border-right: 1px solid var(--line); padding-right: 24px; }
+.arc-num small { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--cream-dim); text-transform: uppercase; margin-top: 8px; }
+.arc-step h4 { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.arc-step p { font-size: 16px; color: var(--cream); line-height: 1.6; }
+.peek { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 760px; margin: 34px auto 0; }
+.peek img { border-radius: 16px; border: 1px solid var(--line-soft); box-shadow: 0 16px 32px rgba(0,0,0,0.5); transition: transform 0.4s; cursor: pointer; aspect-ratio: 1; object-fit: cover; width: 100%; height: 100%; }
+.peek img:hover { transform: scale(1.03); border-color: var(--line); }
+.peek-cap { text-align: center; color: var(--cream-dim); font-size: 14px; margin-top: 20px; font-style: italic; font-family: 'Playfair Display', serif; }
+
+/* ============ ENTREGÁVEIS / STACK (STICKY SCROLL) ============ */
+.bg-stack { background: linear-gradient(180deg, var(--navy), var(--navy-3)); }
+.stack-layout { display: flex; flex-direction: column; gap: 40px; margin-top: 50px; }
+.stack-sticky { position: relative; }
+.stack-cards { display: flex; flex-direction: column; gap: 24px; }
+
+.item { border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+.item-img { position: relative; background: #0b1420; overflow: hidden; }
+.item-img img { width: 100%; height: 100%; object-fit: cover; max-height: 250px; transition: transform 0.6s ease; }
+.item:hover .item-img img { transform: scale(1.05); }
+.item-tag { position: absolute; top: 16px; left: 16px; background: rgba(10, 22, 34, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--line); color: var(--gold-lt); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; z-index: 2; }
+.item-tag.core { color: #1a1205; background: linear-gradient(135deg, #F3E5AB, #C9A84C); border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.item-body { padding: 30px 32px 34px; display: flex; flex-direction: column; justify-content: center; }
+.item-body h4 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 24px; color: #fff; line-height: 1.25; }
+.item-body .k { font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+.item-body p { font-size: 15.5px; color: var(--cream); line-height: 1.6; }
+.item-body ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.item-body li { font-size: 15px; color: var(--cream); display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
+.item-body li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-top: 8px; flex-shrink: 0; box-shadow: 0 0 8px var(--gold); }
+
+/* ============ ATLAS SPOTLIGHT (HOTSPOTS) ============ */
+.atlas { background: radial-gradient(80% 60% at 50% 0%, rgba(201, 168, 76, 0.1), transparent 60%), linear-gradient(180deg, var(--navy-3), var(--navy-2)); padding: 100px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.atlas-interactive { position: relative; max-width: 680px; margin: 40px auto 0; }
+.atlas-interactive > img { border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow-premium); width: 100%; }
+.atlas-interactive .glow { position: absolute; inset: -10%; z-index: -1; background: radial-gradient(50% 50% at 50% 50%, rgba(201, 168, 76, 0.4), transparent 70%); filter: blur(35px); }
+
+/* Hotspots CSS */
+.hotspot { position: absolute; z-index: 10; cursor: pointer; transform: translate(-50%, -50%); }
+.pulse-dot { display: block; width: 14px; height: 14px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 rgba(201,168,76, 0.7); animation: pulse-dot 2s infinite; border: 2px solid #fff; }
+@keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgba(201,168,76, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(201,168,76, 0); } 100% { box-shadow: 0 0 0 0 rgba(201,168,76, 0); } }
+.tooltip { 
+  position: absolute; bottom: 160%; left: 50%; transform: translateX(-50%) translateY(10px); 
+  opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
+  width: max-content; max-width: 180px; padding: 12px 16px; font-size: 13.5px; font-weight: 600; 
+  color: #fff; text-align: center; border-radius: 12px; pointer-events: none;
+  background: rgba(13, 27, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.hotspot:hover .tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+/* ============ OFERTA ============ */
+.offer { background: var(--navy-2); padding: 100px 0; position: relative; overflow: hidden; }
+.offer::before { content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 100vw; height: 100vh; background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+.offer-box { max-width: 600px; margin: 40px auto 0; position: relative; z-index: 2; background: linear-gradient(180deg, rgba(201, 168, 76, 0.15), rgba(13, 27, 42, 0.8)); border: 1.5px solid var(--gold); border-radius: 28px; padding: 44px 34px; box-shadow: var(--shadow-premium); text-align: center; backdrop-filter: blur(20px); }
+.offer-box::before { content:''; position: absolute; inset:0; border-radius: 28px; box-shadow: inset 0 2px 20px rgba(255,255,255,0.1); pointer-events: none; }
+.offer-box .crown { font-size: 12px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 10px; }
+.offer-box h3 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 32px; color: #fff; margin: 0 0 24px; line-height: 1.2; }
+.recap { list-style: none; text-align: left; max-width: 440px; margin: 0 auto 28px; display: flex; flex-direction: column; gap: 12px; }
+.recap li { font-size: 15px; color: var(--cream); display: flex; gap: 14px; align-items: flex-start; }
+.recap li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+.recap li b { color: #fff; font-weight: 700; }
+.offer-price { margin: 10px 0 6px; }
+.offer-price .from { color: var(--cream-dim); text-decoration: line-through; text-decoration-color: rgba(201,168,76,0.7); font-size: 18px; font-weight: 600; }
+.offer-price .now { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 64px; color: #fff; line-height: 1; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.offer-price .now small { font-size: 26px; vertical-align: top; }
+
+/* Ancoragem de Valor */
+.value-anchor { margin-top: 8px; font-size: 16px; font-weight: 800; color: #fff; background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.4); display: inline-block; padding: 6px 18px; border-radius: 50px; }
+.value-anchor span { color: var(--gold-lt); }
+
+.offer-note { color: var(--cream-dim); font-size: 14px; margin-top: 12px; font-weight: 500; }
+.pay { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; color: var(--cream); font-size: 13.5px; font-weight: 600; }
+
+/* ============ GARANTIA ============ */
+.guarantee { max-width: 640px; margin: 40px auto 0; display: flex; gap: 24px; align-items: center; border-radius: 20px; padding: 30px; position: relative; z-index: 2; border-left: 4px solid var(--gold); }
+.guarantee .seal { width: 86px; height: 86px; flex-shrink: 0; border-radius: 50%; border: 2px solid var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(201, 168, 76, 0.1); box-shadow: inset 0 0 15px rgba(201,168,76,0.2), 0 10px 20px rgba(0,0,0,0.3); }
+.guarantee .seal b { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--gold-lt); line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+.guarantee .seal span { font-size: 9px; font-weight: 800; letter-spacing: 2px; color: var(--cream); text-transform: uppercase; }
+.guarantee h4 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.guarantee p { font-size: 15px; color: var(--cream); line-height: 1.6; }
+
+/* ============ FAQ ============ */
+.bg-faq { background: var(--navy); }
+.faq { max-width: 720px; margin: 44px auto 0; display: flex; flex-direction: column; gap: 16px; }
+.q { border-radius: 16px; overflow: hidden; }
+.q summary { list-style: none; cursor: pointer; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 700; font-size: 16.5px; color: #fff; transition: background 0.3s; }
+.q summary:hover { background: rgba(255, 255, 255, 0.05); }
+.q summary::-webkit-details-marker { display: none; }
+.q summary .ic { width: 28px; height: 28px; flex-shrink: 0; border: 1.5px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); transition: transform 0.35s ease; font-size: 18px; font-weight: 400; background: rgba(201,168,76,0.05); }
+.q[open] summary .ic { transform: rotate(45deg); background: var(--gold); color: var(--navy); }
+.q .a { padding: 0 24px 24px; color: var(--cream); font-size: 15.5px; line-height: 1.7; border-top: 1px solid var(--line-soft); margin-top: -10px; padding-top: 16px; }
+
+/* ============ CTA FINAL ============ */
+.final { background: radial-gradient(80% 80% at 50% 0%, rgba(201, 168, 76, 0.15), transparent 70%), var(--navy-2); padding: 100px 0 120px; text-align: center; border-top: 1px solid var(--line-soft); }
+.final h2 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 36px; line-height: 1.2; color: #fff; max-width: 760px; margin: 0 auto; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.final h2 em { font-style: italic; color: var(--gold-lt); }
+.final p { color: var(--cream); max-width: 600px; margin: 24px auto 34px; font-size: 18px; line-height: 1.6; }
+
+/* ============ FOOTER ============ */
+footer { background: var(--navy-3); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 140px; }
+footer .f-brand { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; text-align: center; }
+footer .f-brand em { color: var(--gold); font-style: italic; }
+footer .f-links { text-align: center; color: var(--cream-dim); font-size: 14px; margin-top: 14px; font-weight: 500; }
+footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 24px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+/* ============ BARRA FIXA MOBILE ============ */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(10, 22, 34, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(201, 168, 76, 0.3); box-shadow: 0 -10px 30px rgba(0,0,0,0.5); padding: 14px 18px calc(14px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 16px; transform: translateY(120%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.sticky.show { transform: translateY(0); }
+.sticky .s-price { flex-shrink: 0; line-height: 1.1; }
+.sticky .s-price .from { display: block; font-size: 12px; color: var(--cream-dim); text-decoration: line-through; }
+.sticky .s-price .now { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 26px; color: #fff; }
+.sticky .btn { padding: 18px 20px; font-size: 16px; border-radius: 14px; max-width: none; flex: 1; box-shadow: 0 8px 20px rgba(201,168,76,0.3); }
+.sticky .btn::after { animation: none; }
+
+/* ============ REVEAL ANIMAÇÕES ============ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ============ RESPONSIVIDADE DESKTOP ============ */
+@media(min-width: 820px) {
+  .hero h1 { font-size: 58px; }
+  .hero .lead { font-size: 20px; }
+  h2.title { font-size: 44px; }
+  .sub-title { font-size: 19px; }
+  .final h2 { font-size: 46px; }
+  
+  /* Story com Imagem Lateral */
+  .story-layout { flex-direction: row; align-items: stretch; gap: 40px; }
+  .story-img { flex: 0 0 42%; }
+  .story-img img { height: 100%; max-height: none; }
+  .story-card { margin: 0; padding: 50px; }
+  .story-card h3 { font-size: 34px; }
+
+  /* Stack Sticky Scroll */
+  .stack-layout { flex-direction: row; align-items: flex-start; gap: 60px; margin-top: 60px; }
+  .stack-sticky { flex: 0 0 42%; position: sticky; top: 120px; }
+  .stack-cards { flex: 1; margin-bottom: 60px; }
+
+  .item { flex-direction: row; }
+  .item-img { flex: 0 0 42%; }
+  .item-img img { max-height: none; height: 100%; }
+  .item-body { padding: 40px 45px; }
+  .item-body h4 { font-size: 26px; }
+
+  .peek { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .sticky { display: none !important; }
+  .offer-box { padding: 56px 50px; }
+  .offer-box h3 { font-size: 36px; }
+  .offer-price .now { font-size: 72px; }
+  .arc-step { padding: 40px; }
+  .pain { padding: 30px; }
+}
+@media(min-width: 1200px) { .hero h1 { font-size: 64px; } }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-bg-video">
+    <video autoplay loop muted playsinline preload="metadata" poster="assets/conexao_poster.jpg">
+      <source src="assets/conexao_loop.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="center reveal">
+      <div class="brandbar"><span>Simbas Pet</span><span class="dot"></span><span>Método Calmaria</span></div>
+      <div class="eyebrow">Comportamento canino · não é adestramento</div>
+      <h1 class="serif">E se a ansiedade do seu cão não fosse teimosia — mas um <em>pedido de socorro</em> que você ainda não aprendeu a ouvir?</h1>
+      <p class="lead">O <b>Método Calmaria</b> é o protocolo de <b>21 dias em casa + 7 dias na rua</b> que transforma o cão ansioso, que late, destrói e sofre sozinho, em um companheiro <b>calmo e profundamente conectado a você</b> — sem gritos, sem dominância, sem coleiras de choque.</p>
+    </div>
+
+    <div class="price-strip reveal delay-1">
+      <span class="badge-launch">Oferta de lançamento</span>
+      <span class="from">R$97</span>
+      <span class="price-now"><small>R$</small>27</span>
+    </div>
+
+    <div class="cta-block reveal delay-2">
+      <a class="btn pulse js-cta" href="#checkout">
+        <span class="btn-lbl">QUERO ACALMAR MEU CÃO<span class="sub">Acesso imediato · por R$27</span></span>
+      </a>
+      
+      <!-- Prova Social Imediata (Avatares) -->
+      <div class="social-proof-hero">
+        <!-- ATENÇÃO: Substitua pelo seu arquivo "assets/avatars.png" depois -->
+        <img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/5031a93a-8300-44e1-bd61-20ef2ef582df/avatars_1783603759042.png" alt="Tutores Transformados">
+        <span>Faça parte da <b>turma exclusiva</b><br>de lançamento</span>
+      </div>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#E9D18B" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Acesso imediato</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#E9D18B" stroke-width="2.5"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg>Garantia de 7 dias</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="#E9D18B" stroke-width="2.5"><rect x="3" y="6" width="18" height="12" rx="2"/></svg>Pix ou cartão</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= DORES ================= -->
+<section class="sec bg-deep">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">Você reconhece a cena?</div>
+   <h2 class="title serif">Você faz <em>tudo</em> por ele. E mesmo assim, algo não está bem.</h2>
+  </div>
+  
+  <div class="pain-list">
+   <div class="pain glass glass-hover reveal delay-1">
+     <div class="pain-img-wrap"><img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/f76e36a8-aca1-433e-9132-e8764513eb62/pain_destruction_1783808940599.png" alt="Cão destrói objetos"><span class="x">✕</span></div>
+     <p><b>Ele destrói tudo quando você sai</b> — e a culpa te espera na porta junto com o estrago.</p>
+   </div>
+   <div class="pain glass glass-hover reveal delay-2">
+     <div class="pain-img-wrap"><img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/f76e36a8-aca1-433e-9132-e8764513eb62/pain_barking_1783808948343.png" alt="Cão latindo sozinho"><span class="x">✕</span></div>
+     <p><b>Late e chora sozinho</b>, e você já teme a reclamação do vizinho tanto quanto o sofrimento dele.</p>
+   </div>
+   <div class="pain glass glass-hover reveal delay-3">
+     <div class="pain-img-wrap"><img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/f76e36a8-aca1-433e-9132-e8764513eb62/pain_leash_1783808956164.png" alt="Cão puxando a guia"><span class="x">✕</span></div>
+     <p><b>Na rua ele puxa a guia e reage a outros cães</b>, e o passeio virou tensão em vez de prazer.</p>
+   </div>
+   <div class="pain glass glass-hover reveal">
+     <div class="pain-img-wrap"><img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/f76e36a8-aca1-433e-9132-e8764513eb62/pain_frustration_1783808964490.png" alt="Dono frustrado com dicas de internet"><span class="x">✕</span></div>
+     <p>Você já tentou <b>mil vídeos soltos e conselhos contraditórios</b> — e nada mudou de verdade.</p>
+   </div>
+   <div class="pain glass glass-hover reveal">
+     <div class="pain-img-wrap"><img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/f76e36a8-aca1-433e-9132-e8764513eb62/pain_guilt_1783808972071.png" alt="Tutor se sentindo culpado"><span class="x">✕</span></div>
+     <p>E no fundo dói a pergunta que não sai da cabeça: <b>“será que a ansiedade dele é culpa minha?”</b></p>
+   </div>
+  </div>
+  
+  <p class="pain-turn reveal glass" style="margin-top: 40px;">A verdade que ninguém te conta: isso não é falta de obediência. <b>É ansiedade.</b> E ansiedade não se resolve com grito nem com truque — se resolve com <b>tradução e rotina</b>.</p>
+ </div>
+</section>
+
+<!-- ================= VIRADA / HISTÓRIA ================= -->
+<section class="sec story">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">Por que este método é diferente</div>
+   <h2 class="title serif">Este guia não foi <em>escrito</em>. Foi <em>vivido</em>.</h2>
+  </div>
+  
+  <!-- Layout Horizontal com Imagem do Especialista -->
+  <div class="story-layout">
+    <div class="story-img reveal">
+       <!-- ATENÇÃO: Substitua pelo seu arquivo "assets/autor.jpg" depois -->
+       <img src="file:///C:/Users/Usuario/.gemini/antigravity-ide/brain/5031a93a-8300-44e1-bd61-20ef2ef582df/autor_placeholder_1783603768224.png" alt="Especialista e Cão">
+    </div>
+    <div class="story-card glass reveal delay-1">
+     <h3 class="serif">Nasceu de milhares de conversas reais — não de uma sala de aula.</h3>
+     <p>Ao longo de anos acompanhando a comunidade <b>Simbas Pet</b>, uma pergunta se repetia com uma frequência que apertava o peito: <b>“Por que, mesmo com tanto amor, parece que estou fazendo algo errado?”</b></p>
+     <p>Eram tutores que não faltavam com nada — davam amor, comida, passeio, colo. E mesmo assim o cão latia, destruía, tremia. O problema nunca foi falta de amor. Era <b>falta de tradução</b>: ninguém tinha ensinado a ouvir o que o cão dizia com o corpo.</p>
+     <p>O Método Calmaria é a resposta a essa pergunta. Uma abordagem <b>emocional e científica</b> — que respeita o cão, decifra os sinais dele e reconstrói a calma de dentro para fora. Nada de dominância. Nada de “ser o alfa”. <b>Conexão de verdade.</b></p>
+     <div class="story-sign serif">— Simbas Pet · @simbas.amor.pelos</div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="sec bg-deep">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">O caminho</div>
+   <h2 class="title serif">Dois módulos. <em>28 dias.</em> Uma nova relação.</h2>
+   <p class="sub-title">Um passo de cada vez, com uma tarefa curta e clara por dia. Sem enrolação, sem teoria infinita.</p>
+  </div>
+  <div class="arc">
+   <div class="arc-step glass glass-hover reveal delay-1">
+     <div class="arc-num">21<small>dias · casa</small></div>
+     <div><h4>Módulo 1 — Calmaria em Casa</h4><p>A raiz da ansiedade mora em casa. Aqui você constrói rotina âncora, saídas sem drama, ambiente calmante, ausência progressiva e leitura de sinais — até a calma virar o novo normal do seu cão.</p></div>
+   </div>
+   <div class="arc-step glass glass-hover reveal delay-2">
+     <div class="arc-num">7<small>dias · rua</small></div>
+     <div><h4>Módulo 2 — Calmaria na Rua</h4><p>Com a base pronta, a calma vai para o mundo: equipamento certo, parada técnica, o encontro com outro cão, o latido na rua e o passeio de cheiro. O passeio deixa de ser guerra e vira reconexão.</p></div>
+   </div>
+  </div>
+  <div class="peek">
+   <img src="assets/peek1.jpg" alt="Dia do Método Calmaria" class="reveal delay-1" loading="lazy">
+   <img src="assets/peek2.jpg" alt="Dia do Método Calmaria" class="reveal delay-2" loading="lazy">
+   <img src="assets/peek3.jpg" alt="Dia do Método Calmaria" class="reveal delay-3" loading="lazy">
+   <img src="assets/peek4.jpg" alt="Módulo 2 — na rua" class="reveal" loading="lazy">
+  </div>
+  <p class="peek-cap reveal">Um vislumbre da jornada visual que acompanha cada dia.</p>
+ </div>
+</section>
+
+<!-- ================= O QUE VOCÊ RECEBE (STICKY SCROLL) ================= -->
+<section class="sec bg-stack" id="conteudo">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">Tudo que entra no seu acesso</div>
+   <h2 class="title serif">O kit completo do <em>Método Calmaria</em></h2>
+   <p class="sub-title">Dois módulos principais + quatro bônus premium — pensados para você aplicar no celular, no papel e no dia a dia.</p>
+  </div>
+
+  <div class="stack-layout">
+    <!-- Coluna Fixa Esquerda -->
+    <div class="stack-sticky">
+      <div class="kit-mockup-inline reveal">
+        <img src="assets/mockup.png" alt="Método Calmaria — livro, tablet e celular com o material do produto" onerror="this.src='assets/mockup.jpg'">
+        <div class="kit-mockup-inline-cap">Acesso digital completo para computador, tablet ou celular.</div>
+      </div>
+    </div>
+
+    <!-- Coluna Dinâmica Direita -->
+    <div class="stack-cards">
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek1.jpg" alt="Módulo 1" loading="lazy"></div>
+      <div class="item-body">
+       <div class="k">Módulo 1</div><h4 class="serif">Calmaria em Casa — 21 dias</h4>
+       <ul><li>Guia principal completo (dias 1 a 21)</li><li>Versão Mobile interativa com progresso</li><li>21 Cards diários para a galeria do celular</li></ul>
+      </div>
+     </div>
+
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek4.jpg" alt="Módulo 2" loading="lazy"></div>
+      <div class="item-body">
+       <div class="k">Módulo 2</div><h4 class="serif">Calmaria na Rua — 7 dias</h4>
+       <ul><li>Guia principal + Protocolo de passeio</li><li>Versão Mobile interativa com progresso</li><li>7 Cards diários para a galeria do celular</li></ul>
+      </div>
+     </div>
+
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/atlas_white.jpg" alt="Atlas da Linguagem Canina" loading="lazy"></div>
+      <div class="item-body">
+       <div class="k">Bônus 01</div><h4 class="serif">Atlas da Linguagem Canina</h4>
+       <p>Um pôster premium estilo mapa renascentista que decifra <b>9 sinais corporais</b> do seu cão — e diz exatamente o que fazer em cada um.</p>
+      </div>
+     </div>
+
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/mapa_preview.jpg" alt="Mapa de Gatilhos" loading="lazy"></div>
+      <div class="item-body">
+       <div class="k">Bônus 02</div><h4 class="serif">Mapa de Gatilhos</h4>
+       <p>PDF <b>preenchível</b> para mapear, com clareza, o que dispara a ansiedade do seu cão — o primeiro passo para desativar cada gatilho com calma.</p>
+      </div>
+     </div>
+
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/ficha_preview.jpg" alt="Ficha de Progresso" loading="lazy"></div>
+      <div class="item-body">
+       <div class="k">Bônus 03</div><h4 class="serif">Ficha de Progresso Imprimível</h4>
+       <p>Acompanhe cada um dos 28 dias, registre o nível de calma do seu cão e guarde as vitórias da jornada.</p>
+      </div>
+     </div>
+
+     <div class="item glass reveal">
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span>
+        <img src="assets/cover.jpg" alt="Áudio Frequência Calmante" loading="lazy" style="filter:saturate(.9) brightness(.8)">
+      </div>
+      <div class="item-body">
+       <div class="k">Bônus 04</div><h4 class="serif">Áudio Frequência Calmante</h4>
+       <p>Um ritual sonoro de ~30 minutos para criar um ambiente de relaxamento em casa — porque a calma do tutor é sentida primeiro.</p>
+      </div>
+     </div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= ATLAS SPOTLIGHT (VIVO E INTERATIVO) ================= -->
+<section class="atlas">
+ <div class="wrap center reveal">
+  <div class="sec-label">O bônus que todo mundo comenta</div>
+  <h2 class="title serif">Aprenda a <em>ler</em> o seu cão como nunca antes</h2>
+  <p class="sub-title">Passe o mouse (ou toque) sobre os pontos brilhantes abaixo e veja como o <b>Atlas da Linguagem Canina</b> traduz o corpo do seu cão em sinais essenciais.</p>
+  
+  <div class="atlas-interactive">
+    <div class="glow"></div>
+    <img src="assets/atlas_black.jpg" alt="Atlas da Linguagem Canina — versão premium" loading="lazy">
+    
+    <!-- Hotspots -->
+    <div class="hotspot" style="top: 25%; left: 80%;">
+      <span class="pulse-dot"></span><div class="tooltip"><b>Cauda alta e rígida:</b><br>Sinal de alerta ou tensão.</div>
+    </div>
+    <div class="hotspot" style="top: 15%; left: 15%;">
+      <span class="pulse-dot"></span><div class="tooltip"><b>Boca tensa:</b><br>Foco intenso ou estresse.</div>
+    </div>
+    <div class="hotspot" style="top: 55%; left: 25%;">
+      <span class="pulse-dot"></span><div class="tooltip"><b>Peso à frente:</b><br>Pronto para agir ou avançar.</div>
+    </div>
+    <div class="hotspot" style="top: 85%; left: 60%;">
+      <span class="pulse-dot"></span><div class="tooltip"><b>Corpo sacudindo:</b><br>Liberando estresse acumulado.</div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= OFERTA (ANCORAGEM AVANÇADA) ================= -->
+<section class="offer" id="checkout">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">Sua transformação começa agora</div>
+   <h2 class="title serif">Tudo isso, por menos que <em>um petisco premium</em></h2>
+  </div>
+  <div class="offer-box reveal delay-1">
+   <div class="crown">Método Calmaria · Kit completo</div>
+   <h3 class="serif">O que você leva hoje</h3>
+   <ul class="recap">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Módulo 1 — Calmaria em Casa</b> (21 dias + mobile + 21 cards)</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Módulo 2 — Calmaria na Rua</b> (7 dias + mobile + 7 cards)</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bônus:</b> Atlas da Linguagem Canina (Interativo)</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bônus:</b> Mapa de Gatilhos (preenchível)</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bônus:</b> Ficha de Progresso Imprimível</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>Bônus:</b> Áudio Frequência Calmante</span></li>
+   </ul>
+   <div class="badge-launch">Oferta de lançamento</div>
+   <div class="offer-price">
+     <div class="from">de R$ 97,00 por apenas</div>
+     <div class="now"><small>R$</small>27<small>,00</small></div>
+   </div>
+   <div class="value-anchor">Você economiza <span>R$ 70,00</span> hoje</div>
+   <div class="offer-note">pagamento único · acesso imediato e vitalício ao material</div>
+   
+   <div class="cta-block" style="margin-top:28px">
+     <a class="btn pulse js-cta" href="#" data-checkout>
+       <span class="btn-lbl">GARANTIR MEU ACESSO AGORA<span class="sub">Kit Completo · Apenas R$27</span></span>
+     </a>
+   </div>
+   <div class="pay">
+     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#BDB6A6" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+     Pix · Cartão de crédito · Compra 100% segura
+   </div>
+  </div>
+
+  <!-- GARANTIA -->
+  <div class="guarantee glass reveal delay-2">
+   <div class="seal"><b>7</b><span>dias</span></div>
+   <div>
+    <h4 class="serif">Garantia incondicional de 7 dias</h4>
+    <p>Acesse tudo, aplique com o seu cão e, se por qualquer motivo não for para você, é só pedir o reembolso em até 7 dias. O risco é todo nosso — como garante o Código de Defesa do Consumidor.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec bg-faq">
+ <div class="wrap">
+  <div class="reveal center">
+   <div class="sec-label">Ainda com dúvida?</div>
+   <h2 class="title serif">Perguntas <em>honestas</em>, respostas diretas</h2>
+  </div>
+  <div class="faq">
+   <details class="q glass reveal"><summary>Já vi mil dicas grátis na internet. Por que isto é diferente?<span class="ic">+</span></summary>
+     <div class="a">Dica solta resolve um sintoma por vez e se contradiz. O Calmaria é um <b>método sequencial</b>: cada dia prepara o próximo, atacando a raiz da ansiedade — não só o latido ou a destruição. É a diferença entre juntar peças soltas e seguir um mapa.</div></details>
+   <details class="q glass reveal"><summary>Funciona para o meu cão? Ele é um caso difícil.<span class="ic">+</span></summary>
+     <div class="a">O método não decora “truques por raça” — ele ensina você a <b>ler e regular a ansiedade</b>, que é a base comum por trás de latido, destruição, choro e reatividade. Por isso se adapta ao seu cão, e não o contrário. E você conta com o Atlas e o Mapa de Gatilhos para personalizar.</div></details>
+   <details class="q glass reveal"><summary>Não tenho muito tempo. Consigo seguir?<span class="ic">+</span></summary>
+     <div class="a">Sim. Cada dia traz <b>uma tarefa curta e objetiva</b> — pensada para caber na rotina real de quem trabalha. A Ficha de Progresso ajuda você a manter a constância sem se perder.</div></details>
+   <details class="q glass reveal"><summary>Preciso saber alguma coisa de adestramento?<span class="ic">+</span></summary>
+     <div class="a">Nada. O material foi feito para tutores comuns, em linguagem simples e acolhedora. Não usamos dominância, punição nem jargão técnico — só compreensão e passos claros.</div></details>
+   <details class="q glass reveal"><summary>Como recebo o material depois de comprar?<span class="ic">+</span></summary>
+     <div class="a">O acesso é <b>imediato</b>, liberado logo após a confirmação do pagamento. Você recebe os guias, as versões mobile, os cards e todos os bônus para usar no celular e imprimir o que quiser.</div></details>
+   <details class="q glass reveal"><summary>E se eu comprar e não gostar?<span class="ic">+</span></summary>
+     <div class="a">Você tem <b>7 dias de garantia incondicional</b>. Não sendo para você, devolvemos 100% do valor, sem burocracia.</div></details>
+  </div>
+ </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="final">
+ <div class="wrap reveal">
+  <h2 class="serif">Seu cão não precisa de um dono perfeito.<br>Precisa de um que <em style="white-space: nowrap;">aprenda a ouvi-lo</em>.</h2>
+  <p>Comece hoje a transformar a ansiedade dele em calma — e a distância de vocês em conexão.</p>
+  <div class="cta-block">
+   <a class="btn pulse js-cta" href="#" data-checkout>
+     <span class="btn-lbl">COMEÇAR O MÉTODO CALMARIA<span class="sub">Kit Completo · Acesso Imediato</span></span>
+   </a>
+   <div class="trust">
+     <span><svg viewBox="0 0 24 24" fill="none" stroke="#E9D18B" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Acesso imediato</span>
+     <span><svg viewBox="0 0 24 24" fill="none" stroke="#E9D18B" stroke-width="2.5"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg>Garantia de 7 dias</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap">
+  <div class="f-brand serif">Simbas <em>Pet</em></div>
+  <div class="f-links">@simbas.amor.pelos · simbaspet.com.br</div>
+  <div class="f-legal">Método Calmaria é um programa educativo de comportamento canino e não substitui avaliação veterinária ou de profissional especializado em casos clínicos. Resultados variam conforme a dedicação de cada tutor e o histórico de cada cão. © Simbas Pet — Todos os direitos reservados.</div>
+ </div>
+</footer>
+
+<!-- ============ BARRA FIXA MOBILE ============ -->
+<div class="sticky" id="sticky">
+  <div class="s-price"><span class="from">R$97</span><span class="now">R$27</span></div>
+  <a class="btn js-cta" href="#" data-checkout>GARANTIR AGORA</a>
+</div>
+
+<script>
+/* ====== CONFIG: cole aqui o link do seu checkout (Cakto) ====== */
+const CHECKOUT_URL = "COLE_AQUI_O_LINK_DO_CHECKOUT_CAKTO";
+
+(function(){
+  // Se o link do checkout estiver configurado, TODOS os botões vão direto para ele.
+  // Enquanto não estiver, os botões rolam suavemente até a seção de oferta (#checkout).
+  var valido = CHECKOUT_URL.indexOf('http')===0;
+  document.querySelectorAll('.js-cta').forEach(function(a){
+    if(valido){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_top'); a.setAttribute('rel','noopener'); }
+    else { a.setAttribute('href', '#checkout'); }
+  });
+
+  // barra fixa mobile: aparece após rolar o hero
+  var sticky=document.getElementById('sticky');
+  var hero=document.querySelector('.hero');
+  function onScroll(){
+    var trigger=hero.offsetHeight*0.75;
+    if(window.scrollY>trigger){ sticky.classList.add('show'); } else { sticky.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // reveal on scroll (animações)
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+})();
+</script>
+</body>
+</html>
