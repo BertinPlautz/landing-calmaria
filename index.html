@@ -7,7 +7,7 @@
 <meta name="description" content="O protocolo de 21 dias em casa + 7 dias na rua para transformar a ansiedade do seu cão em calma e conexão profunda. Sem dominância, sem gritos. Método Calmaria — Simbas Pet.">
 <meta property="og:title" content="Método Calmaria — Simbas Pet">
 <meta property="og:description" content="Transforme a ansiedade do seu cão em paz e conexão profunda em 21 dias.">
-<meta property="og:image" content="assets/cover.jpg">
+<meta property="og:image" content="assets/cover.jpg?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
@@ -97,6 +97,13 @@ section { position: relative; }
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 0 80px; overflow: hidden; }
 .hero-bg-video { position: absolute; inset: 0; z-index: 0; }
 .hero-bg-video video { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) contrast(1.1); }
+@media (max-width: 768px) {
+  .hero { display: block; min-height: auto; padding: 0 0 60px; }
+  .hero-bg-video { position: relative; width: 100%; height: 56.25vw; }
+  .hero-overlay { background: linear-gradient(to bottom, transparent 20%, var(--navy-2) 100%); }
+  .hero-overlay::after { opacity: 0.2; }
+  .hero-inner { margin-top: -20px; }
+}
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(to bottom, rgba(10, 22, 34, 0.9) 0%, rgba(10, 22, 34, 0.5) 45%, rgba(10, 22, 34, 0.95) 90%, var(--navy-2) 100%);
@@ -344,8 +351,8 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
 <!-- ================= HERO ================= -->
 <header class="hero">
   <div class="hero-bg-video">
-    <video autoplay loop muted playsinline preload="metadata" poster="assets/conexao_poster.jpg">
-      <source src="assets/conexao_loop.mp4" type="video/mp4">
+    <video autoplay loop muted playsinline preload="metadata" poster="assets/conexao_poster.jpg?v=2">
+      <source src="assets/conexao_loop.mp4?v=2" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
   </div>
@@ -395,23 +402,23 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
   
   <div class="pain-list">
    <div class="pain glass glass-hover reveal delay-1">
-     <div class="pain-img-wrap"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=400&q=80" alt="Cão destrói objetos"><span class="x">✕</span></div>
+     <div class="pain-img-wrap"><img src="assets/Card%201.jpeg?v=2" alt="Cão destrói objetos"><span class="x">✕</span></div>
      <p><b>Ele destrói tudo quando você sai</b> — e a culpa te espera na porta junto com o estrago.</p>
    </div>
    <div class="pain glass glass-hover reveal delay-2">
-     <div class="pain-img-wrap"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=400&q=80" alt="Cão latindo sozinho"><span class="x">✕</span></div>
+     <div class="pain-img-wrap"><img src="assets/Card%202.jpeg?v=2" alt="Cão latindo sozinho"><span class="x">✕</span></div>
      <p><b>Late e chora sozinho</b>, e você já teme a reclamação do vizinho tanto quanto o sofrimento dele.</p>
    </div>
    <div class="pain glass glass-hover reveal delay-3">
-     <div class="pain-img-wrap"><img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=400&q=80" alt="Cão puxando a guia"><span class="x">✕</span></div>
+     <div class="pain-img-wrap"><img src="assets/Card%203.jpeg?v=2" alt="Cão puxando a guia"><span class="x">✕</span></div>
      <p><b>Na rua ele puxa a guia e reage a outros cães</b>, e o passeio virou tensão em vez de prazer.</p>
    </div>
    <div class="pain glass glass-hover reveal">
-     <div class="pain-img-wrap"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" alt="Dono frustrado com dicas de internet"><span class="x">✕</span></div>
+     <div class="pain-img-wrap"><img src="assets/Card%204.jpeg?v=2" alt="Dono frustrado com dicas de internet"><span class="x">✕</span></div>
      <p>Você já tentou <b>mil vídeos soltos e conselhos contraditórios</b> — e nada mudou de verdade.</p>
    </div>
    <div class="pain glass glass-hover reveal">
-     <div class="pain-img-wrap"><img src="https://images.unsplash.com/photo-1517423568366-8b83523034fd?auto=format&fit=crop&w=400&q=80" alt="Tutor se sentindo culpado"><span class="x">✕</span></div>
+     <div class="pain-img-wrap"><img src="assets/Card%205.jpeg?v=2" alt="Tutor se sentindo culpado"><span class="x">✕</span></div>
      <p>E no fundo dói a pergunta que não sai da cabeça: <b>“será que a ansiedade dele é culpa minha?”</b></p>
    </div>
   </div>
@@ -431,8 +438,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
   <!-- Layout Horizontal com Imagem do Especialista -->
   <div class="story-layout">
     <div class="story-img reveal">
-       <!-- ATENÇÃO: Substitua pelo seu arquivo "assets/autor.jpg" depois -->
-       <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=80" alt="Especialista e Cão">
+       <img src="assets/seção%20foi%20vivido.jpeg?v=2" alt="Este guia foi vivido" style="object-fit: contain; height: auto; max-height: 600px; width: 100%; border-radius: 20px;">
     </div>
     <div class="story-card glass reveal delay-1">
      <h3 class="serif">Nasceu de milhares de conversas reais — não de uma sala de aula.</h3>
@@ -464,10 +470,10 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
    </div>
   </div>
   <div class="peek">
-   <img src="assets/peek1.jpg" alt="Dia do Método Calmaria" class="reveal delay-1" loading="lazy">
-   <img src="assets/peek2.jpg" alt="Dia do Método Calmaria" class="reveal delay-2" loading="lazy">
-   <img src="assets/peek3.jpg" alt="Dia do Método Calmaria" class="reveal delay-3" loading="lazy">
-   <img src="assets/peek4.jpg" alt="Módulo 2 — na rua" class="reveal" loading="lazy">
+   <img src="assets/peek1.jpg?v=2" alt="Dia do Método Calmaria" class="reveal delay-1" loading="lazy">
+   <img src="assets/peek2.jpg?v=2" alt="Dia do Método Calmaria" class="reveal delay-2" loading="lazy">
+   <img src="assets/peek3.jpg?v=2" alt="Dia do Método Calmaria" class="reveal delay-3" loading="lazy">
+   <img src="assets/peek4.jpg?v=2" alt="Módulo 2 — na rua" class="reveal" loading="lazy">
   </div>
   <p class="peek-cap reveal">Um vislumbre da jornada visual que acompanha cada dia.</p>
  </div>
@@ -486,7 +492,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
     <!-- Coluna Fixa Esquerda -->
     <div class="stack-sticky">
       <div class="kit-mockup-inline reveal">
-        <img src="assets/mockup.png" alt="Método Calmaria — livro, tablet e celular com o material do produto" onerror="this.src='assets/mockup.jpg'">
+        <img src="assets/mockup.png?v=2" alt="Método Calmaria — livro, tablet e celular com o material do produto" onerror="this.src='assets/mockup.jpg?v=2'">
         <div class="kit-mockup-inline-cap">Acesso digital completo para computador, tablet ou celular.</div>
       </div>
     </div>
@@ -494,7 +500,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
     <!-- Coluna Dinâmica Direita -->
     <div class="stack-cards">
      <div class="item glass reveal">
-      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek1.jpg" alt="Módulo 1" loading="lazy"></div>
+      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek1.jpg?v=2" alt="Módulo 1" loading="lazy"></div>
       <div class="item-body">
        <div class="k">Módulo 1</div><h4 class="serif">Calmaria em Casa — 21 dias</h4>
        <ul><li>Guia principal completo (dias 1 a 21)</li><li>Versão Mobile interativa com progresso</li><li>21 Cards diários para a galeria do celular</li></ul>
@@ -502,7 +508,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
      </div>
 
      <div class="item glass reveal">
-      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek4.jpg" alt="Módulo 2" loading="lazy"></div>
+      <div class="item-img"><span class="item-tag core">Principal</span><img src="assets/peek4.jpg?v=2" alt="Módulo 2" loading="lazy"></div>
       <div class="item-body">
        <div class="k">Módulo 2</div><h4 class="serif">Calmaria na Rua — 7 dias</h4>
        <ul><li>Guia principal + Protocolo de passeio</li><li>Versão Mobile interativa com progresso</li><li>7 Cards diários para a galeria do celular</li></ul>
@@ -510,7 +516,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
      </div>
 
      <div class="item glass reveal">
-      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/atlas_white.jpg" alt="Atlas da Linguagem Canina" loading="lazy"></div>
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/atlas_white.jpg?v=2" alt="Atlas da Linguagem Canina" loading="lazy"></div>
       <div class="item-body">
        <div class="k">Bônus 01</div><h4 class="serif">Atlas da Linguagem Canina</h4>
        <p>Um pôster premium estilo mapa renascentista que decifra <b>9 sinais corporais</b> do seu cão — e diz exatamente o que fazer em cada um.</p>
@@ -518,7 +524,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
      </div>
 
      <div class="item glass reveal">
-      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/mapa_preview.jpg" alt="Mapa de Gatilhos" loading="lazy"></div>
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/mapa_preview.jpg?v=2" alt="Mapa de Gatilhos" loading="lazy"></div>
       <div class="item-body">
        <div class="k">Bônus 02</div><h4 class="serif">Mapa de Gatilhos</h4>
        <p>PDF <b>preenchível</b> para mapear, com clareza, o que dispara a ansiedade do seu cão — o primeiro passo para desativar cada gatilho com calma.</p>
@@ -526,7 +532,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
      </div>
 
      <div class="item glass reveal">
-      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/ficha_preview.jpg" alt="Ficha de Progresso" loading="lazy"></div>
+      <div class="item-img"><span class="item-tag">Bônus · Incluído</span><img src="assets/ficha_preview.jpg?v=2" alt="Ficha de Progresso" loading="lazy"></div>
       <div class="item-body">
        <div class="k">Bônus 03</div><h4 class="serif">Ficha de Progresso Imprimível</h4>
        <p>Acompanhe cada um dos 28 dias, registre o nível de calma do seu cão e guarde as vitórias da jornada.</p>
@@ -535,7 +541,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
 
      <div class="item glass reveal">
       <div class="item-img"><span class="item-tag">Bônus · Incluído</span>
-        <img src="assets/cover.jpg" alt="Áudio Frequência Calmante" loading="lazy" style="filter:saturate(.9) brightness(.8)">
+        <img src="assets/Audio%20Frequencia.png?v=2" alt="Áudio Frequência Calmante" loading="lazy">
       </div>
       <div class="item-body">
        <div class="k">Bônus 04</div><h4 class="serif">Áudio Frequência Calmante</h4>
@@ -556,7 +562,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
   
   <div class="atlas-interactive">
     <div class="glow"></div>
-    <img src="assets/atlas_black.jpg" alt="Atlas da Linguagem Canina — versão premium" loading="lazy">
+    <img src="assets/atlas_black.jpg?v=2" alt="Atlas da Linguagem Canina — versão premium" loading="lazy">
     
     <!-- Hotspots -->
     <div class="hotspot" style="top: 25%; left: 80%;">
@@ -679,8 +685,8 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
 </div>
 
 <script>
-/* ====== CONFIG: cole aqui o link do seu checkout (Cakto) ====== */
-const CHECKOUT_URL = "COLE_AQUI_O_LINK_DO_CHECKOUT_CAKTO";
+/* ====== CONFIG: cole aqui o link do seu checkout ====== */
+const CHECKOUT_URL = "https://pay.kirvano.com/a13e4dbe-a887-4d48-a2a1-aee6933e80fd";
 
 (function(){
   // Se o link do checkout estiver configurado, TODOS os botões vão direto para ele.
