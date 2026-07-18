@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>O que seu cão está tentando te dizer? — Método Calmaria</title>
+<meta name="description" content="Responda 5 perguntas rápidas e descubra o perfil de ansiedade do seu cão — e o primeiro passo para acalmá-lo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1A1A2E;
+    --navy-2:#14142a;
+    --navy-card:#20203a;
+    --gold:#C9A84C;
+    --gold-soft:rgba(201,168,76,.14);
+    --gold-line:rgba(201,168,76,.28);
+    --cream:#F0ECE0;
+    --cream-dim:rgba(240,236,224,.62);
+    --cream-faint:rgba(240,236,224,.34);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(120% 80% at 50% -10%, #23234a 0%, var(--navy) 46%, var(--navy-2) 100%);
+    background-attachment:fixed;
+    color:var(--cream);
+    font-family:'DM Sans',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+  }
+  .wrap{
+    width:100%;
+    max-width:560px;
+    margin:0 auto;
+    padding:26px 22px calc(28px + env(safe-area-inset-bottom));
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---- top brand + progress ---- */
+  .brand{
+    display:flex;align-items:center;gap:9px;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--cream-dim);font-weight:600;
+    margin-bottom:22px;
+  }
+  .brand b{color:var(--gold);font-weight:700}
+  .brand .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-line)}
+
+  .progress-shell{margin-bottom:30px}
+  .progress-meta{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream-faint);font-weight:600;margin-bottom:9px;
+  }
+  .progress-meta .step-count{color:var(--gold)}
+  .bar{height:3px;background:rgba(240,236,224,.10);border-radius:99px;overflow:hidden}
+  .bar > i{
+    display:block;height:100%;width:0;border-radius:99px;
+    background:linear-gradient(90deg,var(--gold),#e6c976);
+    transition:width .5s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* ---- screens ---- */
+  .screen{display:none;animation:rise .5s cubic-bezier(.22,1,.36,1) both}
+  .screen.on{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .screen,.screen.on{animation:none}
+    .bar > i{transition:none}
+    .opt{transition:none}
+  }
+
+  .eyebrow{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:14px;
+  }
+  .q{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(25px,6.4vw,33px);
+    line-height:1.18;
+    color:var(--cream);
+    margin-bottom:26px;
+    letter-spacing:-.01em;
+  }
+  .q em{font-style:italic;color:var(--gold)}
+
+  /* ---- options ---- */
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{
+    text-align:left;width:100%;cursor:pointer;
+    background:var(--navy-card);
+    border:1px solid rgba(240,236,224,.10);
+    border-radius:15px;
+    padding:17px 18px;
+    color:var(--cream);
+    font-family:inherit;font-size:16px;line-height:1.42;font-weight:500;
+    display:flex;align-items:center;gap:14px;
+    transition:border-color .2s, background .2s, transform .1s;
+  }
+  .opt:hover{border-color:var(--gold-line);background:#26264a}
+  .opt:active{transform:scale(.99)}
+  .opt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .opt .tick{
+    flex:none;width:22px;height:22px;border-radius:50%;
+    border:1.5px solid var(--gold-line);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s,border-color .2s;
+  }
+  .opt .tick svg{width:12px;height:12px;opacity:0;transition:opacity .15s}
+  .opt.picked{border-color:var(--gold);background:var(--gold-soft)}
+  .opt.picked .tick{background:var(--gold);border-color:var(--gold)}
+  .opt.picked .tick svg{opacity:1}
+
+  /* ---- intro / result shared ---- */
+  .lead-tag{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:16px;
+  }
+  .big{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(30px,8vw,42px);
+    line-height:1.12;letter-spacing:-.015em;
+    margin-bottom:18px;
+  }
+  .big em{font-style:italic;color:var(--gold)}
+  .sub{font-size:16px;color:var(--cream-dim);margin-bottom:30px;max-width:44ch}
+
+  .cta{
+    -webkit-appearance:none;appearance:none;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;
+    background:linear-gradient(180deg,#d8b95c,var(--gold));
+    color:#20180a;
+    font-family:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;
+    border:none;border-radius:14px;padding:18px 22px;
+    box-shadow:0 10px 30px -12px rgba(201,168,76,.6);
+    transition:transform .12s, box-shadow .2s;
+  }
+  .cta:hover{transform:translateY(-1px);box-shadow:0 14px 34px -12px rgba(201,168,76,.72)}
+  .cta:active{transform:translateY(0)}
+  .cta:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+  .cta.ghost{
+    background:transparent;color:var(--cream-dim);
+    box-shadow:none;border:1px solid rgba(240,236,224,.16);
+    font-weight:600;margin-top:12px;
+  }
+  .cta.ghost:hover{color:var(--cream);border-color:var(--gold-line);transform:none}
+
+  .intro-meta{
+    margin-top:26px;display:flex;align-items:center;gap:10px;
+    font-size:13px;color:var(--cream-faint);
+  }
+  .intro-meta span{display:inline-flex;align-items:center;gap:6px}
+  .intro-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--cream-faint)}
+
+  /* ---- result ---- */
+  .result-profile{
+    border:1px solid var(--gold-line);
+    background:linear-gradient(180deg, var(--gold-soft), rgba(201,168,76,.03));
+    border-radius:18px;padding:24px 22px;margin-bottom:22px;
+  }
+  .result-kicker{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:10px;
+  }
+  .result-name{
+    font-family:'Playfair Display',serif;font-weight:600;font-style:italic;
+    font-size:clamp(24px,6.2vw,30px);line-height:1.15;color:var(--cream);
+    margin-bottom:16px;letter-spacing:-.01em;
+  }
+  .result-body{font-size:16px;color:var(--cream-dim);line-height:1.62}
+  .result-body strong{color:var(--cream);font-weight:600}
+
+  .bridge{
+    font-size:15px;color:var(--cream-dim);line-height:1.62;
+    margin-bottom:24px;
+  }
+  .bridge strong{color:var(--cream);font-weight:600}
+
+  .disclaimer{
+    margin-top:26px;padding-top:18px;border-top:1px solid rgba(240,236,224,.08);
+    font-size:12px;color:var(--cream-faint);line-height:1.5;
+  }
+
+  .footer{
+    text-align:center;font-size:11px;letter-spacing:.06em;
+    color:var(--cream-faint);padding:18px 0 calc(20px + env(safe-area-inset-bottom));
+  }
+  .footer b{color:var(--cream-dim);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><b>Simbas Pet</b><span class="dot"></span><span>Método Calmaria</span></div>
+
+  <div class="progress-shell" id="progressShell" hidden>
+    <div class="progress-meta">
+      <span>Perfil do seu cão</span>
+      <span class="step-count"><i id="stepNow">1</i> / 5</span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="screen on" id="intro">
+    <div class="lead-tag">Diagnóstico gratuito · 60 segundos</div>
+    <h1 class="big">O que seu cão está <em>tentando te dizer?</em></h1>
+    <p class="sub">Responda 5 perguntas rápidas sobre o comportamento dele. No final, você descobre o <strong style="color:var(--cream)">perfil de ansiedade</strong> do seu cão — e o primeiro passo para acalmá-lo.</p>
+    <button class="cta" id="startBtn">
+      Descobrir meu cão
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="intro-meta">
+      <span>Sem cadastro</span><span class="sep"></span>
+      <span>Sem e-mail</span><span class="sep"></span>
+      <span>Resultado na hora</span>
+    </div>
+  </section>
+
+  <!-- QUESTIONS render here -->
+  <section class="screen" id="quizScreen">
+    <div class="eyebrow" id="qEyebrow">Pergunta 1</div>
+    <h2 class="q" id="qText"></h2>
+    <div class="opts" id="qOpts"></div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="result">
+    <div class="result-profile">
+      <div class="result-kicker">O perfil do seu cão</div>
+      <div class="result-name" id="resName"></div>
+      <p class="result-body" id="resBody"></p>
+    </div>
+    <p class="bridge">Esse perfil não é um veredito — é um <strong>ponto de partida</strong>. O Método Calmaria é o protocolo de 21 dias em casa + 7 na rua que transforma exatamente esse padrão de ansiedade em calma e conexão. Sem grito, sem dominância.</p>
+    <a class="cta" id="toLanding" href="https://www.simbaspet.com.br" target="_blank" rel="noopener">
+      Ver o método pro perfil do meu cão
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <button class="cta ghost" id="restartBtn">Refazer o teste</button>
+    <p class="disclaimer">Este teste é uma ferramenta de reconhecimento de padrões de comportamento, não um diagnóstico clínico. Casos com sinais intensos ou súbitos devem ser avaliados por um veterinário ou profissional de comportamento animal.</p>
+  </section>
+
+  <div style="flex:1"></div>
+  <div class="footer"><b>@simbas.amor.pelos</b> · simbaspet.com.br</div>
+</div>
+
+<script>
+(function(){
+  // Each option carries scores in two axes: casa (home) and rua (street).
+  // The highest-weighted axis at the end selects the profile.
+  const QUESTIONS = [
+    {
+      eyebrow:"Pergunta 1",
+      text:"Quando você <em>sai de casa</em>, o seu cão…",
+      options:[
+        {label:"Fica tranquilo, não liga muito", casa:0, rua:0},
+        {label:"Late ou chora um pouco, depois se acalma", casa:1, rua:0},
+        {label:"Destrói coisas, late sem parar, ou faz xixi/cocô fora do lugar", casa:2, rua:0},
+      ]
+    },
+    {
+      eyebrow:"Pergunta 2",
+      text:"No <em>passeio</em>, na rua, ele…",
+      options:[
+        {label:"Anda relaxado, sem puxar", casa:0, rua:0},
+        {label:"Puxa a guia, fica agitado com cheiros e barulhos", casa:0, rua:1},
+        {label:"Reage a outros cães ou pessoas: late, avança, trava", casa:0, rua:2},
+      ]
+    },
+    {
+      eyebrow:"Pergunta 3",
+      text:"Quando ele fica ansioso, o <em>corpo</em> dele…",
+      options:[
+        {label:"Não sei dizer — nunca reparei", casa:1, rua:1},
+        {label:"Fica agitado, ofegante, não para quieto", casa:1, rua:1},
+        {label:"Treme, se esconde, ou fica em alerta constante", casa:1, rua:1},
+      ]
+    },
+    {
+      eyebrow:"Pergunta 4",
+      text:"Você já <em>tentou resolver</em> isso antes?",
+      options:[
+        {label:"Ainda não, tô começando agora", casa:0, rua:0},
+        {label:"Vi vídeos e dicas soltas, mas nada mudou de verdade", casa:0, rua:0},
+        {label:"Já tentei de tudo, incluindo profissional", casa:0, rua:0},
+      ]
+    },
+    {
+      eyebrow:"Pergunta 5",
+      text:"O que você <em>mais quer</em> pro seu cão?",
+      options:[
+        {label:"Que ele pare de destruir ou latir", casa:0, rua:0},
+        {label:"Que ele fique calmo e tranquilo no dia a dia", casa:0, rua:0},
+        {label:"Que a gente se entenda de verdade — não só obediência", casa:0, rua:0},
+      ]
+    },
+  ];
+
+  const PROFILES = {
+    casa:{
+      name:"Ansiedade que mora em casa",
+      body:"O seu cão sente a sua ausência como uma ameaça real. O que parece “bagunça” ou “teimosia” é, na verdade, um sistema nervoso em alerta quando você não está por perto. A boa notícia: <strong>esse é o padrão que mais responde a rotina e previsibilidade</strong> — e é exatamente por onde o Método Calmaria começa."
+    },
+    rua:{
+      name:"Ansiedade que aparece na rua",
+      body:"Em casa ele até pode estar bem, mas o mundo lá fora sobrecarrega o sistema dele. Puxão, latido e reação a outros cães não são “falta de educação” — são <strong>um cão que ainda não aprendeu a se regular diante de tanto estímulo</strong>. Isso se ensina, com o passo certo. É o foco do Módulo 2 do Método Calmaria."
+    },
+    ambos:{
+      name:"Ansiedade em dois mundos",
+      body:"O seu cão carrega a ansiedade pra dentro e pra fora de casa — e por isso as tentativas soltas que você já fez não sustentaram. <strong>Não é o seu cão que é “difícil”.</strong> É que o problema tem duas frentes, e nunca foi tratado como uma coisa só. O Método Calmaria foi construído exatamente assim: 21 dias em casa + 7 na rua, uma raiz, um caminho."
+    }
+  };
+
+  const state = {i:0, casa:0, rua:0};
+  const el = id => document.getElementById(id);
+  const show = id => {
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+    el(id).classList.add('on');
+    window.scrollTo({top:0,behavior:'instant'});
+  };
+
+  function renderQuestion(){
+    const q = QUESTIONS[state.i];
+    el('progressShell').hidden = false;
+    el('stepNow').textContent = state.i + 1;
+    el('barFill').style.width = ((state.i)/QUESTIONS.length*100) + '%';
+    el('qEyebrow').textContent = q.eyebrow;
+    el('qText').innerHTML = q.text;
+    const box = el('qOpts');
+    box.innerHTML = '';
+    q.options.forEach((opt)=>{
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.innerHTML =
+        '<span class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#20180a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span>'+opt.label+'</span>';
+      b.addEventListener('click', ()=>{
+        state.casa += opt.casa; state.rua += opt.rua;
+        b.classList.add('picked');
+        box.querySelectorAll('.opt').forEach(o=>o.style.pointerEvents='none');
+        setTimeout(next, 260);
+      });
+      box.appendChild(b);
+    });
+    show('quizScreen');
+  }
+
+  function next(){
+    state.i++;
+    if(state.i < QUESTIONS.length){ renderQuestion(); }
+    else { finish(); }
+  }
+
+  function finish(){
+    el('barFill').style.width = '100%';
+    el('progressShell').hidden = true;
+    let key;
+    const strong = 2; // threshold for "meaningful" pressure on an axis
+    if(state.casa >= strong && state.rua >= strong) key='ambos';
+    else if(state.casa > state.rua) key='casa';
+    else if(state.rua > state.casa) key='rua';
+    else key = (state.casa>0 || state.rua>0) ? 'casa' : 'ambos';
+    const p = PROFILES[key];
+    el('resName').textContent = p.name;
+    el('resBody').innerHTML = p.body;
+    show('result');
+  }
+
+  el('startBtn').addEventListener('click', ()=>{ state.i=0;state.casa=0;state.rua=0; renderQuestion(); });
+  el('restartBtn').addEventListener('click', ()=>{ state.i=0;state.casa=0;state.rua=0; el('progressShell').hidden=true; show('intro'); });
+})();
+</script>
+</body>
+</html>
