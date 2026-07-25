@@ -18,6 +18,24 @@
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '35007983302181877');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=35007983302181877&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
 /* ============ CONFIG DE MARCA & RESET ============ */
 :root {
@@ -383,10 +401,7 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
         <span class="btn-lbl">QUERO ACALMAR MEU CÃO<span class="sub">Acesso imediato · por R$27</span></span>
       </a>
       
-      <a class="btn" href="quiz" target="_blank" style="background: transparent; box-shadow: none; border: 1px solid rgba(201,168,76,0.4); color: var(--gold-lt); margin-top: -6px; margin-bottom: 12px; padding: 16px 34px;">
-        <span class="btn-lbl">FAÇA O TESTE GRÁTIS<span class="sub" style="color: var(--cream-dim);">Qual o perfil de ansiedade do seu cão?</span></span>
-      </a>
-      
+
       <!-- Prova Social Imediata (Avatares) -->
       <div class="social-proof-hero">
         <!-- ATENÇÃO: Substitua pelo seu arquivo "assets/avatars.png" depois -->
@@ -706,6 +721,13 @@ const CHECKOUT_URL = "https://pay.kirvano.com/a13e4dbe-a887-4d48-a2a1-aee6933e80
   document.querySelectorAll('.js-cta').forEach(function(a){
     if(valido){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_top'); a.setAttribute('rel','noopener'); }
     else { a.setAttribute('href', '#checkout'); }
+    
+    // Dispara o evento de InitiateCheckout do Meta Pixel ao clicar nos botões CTA
+    a.addEventListener('click', function() {
+      if(typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout');
+      }
+    });
   });
 
   // barra fixa mobile: aparece após rolar o hero
