@@ -315,6 +315,9 @@ section { position: relative; }
 footer { background: var(--navy-3); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 140px; }
 footer .f-brand { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; text-align: center; }
 footer .f-brand em { color: var(--gold); font-style: italic; }
+footer .footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; font-size: 13.5px; margin-top: 18px; }
+footer .footer-nav a { color: var(--cream-dim); text-decoration: none; transition: all 0.2s; font-weight: 500; }
+footer .footer-nav a:hover { color: var(--gold-lt); text-decoration: underline; }
 footer .f-links { text-align: center; color: var(--cream-dim); font-size: 14px; margin-top: 14px; font-weight: 500; }
 footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 24px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.8; }
 
@@ -699,6 +702,11 @@ footer .f-legal { text-align: center; color: rgba(255,255,255,0.4); font-size: 1
 <footer>
  <div class="wrap">
   <div class="f-brand serif">Simbas <em>Pet</em></div>
+  <div class="footer-nav">
+    <a href="/politica-de-privacidade">Política de Privacidade</a>
+    <a href="/termos-de-servico">Termos de Serviço</a>
+    <a href="/exclusao-de-dados">Solicitação de Exclusão de Dados</a>
+  </div>
   <div class="f-links">@simbas.amor.pelos · simbaspet.com.br</div>
   <div class="f-legal">Método Calmaria é um programa educativo de comportamento canino e não substitui avaliação veterinária ou de profissional especializado em casos clínicos. Resultados variam conforme a dedicação de cada tutor e o histórico de cada cão. © Simbas Pet — Todos os direitos reservados.</div>
  </div>
