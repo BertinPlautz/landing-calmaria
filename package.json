@@ -1,0 +1,7 @@
+{
+  "name": "landing-calmaria",
+  "private": true,
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  }
+}
