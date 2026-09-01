@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=ig&utm_medium=bio&utm_campaign=perfil",
+      "permanent": false
+    }
+  ]
 }
