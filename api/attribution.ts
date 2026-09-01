@@ -250,9 +250,10 @@ export async function POST(request: Request): Promise<Response> {
       }
     );
   } catch (e) {
-    console.error('[AttributionAPI] Error:', e);
+    console.error('[AttributionAPI] Error:', e instanceof Error ? e.message : String(e));
+    console.error('[AttributionAPI] Stack:', e instanceof Error ? e.stack : 'no stack');
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: 'Internal server error', detail: e instanceof Error ? e.message : String(e) }),
       { status: 500, headers: { ...corsHeaders(origin), 'Content-Type': 'application/json' } }
     );
   }
