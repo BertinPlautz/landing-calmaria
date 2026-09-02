@@ -732,9 +732,9 @@ const CHECKOUT_URL = "https://pay.kirvano.com/a13e4dbe-a887-4d48-a2a1-aee6933e80
   // Enquanto não estiver, os botões rolam suavemente até a seção de oferta (#checkout).
   var valido = CHECKOUT_URL.indexOf('http')===0;
   document.querySelectorAll('.js-cta').forEach(function(a){
-    if(valido){ a.setAttribute('href', CHECKOUT_URL); a.setAttribute('target','_top'); a.setAttribute('rel','noopener'); }
+    if(valido){ a.setAttribute('href', buildCheckoutUrl()); a.setAttribute('target','_top'); a.setAttribute('rel','noopener'); }
     else { a.setAttribute('href', '#checkout'); }
-    
+
     // Dispara o evento de InitiateCheckout do Meta Pixel ao clicar nos botões CTA
     a.addEventListener('click', function() {
       if(typeof fbq !== 'undefined') {
@@ -742,6 +742,22 @@ const CHECKOUT_URL = "https://pay.kirvano.com/a13e4dbe-a887-4d48-a2a1-aee6933e80
       }
     });
   });
+
+  // Gate 9.1F: constroi URL do checkout com UTMs + session_id do tracker v2.1
+  function buildCheckoutUrl() {
+    var base = CHECKOUT_URL;
+    var s = window.__simbas_session;
+    if (s) {
+      var p = [];
+      if (s.utm_source)   p.push('utm_source='   + encodeURIComponent(s.utm_source));
+      if (s.utm_medium)   p.push('utm_medium='   + encodeURIComponent(s.utm_medium));
+      if (s.utm_campaign) p.push('utm_campaign=' + encodeURIComponent(s.utm_campaign));
+      if (s.utm_content)  p.push('utm_content='  + encodeURIComponent(s.utm_content));
+      if (s.session_id)   p.push('sid='          + encodeURIComponent(s.session_id));
+      if (p.length) base = base + (base.indexOf('?') >= 0 ? '&' : '?') + p.join('&');
+    }
+    return base;
+  }
 
   // barra fixa mobile: aparece após rolar o hero
   var sticky=document.getElementById('sticky');
