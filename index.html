@@ -753,7 +753,7 @@ const CHECKOUT_URL = "https://pay.kirvano.com/a13e4dbe-a887-4d48-a2a1-aee6933e80
       if (s.utm_medium)   p.push('utm_medium='   + encodeURIComponent(s.utm_medium));
       if (s.utm_campaign) p.push('utm_campaign=' + encodeURIComponent(s.utm_campaign));
       if (s.utm_content)  p.push('utm_content='  + encodeURIComponent(s.utm_content));
-      if (s.session_id)   p.push('sid='          + encodeURIComponent(s.session_id));
+      if (s.session_id)   p.push('src='          + encodeURIComponent(s.session_id));
       if (p.length) base = base + (base.indexOf('?') >= 0 ? '&' : '?') + p.join('&');
     }
     return base;
