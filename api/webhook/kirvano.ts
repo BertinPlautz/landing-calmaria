@@ -23,6 +23,11 @@
 
 import { kv } from '@vercel/kv';
 
+// Vercel disponibiliza process.env em runtime.
+declare const process: {
+  env: Record<string, string | undefined>;
+};
+
 // ── Config ──
 const EVENT_PREFIX = 'event:';
 const PENDING_KEY = 'queue:pending';
