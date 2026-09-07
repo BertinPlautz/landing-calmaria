@@ -11,13 +11,13 @@
  *
  * MAPPING DETERMINÍSTICO:
  *   payload.utm.src = session_id (enviado via query string do checkout)
- *   Sem associação temporal. Sem heurística.
+ *   A sessão é validada no KV antes de marcar a venda como ATTRIBUTED.
  *
  * IDEMPOTÊNCIA:
  *   sale_id como chave única: event:purchase:{sale_id}
  *
- * @version 1.0.0
- * @date    2026-09-01
+ * @version 1.1.0
+ * @date    2026-09-07
  * @gate    9.1F-C
  */
 
@@ -114,7 +114,11 @@ export async function POST(request: Request): Promise<Response> {
     }
 
     if (token !== WEBHOOK_SECRET) {
-      console.warn('[KirvanoWebhook] Token inválido:', token.substring(0, 8) + '...');
+      console.warn(
+        '[KirvanoWebhook] Token inválido:',
+        token.substring(0, 8) + '...'
+      );
+
       return new Response(
         JSON.stringify({ error: 'Unauthorized' }),
         { status: 401, headers }
@@ -123,6 +127,7 @@ export async function POST(request: Request): Promise<Response> {
 
     // ── 2. Parse ──
     let payload: KirvanoWebhook;
+
     try {
       payload = await request.json();
     } catch {
@@ -135,13 +140,18 @@ export async function POST(request: Request): Promise<Response> {
     // ── 3. Validar campos obrigatórios ──
     if (!payload.event || !payload.sale_id || !payload.status) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields: event, sale_id, status' }),
+        JSON.stringify({
+          error: 'Missing required fields: event, sale_id, status',
+        }),
         { status: 400, headers }
       );
     }
 
     // ── 4. Só processa SALE_APPROVED ──
-    if (payload.event !== 'SALE_APPROVED' || payload.status !== 'APPROVED') {
+    if (
+      payload.event !== 'SALE_APPROVED' ||
+      payload.status !== 'APPROVED'
+    ) {
       return new Response(
         JSON.stringify({
           status: 'ignored',
@@ -156,82 +166,191 @@ export async function POST(request: Request): Promise<Response> {
 
     try {
       const exists = await kv.get(`${EVENT_PREFIX}${idemKey}`);
+
       if (exists) {
         return new Response(
-          JSON.stringify({ status: 'ok', detail: 'duplicate', sale_id: payload.sale_id }),
+          JSON.stringify({
+            status: 'ok',
+            detail: 'duplicate',
+            sale_id: payload.sale_id,
+          }),
           { status: 200, headers }
         );
       }
     } catch (e) {
-      console.error('[KirvanoWebhook] KV error checking idempotency:', e);
+      console.error(
+        '[KirvanoWebhook] KV error checking idempotency:',
+        e
+      );
+
       // Continue — better to risk duplicate than lose a sale
     }
 
-    // ── 6. Extrair session_id (DETERMINÍSTICO via utm.src) ──
+    // ── 6. Extrair session_id via utm.src ──
     const sessionId = payload.utm?.src || null;
-    const confidence = sessionId ? 'ATTRIBUTED' : 'UNKNOWN';
-    const confidenceReason = sessionId
-      ? 'Mapping determinístico via utm.src — session_id preservado pela Kirvano'
-      : 'utm.src ausente no payload do webhook — comprador pode ter chegado sem parâmetros de rastreamento';
+
+    // ── 6.1 Validar sessão e recuperar origem ──
+    let storedSession: Record<string, unknown> | null = null;
+
+    if (sessionId) {
+      try {
+        const rawSession = await kv.get<string>(
+          `session:${sessionId}`
+        );
+
+        if (rawSession) {
+          storedSession = JSON.parse(rawSession) as Record<
+            string,
+            unknown
+          >;
+        }
+      } catch (e) {
+        console.warn(
+          '[KirvanoWebhook] Erro ao recuperar sessão:',
+          e
+        );
+      }
+    }
+
+    // Só consideramos a venda realmente atribuída
+    // quando a sessão original foi encontrada no KV.
+    const confidence = storedSession
+      ? 'ATTRIBUTED'
+      : 'UNKNOWN';
+
+    const confidenceReason = storedSession
+      ? 'Sessão validada no KV via utm.src — origem recuperada da sessão original'
+      : sessionId
+        ? 'utm.src presente, mas sessão não encontrada no KV — atribuição não validada'
+        : 'utm.src ausente no payload do webhook — comprador pode ter chegado sem parâmetros de rastreamento';
+
+    // ── 6.2 Recuperar dados de atribuição ──
+    const attributionSource =
+      storedSession?.utm_source || null;
+
+    const attributionMedium =
+      storedSession?.utm_medium || null;
+
+    const attributionCampaign =
+      storedSession?.utm_campaign || null;
+
+    const attributionContent =
+      storedSession?.utm_content || null;
+
+    const attributionReferrer =
+      storedSession?.referrer || null;
 
     // ── 7. Construir evento ──
     const primaryProduct = payload.products?.[0];
-    const value = payload.total_price ? parseBRL(payload.total_price) : null;
+
+    const value = payload.total_price
+      ? parseBRL(payload.total_price)
+      : null;
+
     const eventTime = formatTimestamp(payload.created_at);
 
     const eventData = {
       session_id: sessionId,
       event_type: 'purchase',
+
+      // Dados de origem da sessão
+      attribution_source: attributionSource,
+      attribution_medium: attributionMedium,
+      attribution_campaign: attributionCampaign,
+      attribution_content: attributionContent,
+      attribution_referrer: attributionReferrer,
+
       event_source: 'kirvano_webhook',
       event_time: eventTime,
       value: value,
       currency: 'BRL',
+
       product_id: primaryProduct?.id || null,
       product_name: primaryProduct?.name || null,
+
       url: `https://pay.kirvano.com/checkout/${payload.checkout_id}`,
+
       attribution_confidence: confidence,
       confidence_reason: confidenceReason,
+
       idempotency_key: idemKey,
       sale_id: payload.sale_id,
       checkout_id: payload.checkout_id,
+
       raw_payload: JSON.stringify(payload),
+
       ingested_at: new Date().toISOString(),
     };
 
     // ── 8. Armazenar no KV ──
-    await kv.set(`${EVENT_PREFIX}${idemKey}`, JSON.stringify(eventData), {
-      ex: EVENT_TTL_SECONDS,
-    });
+    await kv.set(
+      `${EVENT_PREFIX}${idemKey}`,
+      JSON.stringify(eventData),
+      {
+        ex: EVENT_TTL_SECONDS,
+      }
+    );
 
     // ── 9. Adicionar à fila do kv_sync ──
     await kv.rpush(PENDING_KEY, idemKey);
-    await kv.expire(PENDING_KEY, EVENT_TTL_SECONDS);
 
-    console.log(`[KirvanoWebhook] ✅ Purchase ingested: sale_id=${payload.sale_id} sid=${sessionId?.substring(0, 12) || 'none'} value=${value} confidence=${confidence}`);
+    await kv.expire(
+      PENDING_KEY,
+      EVENT_TTL_SECONDS
+    );
 
+    // ── 10. Log ──
+    console.log(
+      `[KirvanoWebhook] ✅ Purchase ingested: sale_id=${payload.sale_id} sid=${sessionId?.substring(0, 12) || 'none'} value=${value} confidence=${confidence} source=${attributionSource || 'none'}`
+    );
+
+    // ── 11. Response ──
     return new Response(
       JSON.stringify({
         status: 'ok',
         ingested: true,
         sale_id: payload.sale_id,
-        session_id: sessionId?.substring(0, 12) + '...' || null,
+        session_id:
+          sessionId?.substring(0, 12) + '...' || null,
         confidence,
         value,
         currency: 'BRL',
       }),
-      { status: 200, headers }
+      {
+        status: 200,
+        headers,
+      }
     );
 
   } catch (e) {
-    console.error('[KirvanoWebhook] Unhandled error:', e instanceof Error ? e.message : String(e));
+    console.error(
+      '[KirvanoWebhook] Unhandled error:',
+      e instanceof Error
+        ? e.message
+        : String(e)
+    );
+
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
-      { status: 500, headers }
+      JSON.stringify({
+        error: 'Internal server error',
+      }),
+      {
+        status: 500,
+        headers,
+      }
     );
   }
 }
 
 // ── OPTIONS (CORS preflight) ──
-export async function OPTIONS(_request: Request): Promise<Response> {
-  return new Response(null, { status: 200, headers: corsHeaders() });
+export async function OPTIONS(
+  _request: Request
+): Promise<Response> {
+  return new Response(
+    null,
+    {
+      status: 200,
+      headers: corsHeaders(),
+    }
+  );
 }
