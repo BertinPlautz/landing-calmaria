@@ -171,7 +171,7 @@ export async function POST(request: Request): Promise<Response> {
     }
 
     const validation = validatePayload(body);
-    if (!validation.valid) {
+    if (validation.valid === false) {
       return new Response(
         JSON.stringify({ error: validation.error }),
         { status: 400, headers: { ...corsHeaders(origin), 'Content-Type': 'application/json' } }
