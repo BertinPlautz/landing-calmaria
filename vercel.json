@@ -5,6 +5,16 @@
       "source": "/ig",
       "destination": "/?utm_source=ig&utm_medium=bio&utm_campaign=perfil",
       "permanent": false
+    },
+    {
+      "source": "/seus-materiais",
+      "destination": "/materiais",
+      "permanent": false
+    },
+    {
+      "source": "/seus-materiais-volto-ja",
+      "destination": "/materiais",
+      "permanent": false
     }
   ]
 }
