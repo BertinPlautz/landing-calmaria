@@ -8,7 +8,7 @@
 <meta name="description" content="O método prático da Simba's Pet para o seu cão ficar sozinho sem pânico: guia de 54 páginas, aplicativo que diz o próximo passo, áudios e 3 bônus. Apenas R$ 27.">
 <meta property="og:title" content="Volto Já: seu cão sozinho sem pânico">
 <meta property="og:description" content="Ele começa a sofrer quando você pega a chave. O Volto Já ensina, um degrau de cada vez, que você sempre volta.">
-<meta property="og:image" content="img/og.jpg">
+<meta property="og:image" content="https://www.simbaspet.com.br/img/og.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -622,7 +622,7 @@ footer p{margin:0 0 8px}
    ========================================================================== */
 const LINK_CHECKOUT = "https://pay.cakto.com.br/3adadxk_1161439";
 const LINK_TESTE    = "/teste";
-const PIXEL_ID      = "";   /* Inserir ID do Pixel da Meta quando disponível */
+const PIXEL_ID      = "2383352999101543";
 const CONTATO       = "";   /* Ex.: "Dúvidas: @simbaspet nas redes sociais" */
 
 /* ==========================================================================
@@ -645,10 +645,8 @@ function trackEvent(eventName, payload){
   // Meta Pixel integration
   if(window.fbq && typeof window.fbq === "function"){
     try {
-      if(eventName === "checkout_initiated" || eventName === "cta_clicked"){
-        window.fbq("track", "InitiateCheckout", { value: 27, currency: "BRL" });
-      } else if(eventName === "page_viewed"){
-        window.fbq("track", "PageView");
+      if(eventName === "checkout_initiated"){
+        window.fbq("track", "InitiateCheckout", { value: 27, currency: "BRL", content_name: "Volto Já" });
       }
     } catch(e){}
   }
@@ -662,6 +660,13 @@ function trackEvent(eventName, payload){
 }
 
 (function(){
+  // Pixel Initialization if provided
+  if(PIXEL_ID){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
   // 1. Page Viewed Event
   trackEvent("page_viewed", {
     page_id: "volto_ja_landing",
@@ -718,12 +723,6 @@ function trackEvent(eventName, payload){
 
   if(CONTATO) document.getElementById("rodapeContato").textContent = CONTATO;
 
-  // Pixel Initialization if provided
-  if(PIXEL_ID){
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', PIXEL_ID);
-    fbq('track', 'PageView');
-  }
 
   // 3. Relógio da Câmera HUD
   const rel = document.getElementById("relogio");

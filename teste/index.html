@@ -122,6 +122,11 @@ input{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;bor
  :root:not([data-theme="light"]) .oferta{background:#2B2521}:root:not([data-theme="light"]) .alerta{background:#3A2A22}}
 :root[data-theme="dark"]{--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
 </style>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2383352999101543');
+fbq('track','PageView');
+</script>
 </head>
 <body>
 <main class="app">
@@ -271,6 +276,8 @@ const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quer
     }
   }catch(err){$("b-comprar").href=LINK_CHECKOUT;}
   if(LINK_WHATSAPP){$("b-whats").href=LINK_WHATSAPP;$("b-whats").hidden=false;}
+  function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}}
+  $("b-comprar").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
 
   $("b-comecar").addEventListener("click",()=>{e.nome=$("in-nome").value.trim();salvar();atualizarNomes();ir("t-como");});
   $("b-ir-tentativa").addEventListener("click",abrirTentativa);
@@ -385,10 +392,11 @@ const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quer
     $("r-alerta").innerHTML=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta"><b>Antes de treinar, fale com um veterinário.</b> Machucados ao tentar sair, ficar sem comer sozinho ou uma mudança repentina de comportamento podem ter relação com dor ou doença. O treino pode ajudar depois, com orientação profissional ao lado.</div>`:"";
     atualizarNomes();
     $("carregando").style.display="none";
+    if(!e.lead){e.lead=1;salvar();px("Lead",{content_name:"Teste da Chave"});}
     $("conteudo-resultado").classList.add("ver");
     requestAnimationFrame(()=>requestAnimationFrame(()=>grafico.classList.add("pronto")));
   }
-  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
+  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,lead:e.lead,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
 
   atualizarNomes(); if(e.nome) $("in-nome").value=e.nome;
   if(e.notas.length>=3&&e.q1&&e.q2){ir("t-resultado");$("carregando").style.display="none";$("conteudo-resultado").classList.add("ver");mostrarResultado();$("grafico").classList.add("pronto");}

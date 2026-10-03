@@ -15,6 +15,21 @@
       "source": "/seus-materiais-volto-ja",
       "destination": "/materiais",
       "permanent": false
+    },
+    {
+      "source": "/voltoja",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/voltoja/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/volto-ja",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
