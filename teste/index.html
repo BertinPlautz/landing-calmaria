@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF7F1">
+<title>O Teste da Chave · Simbas Pet</title>
+<meta name="description" content="Descubra em 15 minutos se o seu cão entra em pânico quando você sai, ou antes de você sair. Grátis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--papel:#FBF7F1;--bege:#F3ECE2;--linha:#E3D9CC;--tinta:#2E2A26;--cinza:#6B635B;--caramelo:#C9772E;--caramelo-esc:#A85F20;--salvia:#6E9B73;--oliva:#9AAA4E;--mel:#E3A33B;--ferrugem:#B5452B;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;background:var(--papel);color:var(--tinta)}
+body{font-family:Poppins,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-tap-highlight-color:transparent}
+.app{max-width:480px;margin:0 auto;padding:20px 18px 48px}
+h1,h2,.serif{font-family:Lora,Georgia,serif}
+h1{font-size:34px;line-height:1.12;margin:10px 0 12px}
+h2{font-size:23px;line-height:1.25;margin:0 0 10px}
+p{margin:0 0 12px}
+.sub{color:var(--cinza);font-size:15px}
+.tela{display:none}.tela.ativa{display:block}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;border:0}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--caramelo);outline-offset:2px}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;padding:17px 18px;border-radius:16px;font-weight:600;font-size:17px}
+.btn-principal{background:var(--caramelo);color:#fff}
+.btn-principal:active{background:var(--caramelo-esc)}
+.btn-sec{background:var(--bege);color:var(--tinta);margin-top:10px}
+.btn-link{background:none;color:var(--caramelo);font-weight:600;padding:10px 0;font-size:15px}
+.marca{font-size:13px;color:var(--caramelo);font-weight:600}
+.foto-chave{background:var(--bege);border-radius:24px;padding:26px 20px;margin:18px 0;text-align:center}
+.foto-chave svg{width:120px;height:auto}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--linha);background:#fff;color:var(--tinta)}
+.lista-passos{list-style:none;padding:0;margin:14px 0 18px;counter-reset:p}
+.lista-passos li{counter-increment:p;position:relative;padding:0 0 14px 46px}
+.lista-passos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--caramelo);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+.progresso{display:flex;gap:8px;margin:6px 0 18px}
+.progresso span{flex:1;height:8px;border-radius:4px;background:var(--linha)}
+.progresso span.feito{background:var(--caramelo)}
+.cartao{background:#fff;border:1px solid var(--linha);border-radius:22px;padding:18px;margin:14px 0}
+.cron{font-family:Lora,Georgia,serif;font-size:44px;text-align:center;margin:4px 0;font-variant-numeric:tabular-nums}
+.notas{display:grid;gap:10px;margin-top:14px}
+.nota{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:13px;border-radius:18px;background:#fff;border:2px solid var(--linha)}
+.nota .n{flex:0 0 48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:24px}
+.nota b{display:block;font-size:17px}.nota span{font-size:14px;color:var(--cinza);line-height:1.35}
+.sim-nao{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 18px}
+.sim-nao button{padding:14px;border-radius:14px;background:#fff;border:2px solid var(--linha);font-weight:600}
+.sim-nao button.escolhido{border-color:var(--caramelo);background:#FBEFE3}
+.grafico{display:flex;align-items:flex-end;gap:12px;height:150px;padding:10px 6px 0;border-bottom:2px solid var(--linha)}
+.grafico div{flex:1;border-radius:8px 8px 0 0;position:relative;min-height:10px}
+.grafico div b{position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:14px}
+.eixo{display:flex;gap:12px;padding:6px 6px 0;font-size:12px;color:var(--cinza)}.eixo span{flex:1;text-align:center}
+.alerta{background:#FBEDE3;border-left:5px solid var(--ferrugem);border-radius:14px;padding:14px;font-size:15px;margin:14px 0}
+.oferta{background:var(--tinta);color:#FBF7F1;border-radius:26px;padding:24px 20px;margin:22px 0 10px}
+.oferta h2{color:#FBF7F1}
+.oferta ul{list-style:none;padding:0;margin:14px 0 18px}
+.oferta li{padding:8px 0 8px 30px;position:relative;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.oferta li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:3px solid var(--mel);border-bottom:3px solid var(--mel);transform:rotate(-45deg)}
+.preco{font-family:Lora,Georgia,serif;font-size:46px;line-height:1;margin:6px 0 4px}
+.oferta .pequeno{font-size:13px;color:#D8CEC3}
+.rodape{margin-top:26px;font-size:12px;color:var(--cinza);text-align:center}
+@media (prefers-reduced-motion:no-preference){.tela.ativa{animation:entra .35s ease-out}@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
+ :root:not([data-theme="light"]) .cartao,:root:not([data-theme="light"]) .nota,:root:not([data-theme="light"]) input,:root:not([data-theme="light"]) .sim-nao button{background:#2B2521}
+ :root:not([data-theme="light"]) .oferta{background:#2B2521}:root:not([data-theme="light"]) .alerta{background:#3A2A22}}
+:root[data-theme="dark"]{--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
+</style>
+</head>
+<body>
+<main class="app">
+
+<section class="tela" id="t-inicio">
+  <div class="marca">Simbas Pet · grátis</div>
+  <h1>O Teste da Chave</h1>
+  <p>Descubra em 15 minutos se o seu cão entra em pânico quando você sai, ou <b>antes</b> de você sair. A resposta muda tudo o que você vai fazer depois.</p>
+  <div class="foto-chave" aria-hidden="true">
+    <svg viewBox="0 0 120 70"><circle cx="30" cy="35" r="22" fill="none" stroke="#C9772E" stroke-width="8"/><path d="M52 35 H112 M92 35 V50 M104 35 V47" stroke="#C9772E" stroke-width="8" stroke-linecap="round"/></svg>
+  </div>
+  <label for="in-nome">Qual é o nome do seu cão?</label>
+  <input id="in-nome" type="text" maxlength="24" autocomplete="off" placeholder="Ex.: Thor">
+  <button class="btn btn-principal" id="b-comecar" style="margin-top:16px">Fazer o teste</button>
+  <p class="rodape">Sem cadastro. Suas respostas ficam só neste celular.</p>
+</section>
+
+<section class="tela" id="t-como">
+  <h2>Como funciona</h2>
+  <ol class="lista-passos">
+    <li>Escolha um momento em que você <b>não precisa sair</b>.</li>
+    <li>Pegue a chave, calce o tênis ou pegue a bolsa, como se fosse sair.</li>
+    <li>Em vez de sair, <b>sente no sofá</b> e fique 2 minutos observando, sem olhar direto para <span class="nome-cao">ele</span>.</li>
+    <li>Dê uma nota de 0 a 3 para a reação. Repita 5 vezes.</li>
+  </ol>
+  <div class="cartao sub">Pode fazer as 5 tentativas agora, ou ao longo do dia, que é o ideal. A página guarda o seu progresso.</div>
+  <button class="btn btn-principal" id="b-ir-tentativa">Começar a tentativa 1</button>
+</section>
+
+<section class="tela" id="t-tentativa">
+  <div class="progresso" id="progresso"><span></span><span></span><span></span><span></span><span></span></div>
+  <h2 id="tt-titulo">Tentativa 1 de 5</h2>
+  <p class="sub">Pegue a chave, sente no sofá e observe por 2 minutos.</p>
+  <div class="cartao">
+    <div class="cron" id="cron">2:00</div>
+    <button class="btn btn-sec" id="b-cron" style="margin-top:6px">Iniciar os 2 minutos</button>
+  </div>
+  <h2 style="font-size:19px;margin-top:18px">Como <span class="nome-cao">ele</span> reagiu?</h2>
+  <div class="notas">
+    <button class="nota" data-nota="0"><span class="n" style="background:var(--salvia)">0</span><span><b>Tranquilo</b><span>Continuou deitado, ou olhou e voltou a descansar</span></span></button>
+    <button class="nota" data-nota="1"><span class="n" style="background:var(--oliva)">1</span><span><b>Atento</b><span>Levantou, olhou para você, mas se acalmou sozinho</span></span></button>
+    <button class="nota" data-nota="2"><span class="n" style="background:var(--mel)">2</span><span><b>Preocupado</b><span>Andou, lambeu os lábios, bocejou, choramingou baixo</span></span></button>
+    <button class="nota" data-nota="3"><span class="n" style="background:var(--ferrugem)">3</span><span><b>Pânico</b><span>Latiu, uivou, foi para a porta, ofegou, tentou passar na sua frente</span></span></button>
+  </div>
+  <button class="btn-link" id="b-depois" style="margin-top:12px">Faço a próxima mais tarde</button>
+</section>
+
+<section class="tela" id="t-pausa">
+  <h2>Progresso salvo</h2>
+  <p>Você já fez <b id="pausa-n">1</b> de 5 tentativas. Quando quiser continuar, abra esta mesma página: ela volta de onde você parou.</p>
+  <button class="btn btn-principal" id="b-continuar">Continuar agora</button>
+</section>
+
+<section class="tela" id="t-seguranca">
+  <h2>Duas perguntas rápidas</h2>
+  <p class="sub">Elas ajudam a saber se é hora de treinar ou de procurar um veterinário primeiro.</p>
+  <p style="margin-top:16px"><b>1.</b> <span class="nome-cao-cap">Ele</span> já se machucou tentando sair, ou fica sem comer nada quando está sozinho?</p>
+  <div class="sim-nao" data-q="q1"><button data-v="sim">Sim</button><button data-v="nao">Não</button></div>
+  <p><b>2.</b> O problema começou de repente, num cão que antes ficava bem sozinho?</p>
+  <div class="sim-nao" data-q="q2"><button data-v="sim">Sim</button><button data-v="nao">Não</button></div>
+  <button class="btn btn-principal" id="b-resultado" disabled style="opacity:.5">Ver o resultado</button>
+</section>
+
+<section class="tela" id="t-resultado">
+  <div class="marca">Resultado do Teste da Chave</div>
+  <h1 id="r-titulo" style="font-size:28px"></h1>
+  <p id="r-texto"></p>
+  <div class="cartao">
+    <div class="sub" style="margin-bottom:26px">As 5 notas de hoje</div>
+    <div class="grafico" id="grafico"></div>
+    <div class="eixo"><span>1ª</span><span>2ª</span><span>3ª</span><span>4ª</span><span>5ª</span></div>
+  </div>
+  <div id="r-alerta"></div>
+  <p id="r-proximo"></p>
+
+  <div class="oferta" id="oferta">
+    <h2>Volto Já: o método completo</h2>
+    <p style="color:#D8CEC3">O Teste da Chave é o primeiro passo do Método Saída Invisível. O Volto Já leva você do teste de hoje até <span class="nome-cao">ele</span> ficar sozinho com calma, medindo cada avanço.</p>
+    <ul>
+      <li>Guia completo de 54 páginas, com fotos e infográficos</li>
+      <li>A Escada da Ausência em 3 formatos: aplicativo no celular, versão para a geladeira e planilha</li>
+      <li>Trilha Casa Calma: o áudio do ritual de saída</li>
+      <li>Bônus Kit Família no Mesmo Time</li>
+      <li>Bônus Guia do Brinquedo Recheado, com 15 recheios</li>
+      <li>Bônus Plano Enquanto Ele Aprende, com o Kit Vizinho em Paz</li>
+    </ul>
+    <div class="pequeno">Tudo por</div>
+    <div class="preco">R$ 27</div>
+    <div class="pequeno" style="margin-bottom:16px">Pix ou cartão · acesso imediato · garantia de 30 dias</div>
+    <a class="btn btn-principal" id="b-comprar" href="https://pay.cakto.com.br/3adadxk_1161439">Quero o método completo</a>
+  </div>
+  <a class="btn btn-sec" id="b-whats" href="#" hidden>Receber o plano da primeira semana no WhatsApp</a>
+  <button class="btn-link" id="b-refazer" style="margin-top:14px">Refazer o teste</button>
+  <p class="rodape">Simbas Pet · Este teste não substitui a avaliação de um veterinário.</p>
+</section>
+
+</main>
+<script>
+/* ===== CONFIGURAÇÃO: troque pelos seus links antes de publicar ===== */
+const LINK_CHECKOUT = "https://pay.cakto.com.br/3adadxk_1161439";
+const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quero%20o%20plano%20da%20primeira%20semana */
+/* ================================================================== */
+(function(){
+  const CHAVE="voltoja-teste-chave-v1";
+  let mem=null;
+  let e=carregar();
+  function carregar(){try{const s=localStorage.getItem(CHAVE);if(s)return JSON.parse(s);}catch(x){}return mem||{nome:"",notas:[],q1:null,q2:null};}
+  function salvar(){mem=e;try{localStorage.setItem(CHAVE,JSON.stringify(e));}catch(x){}}
+  const $=id=>document.getElementById(id);
+  function ir(id){document.querySelectorAll(".tela").forEach(t=>t.classList.toggle("ativa",t.id===id));window.scrollTo(0,0);}
+  function nome(){return e.nome||"";}
+  function atualizarNomes(){
+    document.querySelectorAll(".nome-cao").forEach(s=>s.textContent=nome()||"ele");
+    document.querySelectorAll(".nome-cao-cap").forEach(s=>s.textContent=nome()||"Ele");
+  }
+  try{
+    const params=new URLSearchParams(location.search);
+    if(params.toString()){
+      const u=new URL(LINK_CHECKOUT);
+      params.forEach((v,k)=>{if(!u.searchParams.has(k))u.searchParams.set(k,v)});
+      $("b-comprar").href=u.toString();
+    } else {
+      $("b-comprar").href=LINK_CHECKOUT;
+    }
+  }catch(err){$("b-comprar").href=LINK_CHECKOUT;}
+  if(LINK_WHATSAPP){$("b-whats").href=LINK_WHATSAPP;$("b-whats").hidden=false;}
+
+  $("b-comecar").addEventListener("click",()=>{e.nome=$("in-nome").value.trim();salvar();atualizarNomes();ir("t-como");});
+  $("b-ir-tentativa").addEventListener("click",abrirTentativa);
+  $("b-continuar").addEventListener("click",abrirTentativa);
+
+  let timer=null;
+  function pararCron(){if(timer){clearInterval(timer);timer=null;}$("cron").textContent="2:00";$("b-cron").textContent="Iniciar os 2 minutos";}
+  $("b-cron").addEventListener("click",()=>{
+    if(timer){pararCron();return;}
+    const fim=Date.now()+120000;$("b-cron").textContent="Parar";
+    timer=setInterval(()=>{const r=Math.max(0,Math.ceil((fim-Date.now())/1000));$("cron").textContent=`${Math.floor(r/60)}:${String(r%60).padStart(2,"0")}`;
+      if(r<=0){clearInterval(timer);timer=null;$("b-cron").textContent="Iniciar os 2 minutos";try{navigator.vibrate&&navigator.vibrate(300);}catch(x){}}},250);
+  });
+
+  function abrirTentativa(){
+    if(e.notas.length>=5){ir("t-seguranca");return;}
+    pararCron();
+    const n=e.notas.length+1;$("tt-titulo").textContent=`Tentativa ${n} de 5`;
+    document.querySelectorAll("#progresso span").forEach((s,i)=>s.classList.toggle("feito",i<e.notas.length));
+    atualizarNomes();ir("t-tentativa");
+  }
+  document.querySelectorAll("[data-nota]").forEach(b=>b.addEventListener("click",()=>{
+    e.notas.push(parseInt(b.dataset.nota,10));salvar();pararCron();
+    if(e.notas.length>=5){atualizarNomes();ir("t-seguranca");}else abrirTentativa();
+  }));
+  $("b-depois").addEventListener("click",()=>{pararCron();$("pausa-n").textContent=e.notas.length;ir("t-pausa");});
+
+  document.querySelectorAll(".sim-nao").forEach(g=>g.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+    g.querySelectorAll("button").forEach(x=>x.classList.toggle("escolhido",x===b));e[g.dataset.q]=b.dataset.v;salvar();
+    const ok=e.q1&&e.q2;$("b-resultado").disabled=!ok;$("b-resultado").style.opacity=ok?1:.5;
+  })));
+  $("b-resultado").addEventListener("click",mostrarResultado);
+
+  function mostrarResultado(){
+    const n=e.notas, p=n[0], u=n[4], max=Math.max(...n), cao=nome()||"o seu cão", Cao=nome()||"O seu cão";
+    let titulo,texto,proximo;
+    if(p>=2&&u<p){titulo=`O gatilho ${nome()?("de "+nome()):"do seu cão"} está nos sinais de saída, e ele já reagiu ao exercício hoje`;
+      texto=`A nota começou em ${p} e terminou em ${u}, sem você sair de casa. Isso mostra que a chave, o tênis e a bolsa funcionam como um aviso de abandono, e que esse aviso pode perder a força.`;
+      proximo=`O próximo passo é continuar tirando o poder desses sinais, todos os dias, e começar a Escada da Ausência. É exatamente o que o Volto Já ensina, passo a passo.`;}
+    else if(p>=2){titulo=`O gatilho ${nome()?("de "+nome()):"do seu cão"} está nos sinais de saída`;
+      texto=`A nota começou em ${p} e não caiu hoje. É normal: o cão aprendeu durante muito tempo que a chave significa ficar sozinho, e desaprender leva alguns dias de repetição.`;
+      proximo=`Os sinais de saída são o seu ponto de partida. O Volto Já mostra como tirar a força deles em 7 dias e, ao mesmo tempo, começar a Escada da Ausência.`;}
+    else if(max<=1){titulo=`Os sinais de saída pesam pouco para ${cao}`;
+      texto=`${Cao} ficou tranquilo ou atento nas 5 tentativas. Se ele sofre quando fica sozinho, o pânico provavelmente começa depois que a porta fecha.`;
+      proximo=`Nesse caso, o ponto de partida é a Escada da Ausência: ausências tão curtas que ele nem percebe, aumentando um degrau por vez. O Volto Já traz a escada completa, com aplicativo para registrar.`;}
+    else{titulo=`${Cao} reage a alguns sinais, em alguns momentos`;
+      texto=`As notas variaram entre as tentativas. Vale observar em quais horários ou com quais sinais ele fica mais preocupado.`;
+      proximo=`O Volto Já ajuda a mapear esses sinais e combina o treino deles com a Escada da Ausência.`;}
+    $("r-titulo").textContent=titulo;$("r-texto").textContent=texto;$("r-proximo").textContent=proximo;
+    const cores=["#6E9B73","#9AAA4E","#E3A33B","#B5452B"];
+    $("grafico").innerHTML=n.map(v=>`<div style="height:${20+v*40}px;background:${cores[v]}"><b>${v}</b></div>`).join("");
+    $("r-alerta").innerHTML=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta"><b>Antes de treinar, fale com um veterinário.</b> Machucados ao tentar sair, ficar sem comer sozinho ou uma mudança repentina de comportamento podem ter relação com dor ou doença. O treino pode ajudar depois, com orientação profissional ao lado.</div>`:"";
+    atualizarNomes();ir("t-resultado");
+  }
+  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
+
+  // retomar de onde parou
+  atualizarNomes(); if(e.nome) $("in-nome").value=e.nome;
+  if(e.notas.length>=5&&e.q1&&e.q2) mostrarResultado();
+  else if(e.notas.length>=5) ir("t-seguranca");
+  else if(e.notas.length>0){$("pausa-n").textContent=e.notas.length;ir("t-pausa");}
+  else ir("t-inicio");
+})();
+</script>
+</body>
+</html>

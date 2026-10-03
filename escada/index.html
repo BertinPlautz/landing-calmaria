@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF7F1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Escada">
+<title>Escada no Celular · Volto Já</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#FBF7F1; --bege:#F3ECE2; --linha:#E3D9CC; --tinta:#2E2A26; --cinza:#6B635B;
+  --caramelo:#C9772E; --caramelo-esc:#A85F20; --salvia:#6E9B73; --mel:#E3A33B; --ferrugem:#B5452B; --oliva:#9AAA4E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{margin:0;background:var(--papel);color:var(--tinta)}
+body{font-family:Poppins,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+.app{max-width:460px;margin:0 auto;padding:18px 18px 40px}
+h1,h2,.num{font-family:Lora,Georgia,serif}
+h1{font-size:26px;line-height:1.2;margin:4px 0 2px}
+h2{font-size:21px;margin:0 0 6px}
+p{margin:0 0 12px}
+.sub{color:var(--cinza);font-size:14px}
+.tela{display:none}
+.tela.ativa{display:block}
+button{font:inherit;cursor:pointer;border:0}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--caramelo);outline-offset:2px}
+.btn{display:block;width:100%;padding:16px 18px;border-radius:16px;font-weight:600;font-size:17px}
+.btn-principal{background:var(--caramelo);color:#fff}
+.btn-principal:active{background:var(--caramelo-esc)}
+.btn-sec{background:var(--bege);color:var(--tinta);margin-top:10px}
+.btn-link{background:none;color:var(--caramelo);font-weight:600;padding:10px 0;font-size:15px}
+.topo{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.topo nav{display:flex;gap:4px}
+.topo nav button{background:var(--bege);color:var(--tinta);border-radius:12px;padding:8px 11px;font-size:13px;font-weight:600}
+
+/* cartão do degrau */
+.degrau{background:#fff;border:1px solid var(--linha);border-radius:24px;padding:20px 20px 18px;margin:14px 0 16px}
+.degrau .rot{color:var(--cinza);font-size:14px}
+.degrau .num{font-size:54px;line-height:1;color:var(--caramelo);margin:6px 0 2px}
+.degrau .tempo{font-size:22px;font-weight:600}
+.calmas{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--cinza)}
+.bolinha{width:22px;height:22px;border-radius:50%;border:2px solid var(--salvia);background:#fff}
+.bolinha.cheia{background:var(--salvia)}
+
+/* escada */
+.escada-box{background:var(--bege);border-radius:24px;padding:16px 14px 10px;margin-bottom:16px}
+.escada-box svg{display:block;width:100%;height:auto}
+.escada-leg{display:flex;justify-content:space-between;font-size:12px;color:var(--cinza);margin-top:4px}
+
+/* notas */
+.notas{display:grid;gap:10px;margin-top:14px}
+.nota{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px;border-radius:18px;background:#fff;border:2px solid var(--linha)}
+.nota .n{flex:0 0 52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:26px}
+.nota b{display:block;font-size:17px}
+.nota span{font-size:14px;color:var(--cinza);line-height:1.35}
+.nota:active{transform:scale(.99)}
+
+/* cronômetro */
+.cron{text-align:center;padding:26px 0 10px}
+.cron .relogio{font-family:Lora,Georgia,serif;font-size:76px;line-height:1;color:var(--tinta);margin:14px 0 6px;font-variant-numeric:tabular-nums}
+.cron .anel{width:220px;height:220px;margin:0 auto;position:relative}
+.cron .anel svg{width:100%;height:100%;transform:rotate(-90deg)}
+.cron .anel .dentro{position:absolute;inset:0;display:grid;place-items:center}
+.cron .anel .relogio{margin:0;font-size:54px}
+.aviso-volta{background:var(--salvia);color:#fff;border-radius:18px;padding:16px;font-weight:600;font-size:18px;margin:16px 0}
+
+/* resultado */
+.resultado{border-radius:24px;padding:22px;margin:10px 0 16px;background:#fff;border:1px solid var(--linha)}
+.resultado.subiu{background:#EAF2EA;border-color:#CFE2D1}
+.resultado.desceu{background:#FBEDE3;border-color:#F0D6C2}
+.resultado .grande{font-family:Lora,Georgia,serif;font-size:24px;line-height:1.25;margin-bottom:8px}
+.marco{background:var(--caramelo);color:#fff;border-radius:18px;padding:16px;margin-bottom:14px}
+.marco b{font-family:Lora,Georgia,serif;font-size:20px;display:block;margin-bottom:4px}
+.alerta{background:#FBEDE3;border-left:5px solid var(--ferrugem);border-radius:14px;padding:14px;font-size:14px;margin:12px 0}
+
+/* histórico */
+.resumo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}
+.resumo > div{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:14px}
+.resumo .v{font-family:Lora,Georgia,serif;font-size:26px;color:var(--caramelo);line-height:1.1}
+.resumo .l{font-size:13px;color:var(--cinza)}
+.lista{list-style:none;margin:0;padding:0}
+.lista li{display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid var(--linha);font-size:15px}
+.lista .ponto{flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
+.lista .quando{margin-left:auto;color:var(--cinza);font-size:13px}
+.vazio{color:var(--cinza);background:var(--bege);border-radius:16px;padding:16px;font-size:15px}
+
+/* ajuda */
+.ajuda h3{font-family:Lora,Georgia,serif;font-size:18px;margin:18px 0 6px}
+.ajuda ul{padding-left:20px;margin:0 0 8px}
+.ajuda li{margin-bottom:6px}
+
+/* configuração */
+label{display:block;font-weight:600;margin:14px 0 6px}
+input,select{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--linha);background:#fff;color:var(--tinta)}
+.rodape{margin-top:26px;font-size:12px;color:var(--cinza);text-align:center}
+
+@media (prefers-reduced-motion:no-preference){
+  .sobe{animation:sobe .6s ease-out}
+  @keyframes sobe{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
+  :root:not([data-theme="light"]) .degrau,:root:not([data-theme="light"]) .nota,:root:not([data-theme="light"]) .resumo > div,:root:not([data-theme="light"]) .resultado,:root:not([data-theme="light"]) input,:root:not([data-theme="light"]) select{background:#2B2521}
+  :root:not([data-theme="light"]) .resultado.subiu{background:#243326}
+  :root:not([data-theme="light"]) .resultado.desceu,:root:not([data-theme="light"]) .alerta{background:#3A2A22}
+  :root:not([data-theme="light"]) .bolinha{background:transparent}
+}
+:root[data-theme="dark"]{--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
+</style>
+</head>
+<body>
+<main class="app">
+
+  <!-- CONFIGURAÇÃO -->
+  <section class="tela" id="t-config">
+    <h1>Escada no Celular</h1>
+    <p class="sub">A ferramenta de registro do guia Volto Já. Um toque depois de cada sessão, e ela diz o próximo passo.</p>
+    <label for="in-nome">Qual é o nome do seu cão?</label>
+    <input id="in-nome" type="text" maxlength="24" autocomplete="off" placeholder="Ex.: Mel">
+    <label for="in-degrau">Em qual degrau vocês estão?</label>
+    <select id="in-degrau"></select>
+    <p class="sub" style="margin-top:8px">Começando agora? Deixe no degrau 1.</p>
+    <button class="btn btn-principal" id="b-salvar-config" style="margin-top:18px">Começar a escada</button>
+    <p class="rodape">Seus registros ficam salvos só neste celular.</p>
+  </section>
+
+  <!-- INÍCIO -->
+  <section class="tela" id="t-inicio">
+    <div class="topo">
+      <div><h1 id="titulo-escada">A escada</h1><div class="sub">Método Saída Invisível</div></div>
+      <nav><button data-ir="t-historico">Histórico</button><button data-ir="t-ajuda">Ajuda</button></nav>
+    </div>
+    <div class="degrau">
+      <div class="rot">Próxima sessão</div>
+      <div class="num" id="i-degrau">Degrau 1</div>
+      <div class="tempo" id="i-tempo">5 segundos fora</div>
+      <div class="calmas"><span class="bolinha"></span><span class="bolinha"></span><span class="bolinha"></span><span id="i-calmas">0 de 3 sessões calmas para subir</span></div>
+    </div>
+    <button class="btn btn-principal" id="b-iniciar">Iniciar sessão com cronômetro</button>
+    <button class="btn btn-sec" id="b-so-nota">Já fiz a sessão: registrar a nota</button>
+    <div class="escada-box" style="margin-top:18px">
+      <svg id="escada" viewBox="0 0 400 230" role="img" aria-label="Escada de 20 degraus com o degrau atual marcado"></svg>
+      <div class="escada-leg"><span>5 segundos</span><span>2 horas</span></div>
+    </div>
+  </section>
+
+  <!-- CRONÔMETRO -->
+  <section class="tela" id="t-cron">
+    <div class="cron">
+      <h2 id="c-titulo">Saia e feche a porta</h2>
+      <p class="sub" id="c-sub">Sem despedida. Deixe esta tela aberta: ela avisa quando voltar.</p>
+      <div class="anel">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--linha)" stroke-width="10"/><circle id="c-arco" cx="60" cy="60" r="52" fill="none" stroke="var(--caramelo)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg>
+        <div class="dentro"><div class="relogio" id="c-relogio">0:05</div></div>
+      </div>
+      <div class="aviso-volta" id="c-aviso" hidden>Volte agora, com calma e sem festa.</div>
+    </div>
+    <button class="btn btn-principal" id="b-voltei">Voltei: dar a nota</button>
+    <button class="btn btn-sec" id="b-cancelar">Cancelar sessão</button>
+    <p class="sub" style="margin-top:14px">Viu sinais de nota 2 pela câmera? Volte antes do tempo. Isso também conta como aprendizado.</p>
+  </section>
+
+  <!-- NOTA -->
+  <section class="tela" id="t-nota">
+    <button class="btn-link" data-ir="t-inicio">Voltar</button>
+    <h2>Como ele ficou enquanto você estava fora?</h2>
+    <p class="sub" id="n-sub">Degrau 1 · 5 segundos</p>
+    <div class="notas">
+      <button class="nota" data-nota="0"><span class="n" style="background:var(--salvia)">0</span><span><b>Tranquilo</b><span>Continuou deitado, ou olhou e voltou a descansar</span></span></button>
+      <button class="nota" data-nota="1"><span class="n" style="background:var(--oliva)">1</span><span><b>Atento</b><span>Olhou a porta, seguiu um pouco, mas se acalmou sozinho</span></span></button>
+      <button class="nota" data-nota="2"><span class="n" style="background:var(--mel)">2</span><span><b>Preocupado</b><span>Andou, lambeu os lábios, bocejou, choramingou baixo</span></span></button>
+      <button class="nota" data-nota="3"><span class="n" style="background:var(--ferrugem)">3</span><span><b>Pânico</b><span>Latiu, uivou, arranhou a porta, babou, tentou sair</span></span></button>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="tela" id="t-resultado">
+    <div id="r-marco"></div>
+    <div class="resultado sobe" id="r-caixa">
+      <div class="grande" id="r-titulo"></div>
+      <p id="r-texto" style="margin:0"></p>
+    </div>
+    <div id="r-alerta"></div>
+    <button class="btn btn-principal" data-ir="t-inicio">Ver a escada</button>
+    <button class="btn btn-sec" id="b-desfazer">Errei a nota: desfazer</button>
+  </section>
+
+  <!-- HISTÓRICO -->
+  <section class="tela" id="t-historico">
+    <button class="btn-link" data-ir="t-inicio">Voltar</button>
+    <h2>Histórico</h2>
+    <div class="resumo">
+      <div><div class="v" id="h-semana">0</div><div class="l">sessões nos últimos 7 dias</div></div>
+      <div><div class="v" id="h-total">0</div><div class="l">sessões no total</div></div>
+      <div><div class="v" id="h-calmo">–</div><div class="l">maior ausência com nota 0</div></div>
+      <div><div class="v" id="h-media">–</div><div class="l">degrau médio nos últimos 7 dias</div></div>
+    </div>
+    <ul class="lista" id="h-lista"></ul>
+    <button class="btn-link" id="b-reiniciar" style="margin-top:18px">Apagar tudo e recomeçar</button>
+  </section>
+
+  <!-- AJUDA -->
+  <section class="tela ajuda" id="t-ajuda">
+    <button class="btn-link" data-ir="t-inicio">Voltar</button>
+    <h2>Como usar</h2>
+    <ul>
+      <li>Toque em <b>Iniciar sessão</b>, saia e feche a porta. O celular avisa a hora de voltar.</li>
+      <li>Volte com calma, sem festa, e toque na nota que ele teve.</li>
+      <li>A escada faz as contas: <b>3 sessões calmas (nota 0 ou 1)</b> e você sobe um degrau.</li>
+      <li><b>Nota 2</b> desce um degrau. <b>Nota 3</b> desce dois. Isso é ajuste, não fracasso.</li>
+      <li>Faça de 1 a 3 sessões por dia, com pelo menos 30 minutos entre elas.</li>
+      <li>Varie: depois de uma sessão mais longa, faça uma curta. O cão não pode aprender que "cada vez fica mais difícil".</li>
+    </ul>
+    <h3>Nas primeiras sessões</h3>
+    <p>Saia sem os sinais que mais disparam o pânico, como pegar a chave ou a bolsa. Eles entram na escada quando a Camada 1 do guia chegar à nota 0 ou 1.</p>
+    <h3>Quando procurar o veterinário</h3>
+    <div class="alerta">Se o cão se machuca tentando sair, não come nada sozinho, ou se o problema começou de repente, procure um veterinário antes de continuar o treino.</div>
+    <h3>Dica</h3>
+    <p>Salve esta página na tela inicial do celular. No Android, use o menu do navegador e toque em "Adicionar à tela inicial". No iPhone, toque em Compartilhar e depois em "Adicionar à Tela de Início".</p>
+    <p class="rodape">Escada no Celular · guia Volto Já · Simbas Pet<br>Seus registros ficam salvos só neste celular.</p>
+  </section>
+
+</main>
+<script>
+(function(){
+  const TEMPOS=[["5 segundos",5],["10 segundos",10],["20 segundos",20],["30 segundos",30],["45 segundos",45],["1 minuto",60],["1 minuto e meio",90],["2 minutos",120],["3 minutos",180],["4 minutos",240],["5 minutos",300],["7 minutos",420],["10 minutos",600],["15 minutos",900],["20 minutos",1200],["30 minutos",1800],["45 minutos",2700],["1 hora",3600],["1 hora e meia",5400],["2 horas",7200]];
+  const MARCOS={6:"1 minuto",11:"5 minutos",14:"15 minutos",16:"30 minutos",18:"1 hora",20:"2 horas"};
+  const CORES=["var(--salvia)","var(--oliva)","var(--mel)","var(--ferrugem)"];
+  const CHAVE="voltoja-escada-v1";
+  let memoria=null; // usado se o armazenamento falhar
+  let estado=carregar();
+  let anterior=null; // para desfazer
+  let timer=null, fimEm=0, avisou=false;
+
+  function carregar(){
+    try{const s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){}
+    return memoria||{nome:"",degrau:1,calmas:0,sessoes:[],config:false};
+  }
+  function salvar(){ memoria=estado; try{localStorage.setItem(CHAVE,JSON.stringify(estado));}catch(e){} }
+  const $=id=>document.getElementById(id);
+  function ir(id){document.querySelectorAll(".tela").forEach(t=>t.classList.toggle("ativa",t.id===id)); if(id==="t-inicio")desenharInicio(); if(id==="t-historico")desenharHistorico(); window.scrollTo(0,0);}
+  document.querySelectorAll("[data-ir]").forEach(b=>b.addEventListener("click",()=>{pararTimer();ir(b.dataset.ir)}));
+
+  // configuração
+  const sel=$("in-degrau");
+  TEMPOS.forEach((t,i)=>{const o=document.createElement("option");o.value=i+1;o.textContent=`Degrau ${i+1} (${t[0]})`;sel.appendChild(o);});
+  $("b-salvar-config").addEventListener("click",()=>{
+    estado.nome=$("in-nome").value.trim(); estado.degrau=parseInt(sel.value,10)||1; estado.calmas=0; estado.config=true; salvar(); ir("t-inicio");
+  });
+
+  function tempoTxt(d){return TEMPOS[d-1][0];}
+  function desenharInicio(){
+    $("titulo-escada").textContent=estado.nome?`A escada ${artigo(estado.nome)} ${estado.nome}`:"A escada";
+    $("i-degrau").textContent=`Degrau ${estado.degrau}`;
+    $("i-tempo").textContent=`${tempoTxt(estado.degrau)} fora`;
+    document.querySelectorAll(".calmas .bolinha").forEach((b,i)=>b.classList.toggle("cheia",i<estado.calmas));
+    $("i-calmas").textContent=`${estado.calmas} de 3 sessões calmas para subir`;
+    desenharEscada();
+  }
+  function artigo(n){return /a$/i.test(n)?"da":"do";}
+  function desenharEscada(){
+    const svg=$("escada"); const W=400,H=230,n=20,g=3,bw=(W-g*(n-1))/n; let s="";
+    for(let i=1;i<=n;i++){
+      const h=12+i*10, x=(i-1)*(bw+g), y=H-h;
+      let cor=i<estado.degrau?(i<=6?"#6E9B73":i<=13?"#E3A33B":"#C9772E"):"#E3D9CC";
+      if(i===estado.degrau) cor="#C9772E";
+      s+=`<rect x="${x.toFixed(1)}" y="${y}" width="${bw.toFixed(1)}" height="${h}" rx="3" fill="${cor}"/>`;
+      if(i===estado.degrau){ s+=`<text x="${(x+bw/2).toFixed(1)}" y="${y-8}" text-anchor="middle" font-size="22">🐶</text>`; }
+    }
+    svg.innerHTML=s;
+  }
+
+  // cronômetro
+  const arco=$("c-arco"), CIRC=326.7;
+  function fmt(s){s=Math.max(0,Math.ceil(s));const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;return h?`${h}:${String(m).padStart(2,"0")}:${String(x).padStart(2,"0")}`:`${m}:${String(x).padStart(2,"0")}`;}
+  function pararTimer(){if(timer){clearInterval(timer);timer=null;}}
+  function bip(){try{const c=new (window.AudioContext||window.webkitAudioContext)();[0,0.35,0.7].forEach(t=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.value=.15;o.connect(g);g.connect(c.destination);o.start(c.currentTime+t);o.stop(c.currentTime+t+0.2);});}catch(e){} try{navigator.vibrate&&navigator.vibrate([300,150,300,150,300]);}catch(e){}}
+  $("b-iniciar").addEventListener("click",()=>{
+    const total=TEMPOS[estado.degrau-1][1]; fimEm=Date.now()+total*1000; avisou=false;
+    $("c-aviso").hidden=true; $("c-titulo").textContent="Saia e feche a porta"; $("c-sub").textContent="Sem despedida. Deixe esta tela aberta: ela avisa quando voltar.";
+    ir("t-cron");
+    const tick=()=>{const rest=(fimEm-Date.now())/1000; $("c-relogio").textContent=fmt(rest); arco.setAttribute("stroke-dashoffset",(CIRC*(1-Math.max(0,rest)/total)).toFixed(1));
+      if(rest<=0&&!avisou){avisou=true;$("c-aviso").hidden=false;$("c-titulo").textContent="Hora de voltar";$("c-sub").textContent="Entre com calma, guarde as coisas e só depois dê atenção.";bip();pararTimer();}};
+    tick(); pararTimer(); timer=setInterval(tick,250);
+  });
+  $("b-voltei").addEventListener("click",()=>{pararTimer();abrirNota();});
+  $("b-cancelar").addEventListener("click",()=>{pararTimer();ir("t-inicio");});
+  $("b-so-nota").addEventListener("click",abrirNota);
+  function abrirNota(){$("n-sub").textContent=`Degrau ${estado.degrau} · ${tempoTxt(estado.degrau)}`;ir("t-nota");}
+
+  // regras da escada (as mesmas do guia e da planilha)
+  document.querySelectorAll("[data-nota]").forEach(b=>b.addEventListener("click",()=>registrar(parseInt(b.dataset.nota,10))));
+  function registrar(nota){
+    anterior=JSON.parse(JSON.stringify(estado));
+    const d=estado.degrau; estado.sessoes.push({t:Date.now(),d,n:nota});
+    let tipo="manteve", titulo="", texto="";
+    if(nota<=1){
+      estado.calmas++;
+      if(estado.calmas>=3){
+        if(d<20){estado.degrau=d+1;estado.calmas=0;tipo="subiu";titulo=`Suba para o degrau ${estado.degrau}`;texto=`Três sessões calmas seguidas. Na próxima, fique fora ${tempoTxt(estado.degrau)}.`;}
+        else{estado.calmas=3;tipo="topo";titulo="Vocês chegaram ao topo da escada";texto="Duas horas com calma. Continue com algumas sessões curtas por semana para manter o que ele aprendeu.";}
+      } else {titulo=nota===0?"Sessão tranquila":"Boa sessão";texto=`Faltam ${3-estado.calmas} ${3-estado.calmas===1?"sessão calma":"sessões calmas"} no degrau ${d} para subir.`;}
+    } else if(nota===2){
+      estado.degrau=Math.max(1,d-1);estado.calmas=0;tipo="desceu";titulo=`Desça para o degrau ${estado.degrau}`;texto=`Ele ficou preocupado. Na próxima sessão, fique fora ${tempoTxt(estado.degrau)}. Isso faz parte do ajuste.`;
+    } else {
+      estado.degrau=Math.max(1,d-2);estado.calmas=0;tipo="desceu";titulo=`Desça para o degrau ${estado.degrau}`;texto=`Ele entrou em pânico. Volte para ${tempoTxt(estado.degrau)} e fique nesse degrau até repetir 3 sessões calmas.`;
+    }
+    salvar();
+    const caixa=$("r-caixa"); caixa.className="resultado sobe"+(tipo==="subiu"||tipo==="topo"?" subiu":tipo==="desceu"?" desceu":"");
+    $("r-titulo").textContent=titulo; $("r-texto").textContent=texto;
+    const m=(tipo==="subiu"||tipo==="topo")&&MARCOS[tipo==="topo"?20:estado.degrau-1];
+    $("r-marco").innerHTML=m?`<div class="marco"><b>Marco: ${m} com calma 🏆</b>Anote a data nos marcos do guia. Quando chegar ao objetivo de vocês, preencha o Certificado de Conquista.</div>`:"";
+    const ult=estado.sessoes.slice(-3);
+    $("r-alerta").innerHTML=(ult.length===3&&ult.every(s=>s.n===3))?`<div class="alerta">Três sessões seguidas com nota 3. Faça sessões bem curtas por alguns dias e, se continuar assim, procure um veterinário ou um profissional de comportamento animal.</div>`:"";
+    ir("t-resultado");
+  }
+  $("b-desfazer").addEventListener("click",()=>{if(anterior){estado=anterior;anterior=null;salvar();}ir("t-inicio");});
+
+  // histórico
+  function desenharHistorico(){
+    const agora=Date.now(), semana=estado.sessoes.filter(s=>agora-s.t<7*864e5);
+    $("h-semana").textContent=semana.length; $("h-total").textContent=estado.sessoes.length;
+    const zeros=estado.sessoes.filter(s=>s.n===0).map(s=>s.d); $("h-calmo").textContent=zeros.length?tempoTxt(Math.max(...zeros)):"–";
+    $("h-media").textContent=semana.length?(semana.reduce((a,s)=>a+s.d,0)/semana.length).toFixed(1).replace(".",","):"–";
+    const ul=$("h-lista"); ul.innerHTML="";
+    if(!estado.sessoes.length){ul.innerHTML=`<li class="vazio">Nenhuma sessão ainda. Toque em "Iniciar sessão" na tela da escada para registrar a primeira.</li>`;return;}
+    estado.sessoes.slice(-40).reverse().forEach(s=>{const dt=new Date(s.t);const li=document.createElement("li");
+      li.innerHTML=`<span class="ponto" style="background:${CORES[s.n]}">${s.n}</span><span>Degrau ${s.d} · ${tempoTxt(s.d)}</span><span class="quando">${dt.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})} ${dt.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}</span>`;ul.appendChild(li);});
+  }
+  $("b-reiniciar").addEventListener("click",()=>{if(confirm("Apagar todos os registros e recomeçar do zero?")){estado={nome:"",degrau:1,calmas:0,sessoes:[],config:false};salvar();$("in-nome").value="";sel.value="1";ir("t-config");}});
+
+  ir(estado.config?"t-inicio":"t-config");
+})();
+</script>
+</body>
+</html>
