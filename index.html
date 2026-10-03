@@ -458,8 +458,8 @@ footer p{margin:0 0 8px}
     <div class="teste-caixa">
       <img src="img/img02-teste-chave.webp" width="900" height="599" loading="lazy" alt="Pessoa sentada no sofá segurando as chaves enquanto o cachorro observa tranquilo">
       <div>
-        <h2 style="font-size:clamp(26px,5.6vw,36px)">O primeiro passo você dá no mesmo dia</h2>
-        <p class="sub">O guia começa pelo Teste da Chave: 15 minutos, sem sair de casa. Você pega a chave, senta no sofá e anota a reação dele cinco vezes. Se a nota cair até a quinta tentativa, você já viu o primeiro sinal de que o método combina com o seu cão.</p>
+        <h2 style="font-size:clamp(26px,5.6vw,36px)">O primeiro resultado sai no mesmo dia</h2>
+        <p class="sub">O guia começa pelo Teste da Chave: 5 minutos, sem sair de casa. Você usa a chave, o tênis e a bolsa, um de cada vez, e anota a reação dele. Se a nota cair ao longo das 3 tentativas, você já viu o primeiro sinal de que o método combina com o seu cão.</p>
         <p style="margin:0"><a class="link-seta" id="linkTeste" data-track-cta="cta_teste_chave_link" data-section="test_hook" href="/teste">Faça o Teste da Chave grátis antes de comprar</a></p>
       </div>
     </div>
@@ -797,7 +797,7 @@ function trackEvent(eventName, payload){
     if(n === 0){
       leitura.textContent = "Marque o que acontece aí.";
     } else if(n < 3){
-      leitura.innerHTML = `${n} ${n===1 ? "sinal" : "sinais"}. Pode ser o começo do problema. O <a href="${LINK_TESTE}">Teste da Chave grátis</a> confirma em 15 minutos.`;
+      leitura.innerHTML = `${n} ${n===1 ? "sinal" : "sinais"}. Pode ser o começo do problema. O <a href="${LINK_TESTE}">Teste da Chave grátis</a> confirma em 5 minutos.`;
     } else {
       leitura.innerHTML = `<b>${n} sinais.</b> É o quadro típico de ansiedade de separação. A boa notícia: tem método para isso, e ele começa hoje.`;
     }
