@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSC864PQ8Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSC864PQ8Y');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#151D24">
@@ -647,6 +650,7 @@ function trackEvent(eventName, payload){
     try {
       if(eventName === "checkout_initiated"){
         window.fbq("track", "InitiateCheckout", { value: 27, currency: "BRL", content_name: "Volto Já" });
+        try{ if(window.gtag) gtag("event","begin_checkout",{value:27,currency:"BRL",items:[{item_name:"Volto Já",price:27}]}); }catch(e){}
       }
     } catch(e){}
   }

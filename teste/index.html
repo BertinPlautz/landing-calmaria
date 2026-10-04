@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSC864PQ8Y"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSC864PQ8Y');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FBF7F1">
@@ -276,7 +279,7 @@ const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quer
     }
   }catch(err){$("b-comprar").href=LINK_CHECKOUT;}
   if(LINK_WHATSAPP){$("b-whats").href=LINK_WHATSAPP;$("b-whats").hidden=false;}
-  function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}}
+  function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}try{if(window.gtag){var g={Lead:"generate_lead",InitiateCheckout:"begin_checkout"}[ev];if(g)gtag("event",g,ev==="InitiateCheckout"?{value:27,currency:"BRL"}:{});}}catch(x){}}
   $("b-comprar").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
 
   $("b-comecar").addEventListener("click",()=>{e.nome=$("in-nome").value.trim();salvar();atualizarNomes();ir("t-como");});
