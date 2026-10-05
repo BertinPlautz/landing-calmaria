@@ -103,6 +103,23 @@ input{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;bor
 .preco{font-family:Lora,Georgia,serif;font-size:46px;line-height:1;margin:6px 0 4px}
 .oferta .pequeno{font-size:13px;color:#D8CEC3}
 .rodape{margin-top:26px;font-size:12px;color:var(--cinza);text-align:center}
+.captura{background:#fff;border:2px solid var(--mel);border-radius:24px;padding:22px 18px;margin:18px 0 6px}
+.captura .selo{display:inline-block;background:#FBEFE3;color:var(--caramelo-esc);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:99px;margin-bottom:10px}
+.captura h2{font-size:22px}
+.canais{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 4px}
+.canais button{padding:12px;border-radius:14px;background:var(--bege);border:2px solid transparent;font-weight:600;color:var(--tinta)}
+.canais button[aria-pressed="true"]{border-color:var(--caramelo);background:#FBEFE3}
+.captura .erro{color:var(--ferrugem);font-size:14px;font-weight:600;margin:8px 0 0;min-height:0}
+.captura .consent{font-size:12px;color:var(--cinza);margin:12px 0 0;line-height:1.45}
+.captura .consent a{color:var(--cinza)}
+.pote{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.plano{margin-top:6px}
+.plano .ok{background:#EEF4EC;border-radius:14px;padding:12px 14px;font-size:15px;font-weight:600;color:#3F6B45;margin:0 0 14px}
+.dia{border-left:4px solid var(--caramelo);padding:2px 0 2px 14px;margin:0 0 16px}
+.dia b.t{display:block;font-family:Lora,Georgia,serif;font-size:18px;margin-bottom:4px}
+.dia p{font-size:15px;margin:0 0 6px}
+.regra{background:var(--bege);border-radius:14px;padding:12px 14px;font-size:14px;margin:4px 0 16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .captura{background:#2B2521}:root:not([data-theme="light"]) .plano .ok{background:#26332A;color:#A9CFAE}:root:not([data-theme="light"]) .canais button[aria-pressed="true"]{background:#3A2A22}}
 
 .flash{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .18s}
 .flash.ver{opacity:1}
@@ -146,7 +163,7 @@ fbq('track','PageView');
   <label for="in-nome">Qual é o nome do seu cão?</label>
   <input id="in-nome" type="text" maxlength="24" autocomplete="off" placeholder="Ex.: Thor">
   <button class="btn btn-principal" id="b-comecar" style="margin-top:16px">Fazer o teste</button>
-  <p class="rodape">Sem cadastro. Suas respostas ficam só neste celular.</p>
+  <p class="rodape">Sem cadastro. As notas são guardadas de forma anônima, só para estatística.</p>
 </section>
 
 <section class="tela" id="t-como">
@@ -242,7 +259,26 @@ fbq('track','PageView');
       <div class="pequeno" style="margin-bottom:16px">Pix ou cartão · acesso imediato · garantia de 30 dias</div>
       <a class="btn btn-principal" id="b-comprar" href="https://pay.cakto.com.br/3adadxk_1161439">Quero o método completo</a>
     </div>
-    <a class="btn btn-sec" id="b-whats" href="#" hidden>Receber o plano da primeira semana no WhatsApp</a>
+    <section class="captura" id="captura" aria-labelledby="cap-titulo">
+      <div id="cap-form-wrap">
+        <span class="selo">Grátis</span>
+        <h2 id="cap-titulo">Ainda não é a hora? Leve o plano dos 3 primeiros dias</h2>
+        <p class="sub">O que fazer amanhã, depois de amanhã e no dia seguinte com <span class="nome-cao">ele</span>. É o mesmo começo do método completo, pra você já sair do zero hoje.</p>
+        <form id="cap-form" novalidate>
+          <div class="canais" role="group" aria-label="Onde você prefere receber">
+            <button type="button" data-canal="whatsapp" aria-pressed="true">WhatsApp</button>
+            <button type="button" data-canal="email" aria-pressed="false">E-mail</button>
+          </div>
+          <label for="cap-contato" id="cap-label">Seu WhatsApp com DDD</label>
+          <input id="cap-contato" name="contato" type="tel" inputmode="tel" autocomplete="tel" placeholder="(47) 99999-9999" maxlength="120">
+          <div class="pote" aria-hidden="true"><label for="cap-site">Não preencha</label><input id="cap-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+          <p class="erro" id="cap-erro" role="alert"></p>
+          <button class="btn btn-principal" id="cap-enviar" type="submit" style="margin-top:12px">Quero o plano grátis</button>
+          <p class="consent">Você recebe o plano e mensagens do Simbas Pet sobre o treino. Pra parar, é só responder SAIR. <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de privacidade</a>.</p>
+        </form>
+      </div>
+      <div class="plano" id="plano" hidden></div>
+    </section>
     <button class="btn-link" id="b-refazer" style="margin-top:14px">Refazer o teste</button>
     <p class="rodape">Simbas Pet · Este teste não substitui a avaliação de um veterinário.</p>
   </div>
@@ -252,7 +288,7 @@ fbq('track','PageView');
 <script>
 /* ===== CONFIGURAÇÃO: troque pelos seus links antes de publicar ===== */
 const LINK_CHECKOUT = "https://pay.cakto.com.br/3adadxk_1161439";
-const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quero%20o%20plano%20da%20primeira%20semana */
+const API_LEAD = "/api/lead";
 /* ================================================================== */
 (function(){
   const CHAVE="voltoja-teste-chave-v1";
@@ -278,7 +314,13 @@ const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quer
       $("b-comprar").href=LINK_CHECKOUT;
     }
   }catch(err){$("b-comprar").href=LINK_CHECKOUT;}
-  if(LINK_WHATSAPP){$("b-whats").href=LINK_WHATSAPP;$("b-whats").hidden=false;}
+  if(!e.sid){e.sid=(Date.now().toString(36)+Math.random().toString(36).slice(2,10));salvar();}
+  try{const q=new URLSearchParams(location.search);const u={};["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(k=>{const v=q.get(k);if(v)u[k]=v;});if(Object.keys(u).length){e.utm=u;salvar();}}catch(x){}
+  function perfil(){const n=e.notas,p=n[0],u=n[n.length-1],m=Math.max(...n);return p>=2&&u<p?"sinais-caiu":p>=2?"sinais":m<=1?"porta":"misto";}
+  function enviar(dados){
+    const corpo=JSON.stringify(Object.assign({sid:e.sid,nome_cao:e.nome,notas:e.notas,q1:e.q1,q2:e.q2,perfil:perfil(),utm:e.utm||{}},dados));
+    return fetch(API_LEAD,{method:"POST",headers:{"Content-Type":"application/json"},body:corpo,keepalive:true});
+  }
   function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}try{if(window.gtag){var g={Lead:"generate_lead",InitiateCheckout:"begin_checkout"}[ev];if(g)gtag("event",g,ev==="InitiateCheckout"?{value:27,currency:"BRL"}:{});}}catch(x){}}
   $("b-comprar").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
 
@@ -396,10 +438,69 @@ const LINK_WHATSAPP = ""; /* opcional: ex. https://wa.me/5547999999999?text=Quer
     atualizarNomes();
     $("carregando").style.display="none";
     if(!e.lead){e.lead=1;salvar();px("Lead",{content_name:"Teste da Chave"});}
+    if(!e.resEnviado){e.resEnviado=1;salvar();enviar({tipo:"resultado"}).catch(()=>{});}
+    if(e.contato){mostrarPlano(true);}
     $("conteudo-resultado").classList.add("ver");
     requestAnimationFrame(()=>requestAnimationFrame(()=>grafico.classList.add("pronto")));
   }
-  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,lead:e.lead,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
+  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,lead:e.lead,sid:e.sid,utm:e.utm,contato:e.contato,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
+
+  /* ===== Captura: Plano dos 3 primeiros dias ===== */
+  let canal="whatsapp";
+  document.querySelectorAll("[data-canal]").forEach(b=>b.addEventListener("click",()=>{
+    canal=b.dataset.canal;
+    document.querySelectorAll("[data-canal]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+    const i=$("cap-contato");
+    if(canal==="email"){i.type="email";i.inputMode="email";i.autocomplete="email";i.placeholder="seuemail@gmail.com";$("cap-label").textContent="Seu melhor e-mail";}
+    else{i.type="tel";i.inputMode="tel";i.autocomplete="tel";i.placeholder="(47) 99999-9999";$("cap-label").textContent="Seu WhatsApp com DDD";}
+    $("cap-erro").textContent="";i.focus();
+  }));
+  function contatoValido(v){
+    if(canal==="email")return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);
+    const d=v.replace(/\D/g,"");return d.length===10||d.length===11||(d.length>=12&&d.length<=13&&d.indexOf("55")===0);
+  }
+  $("cap-form").addEventListener("submit",async ev=>{
+    ev.preventDefault();
+    const v=$("cap-contato").value.trim();
+    if(!contatoValido(v)){$("cap-erro").textContent=canal==="email"?"Confere o e-mail? Parece que falta alguma coisa.":"Confere o número? Coloque o DDD + o número, ex.: (47) 99999-9999.";$("cap-contato").focus();return;}
+    $("cap-erro").textContent="";
+    const btn=$("cap-enviar");btn.disabled=true;btn.textContent="Enviando...";
+    try{
+      const r=await enviar({tipo:"contato",canal:canal,contato:v,site:$("cap-site").value});
+      if(r.status===422){const j=await r.json().catch(()=>({}));$("cap-erro").textContent=(j.error||"Contato inválido")+". Confere e tenta de novo?";btn.disabled=false;btn.textContent="Quero o plano grátis";return;}
+    }catch(x){/* sem internet ou API fora: entrega o plano mesmo assim */}
+    e.contato=canal;salvar();
+    try{if(window.fbq)fbq("track","CompleteRegistration",{content_name:"Plano 3 dias"});}catch(x){}
+    try{if(window.gtag)gtag("event","sign_up",{method:canal});}catch(x){}
+    mostrarPlano(false);
+  });
+  function mostrarPlano(silencioso){
+    const cao=nome()||"seu cão", Cao=nome()||"Seu cão", p=perfil();
+    const foco = p==="porta"
+      ? `Como os sinais de saída pesaram pouco, o foco de ${cao} é a Escada da Ausência: ausências tão curtas que ele nem percebe.`
+      : `Como o pânico de ${cao} começa nos sinais de saída, os 3 dias atacam as duas frentes juntas: os sinais perdem a força enquanto a Escada começa.`;
+    const vet=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta" style="margin-top:0"><b>Antes do Dia 1, converse com um veterinário.</b> Pelo que você respondeu, vale descartar dor ou outro problema de saúde primeiro.</div>`:"";
+    $("plano").innerHTML=`
+      <p class="ok">${silencioso?"Seu plano está salvo aqui":"Pronto! Seu plano está logo abaixo"} 👇 Nos próximos dias, o Simbas te manda os próximos passos.</p>
+      <h2>O plano dos 3 primeiros dias de ${cao}</h2>
+      <p class="sub">${foco}</p>
+      ${vet}
+      <div class="dia"><b class="t">Dia 1 · A chave perde o poder</b>
+        <p>Pegue a chave de 5 a 10 vezes ao longo do dia, <b>sem sair</b>. Pegue, vá até a cozinha ou sente no sofá, e devolva ao lugar. Sem olhar para ${cao}, sem falar nada.</p>
+        <p>Escolha um brinquedo que ${cao} vai ganhar <b>só</b> quando você sair. Guarde ele hoje.</p></div>
+      <div class="dia"><b class="t">Dia 2 · O primeiro degrau</b>
+        <p>Repita a chave sem sair, de 5 a 10 vezes.</p>
+        <p>Degrau 1 da Escada: saia, feche a porta, conte <b>5 segundos</b> e volte, sem festa na volta. Faça 3 vezes no dia, com pelo menos 30 minutos entre uma e outra. Dê uma nota de 0 a 3 para cada vez.</p></div>
+      <div class="dia"><b class="t">Dia 3 · Dois sinais juntos</b>
+        <p>Agora junte dois sinais, por exemplo chave + tênis, de 5 a 10 vezes, sem sair.</p>
+        <p>Na Escada: se as 3 saídas de ontem tiveram nota 0 ou 1, suba para <b>10 segundos</b>. Se apareceu nota 2, fique nos 5 segundos mais um dia.</p></div>
+      <div class="regra"><b>A regra que não pode quebrar:</b> nota 2, desça um degrau. Nota 3, desça dois. Subir devagar é o que faz ${cao} confiar.</div>
+      <p>Do dia 4 em diante, ${Cao} ainda tem 18 degraus até ficar 2 horas sozinho com calma. O caminho completo, com a Escada no celular, o áudio do Ritual Casa Calma e o guia de 54 páginas, está no Volto Já.</p>
+      <a class="btn btn-principal" id="b-comprar-plano" href="${$("b-comprar").href}">Quero o caminho completo por R$ 27</a>`;
+    $("cap-form-wrap").hidden=true;$("plano").hidden=false;atualizarNomes();
+    $("b-comprar-plano").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
+    if(!silencioso)$("captura").scrollIntoView({behavior:REDUZIDO?"auto":"smooth",block:"start"});
+  }
 
   atualizarNomes(); if(e.nome) $("in-nome").value=e.nome;
   if(e.notas.length>=3&&e.q1&&e.q2){ir("t-resultado");$("carregando").style.display="none";$("conteudo-resultado").classList.add("ver");mostrarResultado();$("grafico").classList.add("pronto");}
