@@ -340,7 +340,7 @@ footer p{margin:0 0 8px}
       <p class="hero-sub">O Volto Já ensina o seu cão a ficar sozinho sem pânico, alguns minutos por dia, com um aplicativo que diz o próximo passo depois de cada treino.</p>
 
       <div class="hero-cta">
-        <a class="btn btn-bloco btn-escuro" data-checkout="true" data-track-cta="cta_hero_primary" data-section="hero" href="https://pay.cakto.com.br/3adadxk_1161439">Quero o Volto Já por R$ 27</a>
+        <a class="btn btn-bloco btn-escuro" data-checkout="true" data-track-cta="cta_hero_primary" data-section="hero" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc">Quero o Volto Já por R$ 27</a>
       </div>
 
       <div class="pulso" role="img" aria-label="Linha ilustrativa de batimentos: tranquila no sofá, acelera quando você pega a chave e dispara quando a porta fecha">
@@ -531,7 +531,7 @@ footer p{margin:0 0 8px}
       <div class="ancora">Cursos sobre ansiedade de separação costumam custar de R$ 117 a R$ 367.</div>
       <div class="preco"><span class="rs">R$ 27</span><span class="sob">pagamento único</span></div>
       <div class="pagamento">Pix ou cartão. Acesso imediato.</div>
-      <a class="btn btn-bloco" data-checkout="true" data-track-cta="cta_offer_main" data-section="offer" href="https://pay.cakto.com.br/3adadxk_1161439">Quero ensinar o meu cão a ficar bem</a>
+      <a class="btn btn-bloco" data-checkout="true" data-track-cta="cta_offer_main" data-section="offer" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc">Quero ensinar o meu cão a ficar bem</a>
       <div class="garantia">
         <div class="selo">30<br>dias</div>
         <div><b style="color:#fff">Garantia de 30 dias.</b> Aplique a escada por um mês. Se sentir que não valeu, você pede o reembolso e recebe os R$ 27 de volta, sem precisar explicar nada.</div>
@@ -602,7 +602,7 @@ footer p{margin:0 0 8px}
     <div class="rastro rastro-escuro" aria-hidden="true"><svg><use href="#pata"/></svg><svg><use href="#pata"/></svg><svg><use href="#pata"/></svg><svg><use href="#pata"/></svg></div>
     <h2>Você não precisa sair de casa escondido para sempre.</h2>
     <p style="color:var(--cinza)">Só precisa ensinar a ele, um degrau de cada vez, que você sempre volta.</p>
-    <a class="btn btn-bloco" data-checkout="true" data-track-cta="cta_final_footer" data-section="final" href="https://pay.cakto.com.br/3adadxk_1161439" style="margin-top:14px">Quero o Volto Já por R$ 27</a>
+    <a class="btn btn-bloco" data-checkout="true" data-track-cta="cta_final_footer" data-section="final" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc" style="margin-top:14px">Quero o Volto Já por R$ 27</a>
     <p class="nota-pe">Pix ou cartão, acesso imediato e garantia total de 30 dias.</p>
   </div>
 </section>
@@ -616,14 +616,14 @@ footer p{margin:0 0 8px}
 <!-- ============ BLOCK 13: STICKY MOBILE CTA ============ -->
 <div class="fixo" id="fixo" aria-hidden="true" data-section="sticky">
   <div class="txt"><b>Volto Já por R$ 27</b>com 3 bônus e garantia de 30 dias</div>
-  <a class="btn" data-checkout="true" data-track-cta="cta_mobile_sticky" data-section="sticky" href="https://pay.cakto.com.br/3adadxk_1161439">Quero</a>
+  <a class="btn" data-checkout="true" data-track-cta="cta_mobile_sticky" data-section="sticky" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc">Quero</a>
 </div>
 
 <script>
 /* ==========================================================================
    CONFIGURAÇÃO OPERACIONAL — VOLTO JÁ
    ========================================================================== */
-const LINK_CHECKOUT = "https://pay.cakto.com.br/3adadxk_1161439";
+const LINK_CHECKOUT = "https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc";
 const LINK_TESTE    = "/teste";
 const PIXEL_ID      = "2383352999101543";
 const CONTATO       = "";   /* Ex.: "Dúvidas: @simbaspet nas redes sociais" */
@@ -682,7 +682,7 @@ function trackEvent(eventName, payload){
   const params = new URLSearchParams(location.search);
   document.querySelectorAll("a[data-checkout='true']").forEach(a => {
     try {
-      if(LINK_CHECKOUT && LINK_CHECKOUT !== "COLOCAR_CHECKOUT_CAKTO_AQUI"){
+      if(LINK_CHECKOUT && LINK_CHECKOUT !== "COLOCAR_CHECKOUT_AQUI"){
         const u = new URL(LINK_CHECKOUT);
         params.forEach((v,k)=>{ if(!u.searchParams.has(k)) u.searchParams.set(k,v); });
         a.href = u.toString();
