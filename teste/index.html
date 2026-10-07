@@ -7,140 +7,227 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FBF7F1">
-<title>O Teste da Chave · Simbas Pet</title>
-<meta name="description" content="Descubra em 5 minutos se o seu cão entra em pânico quando você sai, ou antes de você sair. Grátis.">
+<title>Raio-X da Saída · Simbas Pet</title>
+<meta name="description" content="Descubra em que minuto da sua rotina o seu cão começa a se preparar para ficar sozinho, qual é o gatilho nº 1 dele e o primeiro exercício para fazer hoje. Grátis, em 5 minutos.">
+<meta property="og:title" content="Raio-X da Saída · Em que minuto o pânico do seu cão começa?">
+<meta property="og:description" content="O pânico do seu cão tem horário. E quase nunca é quando você abre a porta. Faça o Raio-X grátis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--papel:#FBF7F1;--bege:#F3ECE2;--linha:#E3D9CC;--tinta:#2E2A26;--cinza:#6B635B;--caramelo:#C9772E;--caramelo-esc:#A85F20;--salvia:#6E9B73;--oliva:#9AAA4E;--mel:#E3A33B;--ferrugem:#B5452B;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{--papel:#FBF7F1;--bege:#F3ECE2;--linha:#E3D9CC;--tinta:#2E2A26;--cinza:#6B635B;--branco:#fff;--caramelo:#C9772E;--caramelo-esc:#A85F20;--salvia:#6E9B73;--oliva:#9AAA4E;--mel:#E3A33B;--ferrugem:#B5452B;--noite:#2E2A26;--sombra:0 18px 40px -18px rgba(46,42,38,.35)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--papel:#1C1916;--bege:#2A2420;--linha:#3B342E;--tinta:#F3ECE2;--cinza:#B8AEA3;--branco:#25201C;--noite:#120F0D;--sombra:0 18px 40px -18px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{--papel:#1C1916;--bege:#2A2420;--linha:#3B342E;--tinta:#F3ECE2;--cinza:#B8AEA3;--branco:#25201C;--noite:#120F0D}
+*,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;background:var(--papel);color:var(--tinta)}
-body{font-family:Poppins,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-tap-highlight-color:transparent}
-.app{max-width:480px;margin:0 auto;padding:20px 18px 48px;position:relative}
-h1,h2,.serif{font-family:Lora,Georgia,serif}
-h1{font-size:34px;line-height:1.12;margin:10px 0 12px}
-h2{font-size:23px;line-height:1.25;margin:0 0 10px}
+body{font-family:Poppins,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-tap-highlight-color:transparent;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
+.app{max-width:480px;margin:0 auto;padding:18px 18px 56px;position:relative}
+h1,h2,h3,.serif{font-family:Lora,Georgia,serif}
+h1{font-size:33px;line-height:1.12;margin:8px 0 12px;letter-spacing:-.01em}
+h2{font-size:24px;line-height:1.22;margin:0 0 10px}
+h3{font-size:19px;line-height:1.3;margin:0 0 8px}
 p{margin:0 0 12px}
 .sub{color:var(--cinza);font-size:15px}
+.marca{font-size:12px;color:var(--caramelo);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .tela{display:none}.tela.ativa{display:block}
 [hidden]{display:none!important}
-button{font:inherit;cursor:pointer;border:0}
-button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--caramelo);outline-offset:2px}
-.btn{display:block;width:100%;text-align:center;text-decoration:none;padding:17px 18px;border-radius:16px;font-weight:600;font-size:17px}
-.btn-principal{background:var(--caramelo);color:#fff}
-.btn-principal:active{background:var(--caramelo-esc)}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+button:focus-visible,input:focus-visible,a:focus-visible,label:focus-visible{outline:3px solid var(--caramelo);outline-offset:2px}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;padding:17px 18px;border-radius:16px;font-weight:700;font-size:17px;transition:transform .12s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn-principal{background:var(--caramelo);color:#fff;box-shadow:0 10px 24px -12px rgba(201,119,46,.9)}
+.btn-principal[disabled]{opacity:.45;box-shadow:none;cursor:default}
 .btn-sec{background:var(--bege);color:var(--tinta);margin-top:10px}
-.btn-link{background:none;color:var(--caramelo);font-weight:600;padding:10px 0;font-size:15px}
-.marca{font-size:13px;color:var(--caramelo);font-weight:600}
-.foto-chave{background:var(--bege);border-radius:24px;padding:26px 20px;margin:18px 0;text-align:center}
-.foto-chave svg{width:120px;height:auto}
-label{display:block;font-weight:600;margin:14px 0 6px}
-input{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--linha);background:#fff;color:var(--tinta)}
-.lista-passos{list-style:none;padding:0;margin:14px 0 18px;counter-reset:p}
-.lista-passos li{counter-increment:p;position:relative;padding:0 0 14px 46px}
-.lista-passos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--caramelo);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+.btn-link{background:none;color:var(--caramelo);font-weight:600;padding:10px 0;font-size:15px;display:block;margin:6px auto 0}
+label.rot{display:block;font-weight:600;margin:16px 0 6px}
+input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--linha);background:var(--branco);color:var(--tinta)}
+.rodape{margin-top:26px;font-size:12px;color:var(--cinza);text-align:center}
 
+/* Barra de progresso geral */
+.topo{position:sticky;top:0;z-index:20;background:var(--papel);padding:6px 0 10px;margin:-6px 0 6px}
+.topo .barra{height:6px;border-radius:6px;background:var(--linha);overflow:hidden}
+.topo .barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mel),var(--caramelo));border-radius:6px;transition:width .5s cubic-bezier(.3,.8,.3,1)}
+.topo .linha-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.topo .voltar{background:none;padding:4px 0;font-size:14px;color:var(--cinza);font-weight:600}
+.topo .etapa{font-size:12px;color:var(--cinza);font-weight:600}
+
+/* Hero do início */
+.hero-relogio{position:relative;width:min(300px,78vw);aspect-ratio:1;margin:14px auto 6px}
+.hero-relogio svg{width:100%;height:100%;overflow:visible}
+.orbita{transform-origin:150px 150px;animation:girarLento 28s linear infinite}
+.orbita .ic{animation:girarLento 28s linear infinite reverse}
+@keyframes girarLento{to{transform:rotate(360deg)}}
+.ponteiro{transform-origin:150px 150px;animation:tic 6s steps(60) infinite}
+@keyframes tic{to{transform:rotate(360deg)}}
+.hero-foto{position:absolute;left:50%;top:50%;width:40%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;background:var(--bege);display:grid;place-items:center;box-shadow:0 0 0 6px var(--papel),0 0 0 8px var(--mel)}
+.hero-foto img{width:100%;height:100%;object-fit:cover}
+.hero-foto .pata{width:56%;opacity:.9}
+.promessa{display:grid;gap:8px;margin:16px 0 6px;padding:0;list-style:none}
+.promessa li{display:flex;gap:12px;align-items:center;background:var(--branco);border:1px solid var(--linha);border-radius:16px;padding:11px 14px;font-size:15px;line-height:1.35}
+.promessa li span{flex:0 0 34px;height:34px;border-radius:50%;background:var(--bege);display:grid;place-items:center;font-size:18px}
+.foto-btn{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border-radius:14px;border:2px dashed var(--linha);background:transparent;text-align:left;margin-top:10px}
+.foto-btn .mini{flex:0 0 46px;height:46px;border-radius:50%;background:var(--bege);overflow:hidden;display:grid;place-items:center;font-size:22px}
+.foto-btn .mini img{width:100%;height:100%;object-fit:cover}
+.foto-btn b{display:block;font-size:15px}.foto-btn small{color:var(--cinza);font-size:13px}
+
+/* Chips de rotina */
+.grade-hab{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 18px}
+.hab{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 12px;border-radius:18px;background:var(--branco);border:2px solid var(--linha);text-align:left;font-size:14px;font-weight:600;line-height:1.3;position:relative;transition:transform .12s,border-color .2s,background .2s}
+.hab:active{transform:scale(.97)}
+.hab .em{font-size:26px;line-height:1}
+.hab[aria-pressed="true"]{border-color:var(--caramelo);background:#FBEFE3}
+.hab[aria-pressed="true"]::after{content:"✓";position:absolute;top:8px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--caramelo);color:#fff;font-size:13px;display:grid;place-items:center}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hab[aria-pressed="true"],:root:not([data-theme="light"]) .op[aria-pressed="true"]{background:#3A2A1E}}
+
+/* Cartão de hábito */
+.card-hab{background:var(--branco);border:1px solid var(--linha);border-radius:26px;padding:22px 18px;box-shadow:var(--sombra);margin-top:6px}
+.card-hab .em-grande{font-size:54px;line-height:1;margin-bottom:6px}
+.card-hab .q{font-weight:700;font-size:16px;margin:16px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 14px;border-radius:99px;background:var(--bege);border:2px solid transparent;font-weight:600;font-size:14px}
+.chip[aria-pressed="true"]{border-color:var(--caramelo);background:#FBEFE3;color:var(--caramelo-esc)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{background:#3A2A1E;color:#F0B676}}
+.reacoes{display:grid;gap:8px}
+.op{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 12px;border-radius:16px;background:var(--papel);border:2px solid var(--linha);transition:transform .1s}
+.op:active{transform:scale(.98)}
+.op .n{flex:0 0 40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:19px}
+.op b{display:block;font-size:15px}.op small{display:block;font-size:13px;color:var(--cinza);line-height:1.35}
+.op[aria-pressed="true"]{border-color:var(--caramelo);background:#FBEFE3}
+.bloco-reac{opacity:.35;pointer-events:none;transition:opacity .3s}
+.bloco-reac.on{opacity:1;pointer-events:auto}
+.contador-cards{display:flex;gap:6px;justify-content:center;margin:14px 0 0}
+.contador-cards i{width:7px;height:7px;border-radius:50%;background:var(--linha)}
+.contador-cards i.on{background:var(--caramelo);width:20px;border-radius:4px}
+
+/* Prática (rodadas) */
 .progresso{display:flex;gap:8px;margin:6px 0 4px}
 .progresso span{flex:1;height:8px;border-radius:4px;background:var(--linha);overflow:hidden;position:relative}
-.progresso span::after{content:"";position:absolute;inset:0;background:var(--caramelo);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.3,.8,.3,1)}
+.progresso span::after{content:"";position:absolute;inset:0;background:var(--caramelo);transform:scaleX(0);transform-origin:left;transition:transform .5s}
 .progresso span.feito::after{transform:scaleX(1)}
 .progresso span.atual::after{transform:scaleX(1);background:var(--mel)}
-.progresso-txt{font-size:13px;color:var(--cinza);margin:0 0 16px;font-weight:600}
-
-.cartao{background:#fff;border:1px solid var(--linha);border-radius:22px;padding:18px;margin:14px 0}
-
+.cartao{background:var(--branco);border:1px solid var(--linha);border-radius:22px;padding:18px;margin:14px 0}
 .rodada-ico{display:flex;align-items:center;gap:10px;margin:0 0 10px}
-.rodada-ico .bolha{flex:0 0 38px;width:38px;height:38px;border-radius:50%;background:var(--bege);display:grid;place-items:center;color:var(--caramelo-esc)}
-.rodada-ico .bolha svg{width:20px;height:20px}
-.rodada-ico b{font-size:13px;color:var(--caramelo-esc);text-transform:uppercase;letter-spacing:.03em}
-
-.aviso{display:flex;gap:12px;align-items:flex-start;background:var(--bege);border-radius:16px;padding:15px 16px;margin:18px 0}
-.aviso svg{flex:0 0 22px;width:22px;height:22px;color:var(--caramelo-esc);margin-top:1px}
-.aviso p{margin:0;font-size:14px;color:var(--tinta);line-height:1.5}
-.aviso b{color:var(--caramelo-esc)}
-
-.previa{margin:22px 0 4px}
-.previa .legenda{font-size:13px;color:var(--cinza);font-weight:600;margin-bottom:12px}
-.previa .trilha{display:flex;align-items:center}
-.previa .pt{flex:0 0 28px;height:28px;border-radius:50%;border:2px solid var(--linha);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--cinza);background:#fff}
-.previa .pt:first-child{border-color:var(--caramelo);color:var(--caramelo);background:#FBEFE3}
-.previa .lin{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--linha) 0 5px,transparent 5px 9px);margin:0 2px}
-
+.rodada-ico .bolha{flex:0 0 42px;height:42px;border-radius:50%;background:var(--bege);display:grid;place-items:center;font-size:22px}
+.rodada-ico b{font-size:13px;color:var(--caramelo-esc);text-transform:uppercase;letter-spacing:.05em}
 .cron-wrap{display:flex;flex-direction:column;align-items:center;padding:6px 0}
-.anel{position:relative;width:180px;height:180px}
+.anel{position:relative;width:170px;height:170px}
 .anel svg{width:100%;height:100%;transform:rotate(-90deg)}
 .anel .trilho{fill:none;stroke:var(--linha);stroke-width:10}
-.anel .barra{fill:none;stroke:var(--caramelo);stroke-width:10;stroke-linecap:round;stroke-dasharray:502;stroke-dashoffset:502;transition:stroke-dashoffset 1s linear}
-.anel .num{position:absolute;inset:0;display:grid;place-items:center;font-family:Lora,Georgia,serif;font-size:38px;font-variant-numeric:tabular-nums}
-.dica-espera{min-height:40px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:var(--cinza);margin-top:10px;padding:0 10px}
-.dica-espera span{animation:fadeDica .4s ease}
-@keyframes fadeDica{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-
-.notas{display:grid;gap:10px;margin-top:14px}
-.nota{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:13px;border-radius:18px;background:#fff;border:2px solid var(--linha);transition:transform .1s}
-.nota:active{transform:scale(.98)}
-.nota .n{flex:0 0 48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:24px}
-.nota b{display:block;font-size:17px}.nota span{font-size:14px;color:var(--cinza);line-height:1.35}
+.anel .barra{fill:none;stroke:var(--caramelo);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .25s linear}
+.anel .num{position:absolute;inset:0;display:grid;place-items:center;font-family:Lora,Georgia,serif;font-size:36px;font-variant-numeric:tabular-nums}
+.dica-espera{min-height:40px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:var(--cinza);margin-top:8px;padding:0 10px}
+.aviso{display:flex;gap:12px;align-items:flex-start;background:var(--bege);border-radius:16px;padding:14px 16px;margin:16px 0;font-size:14px;line-height:1.5}
+.aviso .ico{font-size:20px;line-height:1.2}
+.aviso p{margin:0}
 .sim-nao{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 18px}
-.sim-nao button{padding:14px;border-radius:14px;background:#fff;border:2px solid var(--linha);font-weight:600}
+.sim-nao button{padding:14px;border-radius:14px;background:var(--branco);border:2px solid var(--linha);font-weight:600}
 .sim-nao button.escolhido{border-color:var(--caramelo);background:#FBEFE3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sim-nao button.escolhido,:root:not([data-theme="light"]) .op[aria-pressed="true"]{background:#3A2A1E}}
+.flash{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .18s}
+.flash.ver{opacity:1}
+.flash-cartao{background:var(--branco);border-radius:26px;padding:28px 34px;box-shadow:0 20px 50px -12px rgba(46,42,38,.35);display:flex;flex-direction:column;align-items:center;gap:10px;transform:scale(.85);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.flash.ver .flash-cartao{transform:scale(1)}
+.flash-n{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:28px}
+.flash-txt{font-weight:600;font-size:16px;text-align:center}
 
-.grafico{display:flex;align-items:flex-end;gap:12px;height:150px;padding:10px 6px 0;border-bottom:2px solid var(--linha)}
-.grafico div{flex:1;border-radius:8px 8px 0 0;position:relative;min-height:0;height:0!important;transition:height .6s cubic-bezier(.2,.8,.2,1)}
-.grafico div b{position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:14px;opacity:0;transition:opacity .3s}
-.grafico.pronto div{height:var(--h)!important}
-.grafico.pronto div b{opacity:1}
-.eixo{display:flex;gap:12px;padding:6px 6px 0;font-size:12px;color:var(--cinza)}.eixo span{flex:1;text-align:center}
-.alerta{background:#FBEDE3;border-left:5px solid var(--ferrugem);border-radius:14px;padding:14px;font-size:15px;margin:14px 0}
-.oferta{background:var(--tinta);color:#FBF7F1;border-radius:26px;padding:24px 20px;margin:22px 0 10px}
+/* Scanner */
+.scan{text-align:center;padding:26px 0 10px}
+.scan-alvo{position:relative;width:220px;height:220px;margin:0 auto 26px;border-radius:50%;overflow:hidden;background:var(--bege)}
+.scan-alvo img,.scan-alvo .pata{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scan-alvo .pata{padding:50px;opacity:.85}
+.scan-alvo::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,rgba(227,163,59,0) 0deg,rgba(227,163,59,.55) 50deg,rgba(227,163,59,0) 52deg);animation:girarLento 1.6s linear infinite;z-index:2}
+.scan-alvo::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 4px var(--mel);z-index:3}
+.scan-passos{list-style:none;padding:0;margin:0 auto;max-width:300px;text-align:left}
+.scan-passos li{padding:7px 0 7px 30px;position:relative;color:var(--cinza);font-size:15px;opacity:.35;transition:opacity .3s,color .3s}
+.scan-passos li::before{content:"";position:absolute;left:0;top:10px;width:18px;height:18px;border-radius:50%;border:2px solid var(--linha)}
+.scan-passos li.on{opacity:1;color:var(--tinta)}
+.scan-passos li.ok::before{background:var(--salvia);border-color:var(--salvia)}
+.scan-passos li.ok::after{content:"";position:absolute;left:6px;top:14px;width:6px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+/* Resultado */
+.res-topo{background:var(--noite);color:#FBF7F1;border-radius:30px;padding:24px 18px 22px;margin:0 -4px;position:relative;overflow:hidden}
+.res-topo::before{content:"";position:absolute;inset:-40% -30% auto auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(227,163,59,.35),transparent 65%)}
+.res-topo .marca{color:var(--mel)}
+.res-topo h1{font-size:25px;line-height:1.25;margin:10px 0 0;color:#FBF7F1;position:relative}
+.big-num{font-family:Lora,Georgia,serif;font-size:92px;line-height:.95;font-weight:700;color:var(--mel);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px;margin:10px 0 4px;position:relative}
+.big-num small{font-family:Poppins,sans-serif;font-size:20px;font-weight:600;color:#FBF7F1;line-height:1.2}
+.res-topo .linha2{color:#D8CEC3;font-size:15px;position:relative;margin:6px 0 0}
+.res-topo .linha2 b{color:#fff}
+.dial-wrap{position:relative;width:min(340px,86vw);aspect-ratio:1;margin:18px auto 4px}
+.dial-wrap svg{width:100%;height:100%;overflow:visible}
+.dial-foto{position:absolute;left:50%;top:50%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;background:#3A332D;display:grid;place-items:center;box-shadow:0 0 0 5px var(--noite),0 0 0 7px var(--mel)}
+.dial-foto img{width:100%;height:100%;object-fit:cover}
+.dial-foto .pata{width:55%}
+.arco{transition:stroke-dashoffset 1.8s cubic-bezier(.3,.7,.2,1)}
+.mk{opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .4s, transform .4s cubic-bezier(.34,1.56,.64,1);transform:scale(.4)}
+.mk.on{opacity:1;transform:scale(1)}
+.legenda-dial{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;font-size:12px;color:#D8CEC3;position:relative}
+.legenda-dial i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.secao{margin:26px 0 0}
+.secao .kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--caramelo);margin-bottom:6px}
+.impacto{background:linear-gradient(135deg,#FBEFE3,#F6E2C9);border-radius:24px;padding:20px 18px;color:#2E2A26}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .impacto{background:linear-gradient(135deg,#3A2A1E,#2A2420);color:#F3ECE2}}
+.impacto .num{font-family:Lora,Georgia,serif;font-size:46px;font-weight:700;line-height:1;color:var(--caramelo-esc)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .impacto .num{color:#F0B676}}
+.impacto p{margin:8px 0 0;font-size:15px}
+.timeline{list-style:none;padding:0;margin:12px 0 0;position:relative}
+.timeline::before{content:"";position:absolute;left:21px;top:10px;bottom:10px;width:2px;background:var(--linha)}
+.timeline li{display:flex;align-items:center;gap:12px;padding:8px 0;position:relative}
+.timeline .pino{flex:0 0 44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:20px;background:var(--branco);border:3px solid var(--linha);position:relative;z-index:1}
+.timeline .txt{flex:1;min-width:0}
+.timeline .txt b{display:block;font-size:15px;line-height:1.3}
+.timeline .txt small{color:var(--cinza);font-size:13px}
+.timeline .tag{font-size:12px;font-weight:700;padding:4px 9px;border-radius:99px;color:#fff;white-space:nowrap}
+.timeline li.porta .pino{background:var(--noite);border-color:var(--noite);color:#fff}
+.gatilho{display:flex;gap:16px;align-items:center;background:var(--branco);border:1px solid var(--linha);border-radius:22px;padding:18px}
+.gatilho .em{font-size:44px;flex:0 0 64px;height:64px;border-radius:18px;background:var(--bege);display:grid;place-items:center}
+.gatilho b{font-family:Lora,Georgia,serif;font-size:21px;display:block;line-height:1.2}
+.escada-vis{display:flex;align-items:flex-end;gap:3px;height:96px;margin:14px 0 8px}
+.escada-vis i{flex:1;border-radius:4px 4px 0 0;background:var(--linha);transition:background .3s}
+.escada-vis i.passado{background:#D9C9B6}
+.escada-vis i.aqui{background:var(--caramelo);box-shadow:0 0 0 3px rgba(201,119,46,.25)}
+.escada-vis i.meta{background:var(--salvia)}
+.escada-leg{display:flex;justify-content:space-between;font-size:12px;color:var(--cinza);position:relative}
+.escada-leg .leg-meta{position:absolute;left:77.5%;transform:translateX(-50%);color:var(--salvia);font-weight:700}
+.previsao{display:flex;gap:12px;align-items:center;background:var(--bege);border-radius:16px;padding:13px 14px;margin-top:12px;font-size:14px;line-height:1.45}
+.previsao .ico{font-size:22px}
+.sessao{background:var(--branco);border:2px solid var(--mel);border-radius:26px;padding:20px 18px}
+.sessao ol{padding-left:20px;margin:10px 0 14px}
+.sessao li{margin-bottom:6px;font-size:15px}
+.reps{display:flex;justify-content:space-between;gap:8px;margin:16px 0}
+.reps i{flex:1;aspect-ratio:1;max-width:54px;border-radius:50%;border:3px solid var(--linha);display:grid;place-items:center;font-style:normal;font-weight:700;color:var(--cinza);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.reps i.ok{background:var(--salvia);border-color:var(--salvia);color:#fff;transform:scale(1.06)}
+.comparativo{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center;margin:12px 0}
+.comparativo .n{width:62px;height:62px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-size:28px;font-weight:700}
+.comparativo small{font-size:12px;color:var(--cinza)}
+.share-prev{display:block;width:62%;margin:12px auto;border-radius:16px;box-shadow:var(--sombra)}
+.alerta{background:#FBEDE3;border-left:5px solid var(--ferrugem);border-radius:14px;padding:14px;font-size:15px;margin:16px 0;color:#2E2A26}
+.oferta{background:var(--noite);color:#FBF7F1;border-radius:28px;padding:24px 20px;margin:28px 0 10px}
 .oferta h2{color:#FBF7F1}
+.oferta .pers{background:rgba(227,163,59,.14);border:1px solid rgba(227,163,59,.4);border-radius:16px;padding:12px 14px;font-size:14px;color:#F3E3C8;margin:12px 0}
 .oferta ul{list-style:none;padding:0;margin:14px 0 18px}
 .oferta li{padding:8px 0 8px 30px;position:relative;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
 .oferta li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:3px solid var(--mel);border-bottom:3px solid var(--mel);transform:rotate(-45deg)}
 .preco{font-family:Lora,Georgia,serif;font-size:46px;line-height:1;margin:6px 0 4px}
 .oferta .pequeno{font-size:13px;color:#D8CEC3}
-.rodape{margin-top:26px;font-size:12px;color:var(--cinza);text-align:center}
-.captura{background:#fff;border:2px solid var(--mel);border-radius:24px;padding:22px 18px;margin:18px 0 6px}
+.captura{background:var(--branco);border:2px solid var(--mel);border-radius:24px;padding:22px 18px;margin:18px 0 6px}
 .captura .selo{display:inline-block;background:#FBEFE3;color:var(--caramelo-esc);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:99px;margin-bottom:10px}
-.captura h2{font-size:22px}
 .canais{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 4px}
-.canais button{padding:12px;border-radius:14px;background:var(--bege);border:2px solid transparent;font-weight:600;color:var(--tinta)}
-.canais button[aria-pressed="true"]{border-color:var(--caramelo);background:#FBEFE3}
-.captura .erro{color:var(--ferrugem);font-size:14px;font-weight:600;margin:8px 0 0;min-height:0}
+.canais button{padding:12px;border-radius:14px;background:var(--bege);border:2px solid transparent;font-weight:600}
+.canais button[aria-pressed="true"]{border-color:var(--caramelo)}
+.captura .erro{color:var(--ferrugem);font-size:14px;font-weight:600;margin:8px 0 0}
 .captura .consent{font-size:12px;color:var(--cinza);margin:12px 0 0;line-height:1.45}
 .captura .consent a{color:var(--cinza)}
 .pote{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.plano{margin-top:6px}
 .plano .ok{background:#EEF4EC;border-radius:14px;padding:12px 14px;font-size:15px;font-weight:600;color:#3F6B45;margin:0 0 14px}
 .dia{border-left:4px solid var(--caramelo);padding:2px 0 2px 14px;margin:0 0 16px}
 .dia b.t{display:block;font-family:Lora,Georgia,serif;font-size:18px;margin-bottom:4px}
 .dia p{font-size:15px;margin:0 0 6px}
 .regra{background:var(--bege);border-radius:14px;padding:12px 14px;font-size:14px;margin:4px 0 16px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .captura{background:#2B2521}:root:not([data-theme="light"]) .plano .ok{background:#26332A;color:#A9CFAE}:root:not([data-theme="light"]) .canais button[aria-pressed="true"]{background:#3A2A22}}
-
-.flash{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .18s}
-.flash.ver{opacity:1}
-.flash-cartao{background:#fff;border-radius:26px;padding:30px 36px;box-shadow:0 20px 50px -12px rgba(46,42,38,.35);display:flex;flex-direction:column;align-items:center;gap:10px;transform:scale(.85);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-.flash.ver .flash-cartao{transform:scale(1)}
-.flash-n{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:Lora,Georgia,serif;font-weight:700;font-size:30px}
-.flash-txt{font-weight:600;font-size:17px;text-align:center}
-
-.carregando{text-align:center;padding:50px 10px}
-.carregando .anelmini{width:52px;height:52px;margin:0 auto 18px;border:5px solid var(--linha);border-top-color:var(--caramelo);border-radius:50%;animation:girar .8s linear infinite}
-@keyframes girar{to{transform:rotate(360deg)}}
-.carregando p{color:var(--cinza);font-size:15px}
-#t-resultado .conteudo-resultado{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
-#t-resultado .conteudo-resultado.ver{opacity:1;transform:none}
-
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.ver{opacity:1;transform:none}
 @media (prefers-reduced-motion:no-preference){.tela.ativa{animation:entra .35s ease-out}@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
-@media (prefers-reduced-motion:reduce){.flash,.flash-cartao,.grafico div,.progresso span::after,#t-resultado .conteudo-resultado{transition:none!important}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
- :root:not([data-theme="light"]) .cartao,:root:not([data-theme="light"]) .nota,:root:not([data-theme="light"]) input,:root:not([data-theme="light"]) .sim-nao button,:root:not([data-theme="light"]) .flash-cartao{background:#2B2521}
- :root:not([data-theme="light"]) .oferta{background:#2B2521}:root:not([data-theme="light"]) .alerta{background:#3A2A22}}
-:root[data-theme="dark"]{--papel:#1F1B18;--bege:#2B2521;--linha:#3A332D;--tinta:#F3ECE2;--cinza:#B8AEA3}
+@media (prefers-reduced-motion:reduce){.orbita,.orbita .ic,.ponteiro,.scan-alvo::before{animation:none}.reveal,.mk,.arco{transition:none!important;opacity:1;transform:none}}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -153,46 +240,102 @@ fbq('track','PageView');
 
 <div class="flash" id="flash" aria-hidden="true"><div class="flash-cartao"><div class="flash-n" id="flash-n"></div><div class="flash-txt" id="flash-txt"></div></div></div>
 
+<div class="topo" id="topo" hidden>
+  <div class="linha-topo"><button class="voltar" id="b-voltar" type="button">← Voltar</button><span class="etapa" id="etapa"></span></div>
+  <div class="barra"><i id="barra-geral"></i></div>
+</div>
+
+<!-- 1. INÍCIO -->
 <section class="tela" id="t-inicio">
-  <div class="marca">Simbas Pet · grátis</div>
-  <h1>O Teste da Chave</h1>
-  <p>Descubra em 5 minutos se o seu cão entra em pânico quando você sai, ou <b>antes</b> de você sair. A resposta muda tudo o que você vai fazer depois.</p>
-  <div class="foto-chave" aria-hidden="true">
-    <svg viewBox="0 0 120 70"><circle cx="30" cy="35" r="22" fill="none" stroke="#C9772E" stroke-width="8"/><path d="M52 35 H112 M92 35 V50 M104 35 V47" stroke="#C9772E" stroke-width="8" stroke-linecap="round"/></svg>
+  <div class="marca">Simbas Pet · grátis · 5 minutos</div>
+  <h1>O pânico do seu cão tem horário.</h1>
+  <p class="sub" style="font-size:16px">E quase nunca é quando você abre a porta. O <b style="color:var(--tinta)">Raio-X da Saída</b> mostra em que minuto da sua rotina ele começa a se preparar para ficar sozinho.</p>
+  <div class="hero-relogio" aria-hidden="true">
+    <svg viewBox="0 0 300 300">
+      <circle cx="150" cy="150" r="138" fill="none" stroke="var(--linha)" stroke-width="2"/>
+      <g id="hero-ticks"></g>
+      <path d="M150 12 A138 138 0 0 1 269.5 81" fill="none" stroke="#B5452B" stroke-width="6" stroke-linecap="round"/>
+      <path d="M269.5 81 A138 138 0 0 1 288 150" fill="none" stroke="#E3A33B" stroke-width="6" stroke-linecap="round"/>
+      <g class="orbita">
+        <g class="ic" style="transform-origin:150px 40px"><circle cx="150" cy="40" r="20" fill="var(--branco)" stroke="var(--linha)"/><text x="150" y="47" text-anchor="middle" font-size="20">🔑</text></g>
+        <g style="transform:rotate(72deg);transform-origin:150px 150px"><g class="ic" style="transform-origin:150px 40px"><circle cx="150" cy="40" r="20" fill="var(--branco)" stroke="var(--linha)"/><text x="150" y="47" text-anchor="middle" font-size="20">🚿</text></g></g>
+        <g style="transform:rotate(144deg);transform-origin:150px 150px"><g class="ic" style="transform-origin:150px 40px"><circle cx="150" cy="40" r="20" fill="var(--branco)" stroke="var(--linha)"/><text x="150" y="47" text-anchor="middle" font-size="20">👟</text></g></g>
+        <g style="transform:rotate(216deg);transform-origin:150px 150px"><g class="ic" style="transform-origin:150px 40px"><circle cx="150" cy="40" r="20" fill="var(--branco)" stroke="var(--linha)"/><text x="150" y="47" text-anchor="middle" font-size="20">🌸</text></g></g>
+        <g style="transform:rotate(288deg);transform-origin:150px 150px"><g class="ic" style="transform-origin:150px 40px"><circle cx="150" cy="40" r="20" fill="var(--branco)" stroke="var(--linha)"/><text x="150" y="47" text-anchor="middle" font-size="20">👜</text></g></g>
+      </g>
+      <line class="ponteiro" x1="150" y1="150" x2="150" y2="22" stroke="var(--caramelo)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="hero-foto" id="hero-foto"></div>
   </div>
-  <label for="in-nome">Qual é o nome do seu cão?</label>
-  <input id="in-nome" type="text" maxlength="24" autocomplete="off" placeholder="Ex.: Thor">
-  <button class="btn btn-principal" id="b-comecar" style="margin-top:16px">Fazer o teste</button>
-  <p class="rodape">Sem cadastro. As notas são guardadas de forma anônima, só para estatística.</p>
+  <ul class="promessa">
+    <li><span>⏰</span><div><b>O Relógio do Pânico:</b> quantos minutos antes da porta ele já sabe</div></li>
+    <li><span>🎯</span><div><b>O gatilho nº 1</b> que você nem percebe que dispara</div></li>
+    <li><span>🪜</span><div><b>O degrau de partida</b> e a data estimada para ele ficar 30 min sozinho</div></li>
+    <li><span>✨</span><div><b>Um exercício para fazer agora</b>, e ver a diferença hoje</div></li>
+  </ul>
+  <label class="rot" for="in-nome">Qual é o nome do seu cão?</label>
+  <input id="in-nome" type="text" maxlength="20" autocomplete="off" placeholder="Ex.: Thor">
+  <input id="in-foto" type="file" accept="image/*" hidden>
+  <button class="foto-btn" id="b-foto" type="button"><span class="mini" id="foto-mini">📷</span><span><b>Coloque uma foto dele (opcional)</b><small>Ela aparece no Raio-X. Fica só no seu celular.</small></span></button>
+  <button class="btn btn-principal" id="b-comecar" style="margin-top:18px">Fazer o Raio-X grátis</button>
+  <p class="rodape">Sem cadastro. Leva uns 5 minutos.</p>
 </section>
 
-<section class="tela" id="t-como">
-  <h2>Como funciona</h2>
-  <ol class="lista-passos">
-    <li>Escolha um momento em que você <b>não precisa sair</b>.</li>
-    <li>A cada rodada, um sinal diferente: <b>1ª a chave, 2ª o tênis, 3ª a bolsa</b> — como se fosse sair.</li>
-    <li>Em vez de sair, <b>sente no sofá</b> e fique 1 minuto observando, sem olhar direto para <span class="nome-cao">ele</span>.</li>
-    <li>Dê uma nota de 0 a 3 para a reação. Repita 3 vezes.</li>
-  </ol>
-  <div class="previa">
-    <div class="legenda">Um sinal por rodada — chave, tênis, bolsa — no seu ritmo:</div>
-    <div class="trilha" aria-hidden="true">
-      <span class="pt">1</span><span class="lin"></span><span class="pt">2</span><span class="lin"></span><span class="pt">3</span>
+<!-- 2. ROTINA -->
+<section class="tela" id="t-rotina">
+  <h2>O que você faz antes de sair de casa?</h2>
+  <p class="sub">Marque tudo o que costuma acontecer nos minutos antes da porta, mesmo o que parece bobo. Cada um pode ser um ponteiro para <span class="nome-cao">ele</span>.</p>
+  <div class="grade-hab" id="grade-hab"></div>
+  <button class="btn btn-principal" id="b-rotina" disabled>Continuar</button>
+</section>
+
+<!-- 3. CARTÕES DE HÁBITO -->
+<section class="tela" id="t-card">
+  <div class="card-hab" id="card-hab">
+    <div class="em-grande" id="ch-em"></div>
+    <h2 id="ch-titulo" style="margin:0"></h2>
+    <div class="q">Quanto tempo antes de sair?</div>
+    <div class="chips" id="ch-min"></div>
+    <div class="bloco-reac" id="ch-bloco">
+      <div class="q">E o que <span class="nome-cao">ele</span> faz nessa hora?</div>
+      <div class="reacoes" id="ch-reac"></div>
     </div>
   </div>
-  <div class="aviso">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    <p><b>Sem pressa.</b> Pode fazer as 3 tentativas agora, ou ao longo do dia, que é o ideal. A página guarda o seu progresso sozinha.</p>
-  </div>
-  <button class="btn btn-principal" id="b-ir-tentativa">Começar a tentativa 1</button>
+  <div class="contador-cards" id="contador-cards"></div>
 </section>
 
+<!-- 4. PERFIL -->
+<section class="tela" id="t-perfil">
+  <h2>Mais duas coisas e o Raio-X fica pronto</h2>
+  <div class="q" style="font-weight:700;margin:18px 0 10px">Quantos dias por semana <span class="nome-cao">ele</span> fica sozinho?</div>
+  <div class="chips" id="dias-sem"></div>
+  <div class="q" style="font-weight:700;margin:22px 0 10px">Hoje, quanto tempo <span class="nome-cao">ele</span> aguenta sozinho antes de chorar, latir ou destruir algo?</div>
+  <div class="reacoes" id="tolerancia"></div>
+  <button class="btn btn-principal" id="b-perfil" disabled style="margin-top:20px">Continuar</button>
+</section>
+
+<!-- 5. PRÁTICA: INTRO -->
+<section class="tela" id="t-pratica">
+  <div class="marca">Parte prática · 3 minutos</div>
+  <h2>Agora, o teste ao vivo</h2>
+  <p>A memória engana. Em 3 rodadas de 1 minuto, você confirma com os próprios olhos o que <span class="nome-cao">ele</span> sente com a <b>chave</b>, o <b>tênis</b> e a <b>bolsa</b>.</p>
+  <div class="cartao">
+    <p style="margin:0 0 8px"><b>Como fazer cada rodada:</b></p>
+    <p style="margin:0 0 6px">1. Pegue o objeto como se fosse sair.</p>
+    <p style="margin:0 0 6px">2. Em vez de sair, <b>sente no sofá</b>.</p>
+    <p style="margin:0">3. Observe 1 minuto sem encarar <span class="nome-cao">ele</span>. Depois, dê a nota.</p>
+  </div>
+  <div class="aviso"><span class="ico">💡</span><p><b>Dá para fazer ao longo do dia.</b> A página guarda o progresso e volta de onde você parou.</p></div>
+  <button class="btn btn-principal" id="b-ir-tentativa">Começar a rodada 1</button>
+  <button class="btn-link" id="b-pular-pratica">Não consigo agora: usar o que eu já respondi</button>
+</section>
+
+<!-- 6. TENTATIVA -->
 <section class="tela" id="t-tentativa">
   <div class="progresso" id="progresso"><span></span><span></span><span></span></div>
-  <p class="progresso-txt" id="progresso-txt"></p>
-  <h2 id="tt-titulo">Tentativa 1 de 3</h2>
+  <h2 id="tt-titulo" style="margin-top:12px">Rodada 1 de 3</h2>
   <div class="rodada-ico"><span class="bolha" id="rodada-bolha"></span><b id="rodada-label">CHAVE</b></div>
-  <p class="sub" id="tt-sub">Pegue a chave, sente no sofá e observe por 1 minuto.</p>
+  <p class="sub" id="tt-sub"></p>
   <div class="cartao">
     <div class="cron-wrap">
       <div class="anel">
@@ -201,311 +344,602 @@ fbq('track','PageView');
       </div>
       <div class="dica-espera" id="dica-espera"></div>
     </div>
-    <button class="btn btn-sec" id="b-cron" style="margin-top:10px">Iniciar 1 minuto</button>
+    <button class="btn btn-sec" id="b-cron">Iniciar 1 minuto</button>
   </div>
-  <h2 style="font-size:19px;margin-top:18px">Como <span class="nome-cao">ele</span> reagiu?</h2>
-  <div class="notas" id="notas">
-    <button class="nota" data-nota="0"><span class="n" style="background:var(--salvia)">0</span><span><b>Tranquilo</b><span id="desc-0">Continuou deitado, ou olhou e voltou a descansar</span></span></button>
-    <button class="nota" data-nota="1"><span class="n" style="background:var(--oliva)">1</span><span><b>Atento</b><span id="desc-1">Levantou, olhou para você, mas se acalmou sozinho</span></span></button>
-    <button class="nota" data-nota="2"><span class="n" style="background:var(--mel)">2</span><span><b>Preocupado</b><span id="desc-2">Andou, lambeu os lábios, bocejou, choramingou baixo</span></span></button>
-    <button class="nota" data-nota="3"><span class="n" style="background:var(--ferrugem)">3</span><span><b>Pânico</b><span id="desc-3">Latiu, uivou, foi para a porta, ofegou, tentou passar na sua frente</span></span></button>
-  </div>
-  <button class="btn-link" id="b-depois" style="margin-top:12px">Faço a próxima mais tarde</button>
+  <h3>Como <span class="nome-cao">ele</span> reagiu?</h3>
+  <div class="reacoes" id="notas"></div>
+  <button class="btn-link" id="b-depois">Faço a próxima mais tarde</button>
 </section>
 
 <section class="tela" id="t-pausa">
   <h2>Progresso salvo</h2>
-  <p>Você já fez <b id="pausa-n">1</b> de 3 tentativas. Quando quiser continuar, abra esta mesma página: ela volta de onde você parou.</p>
+  <p>Você já fez <b id="pausa-n">1</b> de 3 rodadas. Quando quiser continuar, abra esta mesma página: ela volta de onde você parou.</p>
   <button class="btn btn-principal" id="b-continuar">Continuar agora</button>
+  <button class="btn-link" id="b-pular-pausa">Ver o Raio-X com o que já respondi</button>
 </section>
 
+<!-- 7. SEGURANÇA -->
 <section class="tela" id="t-seguranca">
-  <h2>Duas perguntas rápidas</h2>
-  <p class="sub">Elas ajudam a saber se é hora de treinar ou de procurar um veterinário primeiro.</p>
+  <h2>Duas perguntas de cuidado</h2>
+  <p class="sub">Elas mostram se é hora de treinar ou de passar no veterinário primeiro.</p>
   <p style="margin-top:16px"><b>1.</b> <span class="nome-cao-cap">Ele</span> já se machucou tentando sair, ou fica sem comer nada quando está sozinho?</p>
   <div class="sim-nao" data-q="q1"><button data-v="sim">Sim</button><button data-v="nao">Não</button></div>
   <p><b>2.</b> O problema começou de repente, num cão que antes ficava bem sozinho?</p>
   <div class="sim-nao" data-q="q2"><button data-v="sim">Sim</button><button data-v="nao">Não</button></div>
-  <button class="btn btn-principal" id="b-resultado" disabled style="opacity:.5">Ver o resultado</button>
+  <button class="btn btn-principal" id="b-resultado" disabled>Gerar o Raio-X</button>
 </section>
 
-<section class="tela" id="t-resultado">
-  <div class="carregando" id="carregando"><div class="anelmini"></div><p id="carregando-txt">Calculando o resultado de Thor...</p></div>
-  <div class="conteudo-resultado" id="conteudo-resultado">
-    <div class="marca">Resultado do Teste da Chave</div>
-    <h1 id="r-titulo" style="font-size:28px"></h1>
-    <p id="r-texto"></p>
-    <div class="cartao">
-      <div class="sub" style="margin-bottom:26px">As 3 notas de hoje</div>
-      <div class="grafico" id="grafico"></div>
-      <div class="eixo"><span>1ª</span><span>2ª</span><span>3ª</span></div>
-    </div>
-    <div id="r-alerta"></div>
-    <p id="r-proximo"></p>
-
-    <div class="oferta" id="oferta">
-      <h2>Volto Já: o método completo</h2>
-      <p style="color:#D8CEC3">O Teste da Chave é o primeiro passo do Método Saída Invisível. O Volto Já leva você do teste de hoje até <span class="nome-cao">ele</span> ficar sozinho com calma, medindo cada avanço.</p>
-      <ul>
-        <li>Guia completo de 54 páginas, com fotos e infográficos</li>
-        <li>A Escada da Ausência em 3 formatos: aplicativo no celular, versão para a geladeira e planilha</li>
-        <li>Trilha Casa Calma: o áudio do ritual de saída</li>
-        <li>Bônus Kit Família no Mesmo Time</li>
-        <li>Bônus Guia do Brinquedo Recheado, com 15 recheios</li>
-        <li>Bônus Plano Enquanto Ele Aprende, com o Kit Vizinho em Paz</li>
-      </ul>
-      <div class="pequeno">Tudo por</div>
-      <div class="preco">R$ 27</div>
-      <div class="pequeno" style="margin-bottom:16px">Pix ou cartão · acesso imediato · garantia de 30 dias</div>
-      <a class="btn btn-principal" id="b-comprar" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc">Quero o método completo</a>
-    </div>
-    <section class="captura" id="captura" aria-labelledby="cap-titulo">
-      <div id="cap-form-wrap">
-        <span class="selo">Grátis</span>
-        <h2 id="cap-titulo">Ainda não é a hora? Leve o plano dos 3 primeiros dias</h2>
-        <p class="sub">O que fazer amanhã, depois de amanhã e no dia seguinte com <span class="nome-cao">ele</span>. É o mesmo começo do método completo, pra você já sair do zero hoje.</p>
-        <form id="cap-form" novalidate>
-          <div class="canais" role="group" aria-label="Onde você prefere receber">
-            <button type="button" data-canal="whatsapp" aria-pressed="true">WhatsApp</button>
-            <button type="button" data-canal="email" aria-pressed="false">E-mail</button>
-          </div>
-          <label for="cap-contato" id="cap-label">Seu WhatsApp com DDD</label>
-          <input id="cap-contato" name="contato" type="tel" inputmode="tel" autocomplete="tel" placeholder="(47) 99999-9999" maxlength="120">
-          <div class="pote" aria-hidden="true"><label for="cap-site">Não preencha</label><input id="cap-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
-          <p class="erro" id="cap-erro" role="alert"></p>
-          <button class="btn btn-principal" id="cap-enviar" type="submit" style="margin-top:12px">Quero o plano grátis</button>
-          <p class="consent">Você recebe o plano e mensagens do Simbas Pet sobre o treino. Pra parar, é só responder SAIR. <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de privacidade</a>.</p>
-        </form>
-      </div>
-      <div class="plano" id="plano" hidden></div>
-    </section>
-    <button class="btn-link" id="b-refazer" style="margin-top:14px">Refazer o teste</button>
-    <p class="rodape">Simbas Pet · Este teste não substitui a avaliação de um veterinário.</p>
+<!-- 8. SCANNER -->
+<section class="tela" id="t-scan">
+  <div class="scan">
+    <div class="scan-alvo" id="scan-alvo"></div>
+    <h2 id="scan-titulo">Montando o Raio-X...</h2>
+    <ul class="scan-passos" id="scan-passos">
+      <li>Lendo a sua rotina de saída</li>
+      <li>Cruzando com as reações observadas</li>
+      <li>Encontrando o primeiro ponteiro</li>
+      <li>Calculando o degrau de partida</li>
+    </ul>
   </div>
 </section>
 
+<!-- 9. RESULTADO -->
+<section class="tela" id="t-resultado">
+  <div class="res-topo">
+    <div class="marca" id="r-marca">Raio-X da Saída</div>
+    <h1 id="r-h1"></h1>
+    <div class="big-num" id="r-big"><span id="r-num">0</span><small id="r-unid">minutos<br>antes da porta</small></div>
+    <p class="linha2" id="r-linha2"></p>
+    <div class="dial-wrap"><svg viewBox="0 0 340 340" id="dial"></svg><div class="dial-foto" id="dial-foto"></div></div>
+    <div class="legenda-dial"><span><i style="background:#6E9B73"></i>nem liga</span><span><i style="background:#9AAA4E"></i>atento</span><span><i style="background:#E3A33B"></i>inquieto</span><span><i style="background:#B5452B"></i>pânico</span></div>
+  </div>
+
+  <div id="r-alerta"></div>
+
+  <div class="secao reveal" id="sec-impacto"></div>
+
+  <div class="secao reveal">
+    <div class="kicker">Mapa de ponteiros</div>
+    <h3>A manhã vista pelos olhos de <span class="nome-cao">ele</span></h3>
+    <ul class="timeline" id="timeline"></ul>
+  </div>
+
+  <div class="secao reveal" id="sec-gatilho"></div>
+
+  <div class="secao reveal">
+    <div class="kicker">Degrau de partida</div>
+    <h3 id="esc-titulo"></h3>
+    <p class="sub" id="esc-texto"></p>
+    <div class="escada-vis" id="escada-vis" aria-hidden="true"></div>
+    <div class="escada-leg"><span>5 s</span><span class="leg-meta">30 min</span><span>2 h</span></div>
+    <div class="previsao" id="previsao"></div>
+  </div>
+
+  <div class="secao reveal">
+    <div class="kicker">Seu exercício de hoje · 3 minutos</div>
+    <div class="sessao" id="sessao"></div>
+  </div>
+
+  <div class="secao reveal">
+    <div class="kicker">Seu cartão</div>
+    <h3>O Relógio de <span class="nome-cao">ele</span>, pronto para os stories</h3>
+    <p class="sub">Compartilhe e descubra quem mais tem um cão que sabe antes da porta abrir.</p>
+    <img class="share-prev" id="share-prev" alt="Cartão do Raio-X da Saída">
+    <button class="btn btn-principal" id="b-share">Salvar e compartilhar o cartão</button>
+  </div>
+
+  <div class="oferta" id="oferta">
+    <div class="marca" style="color:var(--mel)">O próximo passo</div>
+    <h2 style="margin-top:6px">Volto Já: o caminho do degrau <span id="of-deg">1</span> até o 20</h2>
+    <div class="pers" id="of-pers"></div>
+    <ul>
+      <li>A Escada da Ausência completa: 20 degraus, de 5 segundos a 2 horas, no celular, na geladeira e em planilha</li>
+      <li>O Método Saída Invisível para tirar a força de cada ponteiro da sua rotina</li>
+      <li>Áudios do Ritual Casa Calma (3 min, 30 min e 1 h)</li>
+      <li>Guia completo de 54 páginas</li>
+      <li>Bônus: Kit Família no Mesmo Time, Guia do Brinquedo Recheado e Plano Enquanto Ele Aprende</li>
+    </ul>
+    <div class="pequeno">Tudo por</div>
+    <div class="preco">R$ 27</div>
+    <div class="pequeno" style="margin-bottom:16px">Pix ou cartão · acesso imediato · garantia de 30 dias</div>
+    <a class="btn btn-principal" id="b-comprar" href="https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc">Quero o caminho completo</a>
+  </div>
+
+  <section class="captura" id="captura" aria-labelledby="cap-titulo">
+    <div id="cap-form-wrap">
+      <span class="selo">Grátis</span>
+      <h2 id="cap-titulo" style="font-size:22px">Ainda não é a hora? Leve o plano dos 3 primeiros dias</h2>
+      <p class="sub">O que fazer amanhã, depois de amanhã e no dia seguinte, a partir do degrau de <span class="nome-cao">ele</span>.</p>
+      <form id="cap-form" novalidate>
+        <div class="canais" role="group" aria-label="Onde você prefere receber">
+          <button type="button" data-canal="whatsapp" aria-pressed="true">WhatsApp</button>
+          <button type="button" data-canal="email" aria-pressed="false">E-mail</button>
+        </div>
+        <label class="rot" for="cap-contato" id="cap-label">Seu WhatsApp com DDD</label>
+        <input id="cap-contato" name="contato" type="tel" inputmode="tel" autocomplete="tel" placeholder="(47) 99999-9999" maxlength="120">
+        <div class="pote" aria-hidden="true"><label for="cap-site">Não preencha</label><input id="cap-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="erro" id="cap-erro" role="alert"></p>
+        <button class="btn btn-principal" id="cap-enviar" type="submit" style="margin-top:12px">Quero o plano grátis</button>
+        <p class="consent">Você recebe o plano e mensagens do Simbas Pet sobre o treino. Para parar, é só responder SAIR. <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de privacidade</a>.</p>
+      </form>
+    </div>
+    <div class="plano" id="plano" hidden></div>
+  </section>
+  <button class="btn-link" id="b-refazer">Refazer o Raio-X</button>
+  <p class="rodape">Simbas Pet · O Raio-X da Saída é uma leitura de comportamento e rotina. Não substitui a avaliação de um veterinário.</p>
+</section>
 </main>
+
 <script>
-/* ===== CONFIGURAÇÃO: troque pelos seus links antes de publicar ===== */
+/* ===== CONFIGURAÇÃO ===== */
 const LINK_CHECKOUT = "https://pay.kirvano.com/7c8f280c-29ab-4235-9866-bc9cba9e82dc";
 const API_LEAD = "/api/lead";
-/* ================================================================== */
+const SITE_CARTAO = "simbaspet.com.br/teste";
+/* ======================== */
 (function(){
-  const CHAVE="voltoja-teste-chave-v1";
-  const REDUZIDO = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let mem=null;
-  let e=carregar();
-  function carregar(){try{const s=localStorage.getItem(CHAVE);if(s)return JSON.parse(s);}catch(x){}return mem||{nome:"",notas:[],q1:null,q2:null};}
-  function salvar(){mem=e;try{localStorage.setItem(CHAVE,JSON.stringify(e));}catch(x){}}
+  const CHAVE="voltoja-raiox-v2";
+  const REDUZIDO=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $=id=>document.getElementById(id);
-  function ir(id){document.querySelectorAll(".tela").forEach(t=>t.classList.toggle("ativa",t.id===id));window.scrollTo(0,0);}
-  function nome(){return e.nome||"";}
-  function atualizarNomes(){
-    document.querySelectorAll(".nome-cao").forEach(s=>s.textContent=nome()||"ele");
-    document.querySelectorAll(".nome-cao-cap").forEach(s=>s.textContent=nome()||"Ele");
-  }
-  try{
-    const params=new URLSearchParams(location.search);
-    if(params.toString()){
-      const u=new URL(LINK_CHECKOUT);
-      params.forEach((v,k)=>{if(!u.searchParams.has(k))u.searchParams.set(k,v)});
-      $("b-comprar").href=u.toString();
-    } else {
-      $("b-comprar").href=LINK_CHECKOUT;
-    }
-  }catch(err){$("b-comprar").href=LINK_CHECKOUT;}
-  if(!e.sid){e.sid=(Date.now().toString(36)+Math.random().toString(36).slice(2,10));salvar();}
+  const CORES=["#6E9B73","#9AAA4E","#E3A33B","#B5452B"];
+  const PATA='<svg class="pata" viewBox="0 0 100 100" aria-hidden="true"><g fill="#C9772E"><ellipse cx="50" cy="66" rx="22" ry="19"/><ellipse cx="24" cy="42" rx="9" ry="12" transform="rotate(-18 24 42)"/><ellipse cx="41" cy="27" rx="9" ry="12"/><ellipse cx="60" cy="27" rx="9" ry="12"/><ellipse cx="77" cy="42" rx="9" ry="12" transform="rotate(18 77 42)"/></g></svg>';
+
+  const HABITOS=[
+    {id:"despertador",em:"⏰",t:"O despertador toca",curto:"o despertador",rep:false,min:60},
+    {id:"banho",em:"🚿",t:"Tomo banho",curto:"o banho",rep:false,min:45},
+    {id:"cafe",em:"☕",t:"Café da manhã apressado",curto:"o café apressado",rep:false,min:30},
+    {id:"racao",em:"🥣",t:"Coloco ração e água para ele",curto:"a ração",rep:false,min:20},
+    {id:"roupa",em:"👕",t:"Troco de roupa",curto:"a troca de roupa",rep:true,min:20},
+    {id:"perfume",em:"🌸",t:"Perfume, maquiagem ou desodorante",curto:"o perfume",rep:true,min:10},
+    {id:"luzes",em:"💡",t:"Desligo TV, luzes ou fecho janelas",curto:"as luzes apagando",rep:false,min:5},
+    {id:"bolsa",em:"👜",t:"Arrumo a bolsa ou mochila",curto:"a bolsa",rep:true,min:5},
+    {id:"tenis",em:"👟",t:"Calço o tênis ou sapato",curto:"o tênis",rep:true,min:2},
+    {id:"chave",em:"🔑",t:"Pego a chave",curto:"a chave",rep:true,min:1}
+  ];
+  const HMAP={};HABITOS.forEach(h=>HMAP[h.id]=h);
+  const MINUTOS=[[60,"1 h ou mais"],[45,"45 min"],[30,"30 min"],[20,"20 min"],[15,"15 min"],[10,"10 min"],[5,"5 min"],[2,"2 min"],[1,"Na hora"]];
+  const REACOES=[
+    {t:"Nem liga",d:"Continua deitado, descansando"},
+    {t:"Fica atento",d:"Levanta a cabeça, me segue com o olhar ou pela casa"},
+    {t:"Fica inquieto",d:"Ofega, lambe o focinho, boceja, choraminga, anda"},
+    {t:"Entra em pânico",d:"Late, chora alto, gruda na porta, tenta passar na frente"}
+  ];
+  const TOL=[
+    {v:0,t:"Nem 1 minuto",d:"Começa assim que a porta fecha"},
+    {v:5,t:"Uns 5 minutos",d:"Aguenta um pouco e depois começa"},
+    {v:20,t:"De 15 a 30 minutos",d:"Segura um tempo, mas não muito"},
+    {v:60,t:"1 hora ou mais",d:"O problema aparece só nas saídas longas"},
+    {v:-1,t:"Não sei",d:"Quase nunca deixo sozinho ou nunca observei"}
+  ];
+  const TEMPOS=[["5 segundos",5],["10 segundos",10],["20 segundos",20],["30 segundos",30],["45 segundos",45],["1 minuto",60],["1 minuto e meio",90],["2 minutos",120],["3 minutos",180],["4 minutos",240],["5 minutos",300],["7 minutos",420],["10 minutos",600],["15 minutos",900],["20 minutos",1200],["30 minutos",1800],["45 minutos",2700],["1 hora",3600],["1 hora e meia",5400],["2 horas",7200]];
+  const RODADAS=[
+    {id:"chave",label:"CHAVE",em:"🔑",sub:"Pegue a chave, sente no sofá e observe por 1 minuto.",op:["Continuou deitado, ou olhou e voltou a descansar","Levantou, olhou para você, mas se acalmou sozinho","Andou, lambeu os lábios, bocejou, choramingou baixo","Latiu, uivou, foi para a porta, ofegou, tentou passar na sua frente"]},
+    {id:"tenis",label:"TÊNIS",em:"👟",sub:"Metade do caminho. Calce o tênis (sem sair) e sente de novo.",op:["Nem desviou o olhar, seguiu deitado","Acompanhou com o olhar, mas relaxou rápido","Ficou de pé, ofegando leve, lambendo o focinho","Correu até você, chorou ou arranhou o chão"]},
+    {id:"bolsa",label:"BOLSA",em:"👜",sub:"Última! Pegue a bolsa ou mochila e sente. Depois vem o Raio-X.",op:["Olhou e logo perdeu o interesse","Levantou a cabeça, observou, mas ficou quieto","Bocejou, lambeu os lábios, andou em círculo","Tentou alcançar você, latiu ou arranhou a porta"]}
+  ];
+  const ROT_NOTA=["Nem liga","Atento","Inquieto","Pânico"];
+
+  let mem=null;
+  function vazio(){return {nome:"",foto:"",hab:[],det:{},ci:0,dias:null,tol:null,notas:[],medido:true,q1:null,q2:null,ses:{feitas:0,nota:null}};}
+  let e=carregar();
+  function carregar(){try{const s=localStorage.getItem(CHAVE);if(s)return Object.assign(vazio(),JSON.parse(s));}catch(x){}return mem||vazio();}
+  function salvar(){mem=e;try{localStorage.setItem(CHAVE,JSON.stringify(e));}catch(x){try{const c=Object.assign({},e,{foto:""});localStorage.setItem(CHAVE,JSON.stringify(c));}catch(y){}}}
+  if(!e.sid){e.sid=Date.now().toString(36)+Math.random().toString(36).slice(2,10);salvar();}
   try{const q=new URLSearchParams(location.search);const u={};["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(k=>{const v=q.get(k);if(v)u[k]=v;});if(Object.keys(u).length){e.utm=u;salvar();}}catch(x){}
-  function perfil(){const n=e.notas,p=n[0],u=n[n.length-1],m=Math.max(...n);return p>=2&&u<p?"sinais-caiu":p>=2?"sinais":m<=1?"porta":"misto";}
-  function enviar(dados){
-    const corpo=JSON.stringify(Object.assign({sid:e.sid,nome_cao:e.nome,notas:e.notas,q1:e.q1,q2:e.q2,perfil:perfil(),utm:e.utm||{}},dados));
-    return fetch(API_LEAD,{method:"POST",headers:{"Content-Type":"application/json"},body:corpo,keepalive:true});
-  }
-  function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}try{if(window.gtag){var g={Lead:"generate_lead",InitiateCheckout:"begin_checkout"}[ev];if(g)gtag("event",g,ev==="InitiateCheckout"?{value:27,currency:"BRL"}:{});}}catch(x){}}
-  $("b-comprar").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
 
-  $("b-comecar").addEventListener("click",()=>{e.nome=$("in-nome").value.trim();salvar();atualizarNomes();ir("t-como");});
-  $("b-ir-tentativa").addEventListener("click",abrirTentativa);
-  $("b-continuar").addEventListener("click",abrirTentativa);
+  const nome=()=>e.nome||"";
+  const cao=()=>e.nome||"seu cão";
+  const Cao=()=>e.nome||"Seu cão";
+  function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function atualizarNomes(){document.querySelectorAll(".nome-cao").forEach(s=>s.textContent=nome()||"ele");document.querySelectorAll(".nome-cao-cap").forEach(s=>s.textContent=nome()||"Ele");}
 
-  const PERIM=2*Math.PI*80;
-  $("cron-barra").style.strokeDasharray=PERIM.toFixed(1);
-  const DICAS=["Fique de olho sem encarar direto.","Repare se ele vai até a porta.","Late, chora, ou só observa quieto?","Respire. Ainda não é a hora de voltar.","Quase lá. Continue observando."];
-  let timer=null, dicaTimer=null, dicaIdx=0;
-  function pararCron(){
-    if(timer){clearInterval(timer);timer=null;}
-    if(dicaTimer){clearInterval(dicaTimer);dicaTimer=null;}
-    $("cron").textContent="1:00";$("b-cron").textContent="Iniciar 1 minuto";
-    $("cron-barra").style.strokeDashoffset=PERIM.toFixed(1);
-    $("dica-espera").innerHTML="";
+  /* ---- Navegação e progresso ---- */
+  const ORDEM=["t-inicio","t-rotina","t-card","t-perfil","t-pratica","t-tentativa","t-seguranca"];
+  let atual="t-inicio";
+  function ir(id){
+    atual=id;
+    document.querySelectorAll(".tela").forEach(t=>t.classList.toggle("ativa",t.id===id));
+    const mostra=!["t-inicio","t-scan","t-resultado"].includes(id);
+    $("topo").hidden=!mostra;
+    if(mostra){
+      let p=0,txt="";
+      const nh=Math.max(1,e.hab.length);
+      if(id==="t-rotina"){p=.08;txt="Etapa 1 de 4 · Rotina";}
+      else if(id==="t-card"){p=.12+.38*(e.ci/nh);txt=`Etapa 2 de 4 · Ponteiro ${Math.min(e.ci+1,nh)} de ${nh}`;}
+      else if(id==="t-perfil"){p=.55;txt="Etapa 2 de 4 · Quase lá";}
+      else if(id==="t-pratica"||id==="t-tentativa"||id==="t-pausa"){p=.62+.1*e.notas.length;txt="Etapa 3 de 4 · Teste ao vivo";}
+      else if(id==="t-seguranca"){p=.94;txt="Etapa 4 de 4 · Cuidado";}
+      $("barra-geral").style.width=(p*100).toFixed(0)+"%";$("etapa").textContent=txt;
+    }
+    window.scrollTo(0,0);
   }
+  $("b-voltar").addEventListener("click",()=>{
+    pararCron();
+    if(atual==="t-card"){if(e.ci>0){e.ci--;salvar();abrirCard();}else ir("t-rotina");return;}
+    if(atual==="t-perfil"){e.ci=Math.max(0,e.hab.length-1);salvar();abrirCard();return;}
+    if(atual==="t-tentativa"||atual==="t-pausa"){ir("t-pratica");return;}
+    if(atual==="t-seguranca"){ir("t-pratica");return;}
+    const i=ORDEM.indexOf(atual);ir(ORDEM[Math.max(0,i-1)]);
+  });
+
+  /* ---- Início: nome e foto ---- */
+  function fotoHTML(){return e.foto?`<img src="${e.foto}" alt="">`:PATA;}
+  function pintarFotos(){$("hero-foto").innerHTML=fotoHTML();$("foto-mini").innerHTML=e.foto?`<img src="${e.foto}" alt="">`:"📷";}
+  (function ticks(){let s="";for(let i=0;i<60;i++){const a=i*6*Math.PI/180,r1=i%5?131:126,r2=136;s+=`<line x1="${150+r1*Math.sin(a)}" y1="${150-r1*Math.cos(a)}" x2="${150+r2*Math.sin(a)}" y2="${150-r2*Math.cos(a)}" stroke="var(--linha)" stroke-width="${i%5?1.5:3}"/>`;}$("hero-ticks").innerHTML=s;})();
+  $("b-foto").addEventListener("click",()=>$("in-foto").click());
+  $("in-foto").addEventListener("change",ev=>{
+    const f=ev.target.files&&ev.target.files[0];if(!f)return;
+    const url=URL.createObjectURL(f),img=new Image();
+    img.onload=()=>{const S=420,c=document.createElement("canvas");c.width=c.height=S;const x=c.getContext("2d");const m=Math.min(img.width,img.height);x.drawImage(img,(img.width-m)/2,(img.height-m)/2,m,m,0,0,S,S);e.foto=c.toDataURL("image/jpeg",.82);salvar();pintarFotos();URL.revokeObjectURL(url);};
+    img.src=url;
+  });
+  $("b-comecar").addEventListener("click",()=>{e.nome=$("in-nome").value.trim().slice(0,20);salvar();atualizarNomes();montarRotina();ir("t-rotina");});
+
+  /* ---- Rotina ---- */
+  function montarRotina(){
+    $("grade-hab").innerHTML=HABITOS.map(h=>`<button class="hab" type="button" data-h="${h.id}" aria-pressed="${e.hab.includes(h.id)}"><span class="em">${h.em}</span>${h.t}</button>`).join("");
+    $("grade-hab").querySelectorAll(".hab").forEach(b=>b.addEventListener("click",()=>{
+      const id=b.dataset.h,on=e.hab.includes(id);
+      e.hab=on?e.hab.filter(x=>x!==id):HABITOS.map(h=>h.id).filter(x=>x===id||e.hab.includes(x));
+      b.setAttribute("aria-pressed",String(!on));salvar();$("b-rotina").disabled=!e.hab.length;
+    }));
+    $("b-rotina").disabled=!e.hab.length;
+  }
+  $("b-rotina").addEventListener("click",()=>{e.ci=0;salvar();abrirCard();});
+
+  /* ---- Cartões ---- */
+  function abrirCard(){
+    if(e.ci>=e.hab.length){abrirPerfil();return;}
+    const h=HMAP[e.hab[e.ci]],d=e.det[h.id]||{};
+    $("ch-em").textContent=h.em;$("ch-titulo").textContent=h.t;
+    $("ch-min").innerHTML=MINUTOS.map(([v,t])=>`<button class="chip" type="button" data-v="${v}" aria-pressed="${d.min===v}">${t}</button>`).join("");
+    $("ch-reac").innerHTML=REACOES.map((r,i)=>`<button class="op" type="button" data-v="${i}" aria-pressed="${d.reac===i}"><span class="n" style="background:${CORES[i]}">${i}</span><span><b>${r.t}</b><small>${r.d}</small></span></button>`).join("");
+    $("ch-bloco").classList.toggle("on",d.min!=null);
+    $("contador-cards").innerHTML=e.hab.map((_,i)=>`<i class="${i===e.ci?"on":""}"></i>`).join("");
+    $("ch-min").querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+      const v=+b.dataset.v;e.det[h.id]=Object.assign({},e.det[h.id],{min:v});salvar();
+      $("ch-min").querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+      $("ch-bloco").classList.add("on");
+      if(!REDUZIDO)$("ch-bloco").scrollIntoView({behavior:"smooth",block:"nearest"});
+    }));
+    $("ch-reac").querySelectorAll(".op").forEach(b=>b.addEventListener("click",()=>{
+      const v=+b.dataset.v;e.det[h.id]=Object.assign({},e.det[h.id],{reac:v});salvar();
+      $("ch-reac").querySelectorAll(".op").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+      setTimeout(()=>{e.ci++;salvar();abrirCard();},REDUZIDO?0:260);
+    }));
+    atualizarNomes();ir("t-card");
+  }
+
+  /* ---- Perfil ---- */
+  function abrirPerfil(){
+    $("dias-sem").innerHTML=[1,2,3,4,5,6,7].map(n=>`<button class="chip" type="button" data-v="${n}" aria-pressed="${e.dias===n}">${n} ${n===1?"dia":"dias"}</button>`).join("");
+    $("tolerancia").innerHTML=TOL.map(t=>`<button class="op" type="button" data-v="${t.v}" aria-pressed="${e.tol===t.v}"><span class="n" style="background:var(--caramelo);font-size:16px">${t.v<0?"?":t.v===0?"0":t.v>=60?"1h":t.v+"'"}</span><span><b>${t.t}</b><small>${t.d}</small></span></button>`).join("");
+    const ok=()=>{$("b-perfil").disabled=!(e.dias&&e.tol!=null);};
+    $("dias-sem").querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{e.dias=+b.dataset.v;salvar();$("dias-sem").querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));ok();}));
+    $("tolerancia").querySelectorAll(".op").forEach(b=>b.addEventListener("click",()=>{e.tol=+b.dataset.v;salvar();$("tolerancia").querySelectorAll(".op").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));ok();}));
+    ok();atualizarNomes();ir("t-perfil");
+  }
+  $("b-perfil").addEventListener("click",()=>{if(e.notas.length>=3)ir("t-seguranca");else if(e.notas.length>0){$("pausa-n").textContent=e.notas.length;ir("t-pausa");}else ir("t-pratica");});
+
+  /* ---- Prática ---- */
+  const PERIM=2*Math.PI*80;$("cron-barra").style.strokeDasharray=PERIM.toFixed(1);$("cron-barra").style.strokeDashoffset=PERIM.toFixed(1);
+  const DICAS=["Fique de olho sem encarar direto.","Repare se ele vai até a porta.","Late, chora, ou só observa quieto?","Respire. Ainda não é a hora de levantar.","Quase lá. Continue observando."];
+  let timer=null,dicaTimer=null,dicaIdx=0;
+  function pararCron(){if(timer){clearInterval(timer);timer=null;}if(dicaTimer){clearInterval(dicaTimer);dicaTimer=null;}$("cron").textContent="1:00";$("b-cron").textContent="Iniciar 1 minuto";$("cron-barra").style.strokeDashoffset=PERIM.toFixed(1);$("dica-espera").innerHTML="";}
   function mostrarDica(){dicaIdx=(dicaIdx+1)%DICAS.length;$("dica-espera").innerHTML=`<span>${DICAS[dicaIdx]}</span>`;}
   $("b-cron").addEventListener("click",()=>{
     if(timer){pararCron();return;}
-    const total=60, fim=Date.now()+total*1000;$("b-cron").textContent="Parar";
-    mostrarDica(); dicaTimer=setInterval(mostrarDica,11000);
-    const tick=()=>{
-      const r=Math.max(0,Math.ceil((fim-Date.now())/1000));
-      $("cron").textContent=`${Math.floor(r/60)}:${String(r%60).padStart(2,"0")}`;
-      $("cron-barra").style.strokeDashoffset=(PERIM*(r/total)).toFixed(1);
-      if(r<=0){clearInterval(timer);timer=null;clearInterval(dicaTimer);dicaTimer=null;
-        $("b-cron").textContent="Iniciar 1 minuto";$("dica-espera").innerHTML="<span>Pode voltar. Hora de dar a nota.</span>";
-        try{navigator.vibrate&&navigator.vibrate([200,100,200]);}catch(x){}}
-    };
-    tick(); timer=setInterval(tick,250);
+    const total=60,fim=Date.now()+total*1000;$("b-cron").textContent="Parar";mostrarDica();dicaTimer=setInterval(mostrarDica,11000);
+    const tick=()=>{const r=Math.max(0,Math.ceil((fim-Date.now())/1000));$("cron").textContent=`${Math.floor(r/60)}:${String(r%60).padStart(2,"0")}`;$("cron-barra").style.strokeDashoffset=(PERIM*(r/total)).toFixed(1);
+      if(r<=0){clearInterval(timer);timer=null;clearInterval(dicaTimer);dicaTimer=null;$("b-cron").textContent="Iniciar 1 minuto";$("dica-espera").innerHTML="<span>Pode levantar. Hora de dar a nota.</span>";try{navigator.vibrate&&navigator.vibrate([200,100,200]);}catch(x){}}};
+    tick();timer=setInterval(tick,250);
   });
-
-  const CORES=["var(--salvia)","var(--oliva)","var(--mel)","var(--ferrugem)"];
-  const FRASES=["Tranquilo, registrado.","Atento, mas calmo. Registrado.","Preocupado. Registrado.","Foi difícil dessa vez. Registrado."];
-  function flash(nota, depois){
-    if(REDUZIDO){depois();return;}
-    $("flash-n").style.background=CORES[nota];$("flash-n").textContent=nota;
-    $("flash-txt").textContent=FRASES[nota];
-    $("flash").classList.add("ver");
-    setTimeout(()=>{$("flash").classList.remove("ver");setTimeout(depois,180);},600);
-  }
-
-  const ICONES={
-    chave:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="4"/><path d="M11 12h10M18 12v3M20.5 12v2.3"/></svg>',
-    tenis:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h19c.6 0 1-.4 1-1 0-2-1.8-3-3.5-3.6C16 11.6 13 8 10 5.2 8.8 4 6.8 4.6 6.5 6.3L6 9c-2 .3-4 1.8-4 4.5V16c0 .6.4 1 1 1z"/><path d="M6 13c1.2-.6 2.6-.6 4 0s2.8.6 4 0"/></svg>',
-    bolsa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="12" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>'
-  };
-  const RODADAS=[
-    { label:"CHAVE", icone:ICONES.chave,
-      sub:"Pegue a chave, sente no sofá e observe por 1 minuto.",
-      op:["Continuou deitado, ou olhou e voltou a descansar","Levantou, olhou para você, mas se acalmou sozinho","Andou, lambeu os lábios, bocejou, choramingou baixo","Latiu, uivou, foi para a porta, ofegou, tentou passar na sua frente"] },
-    { label:"TÊNIS", icone:ICONES.tenis,
-      sub:"Você está na metade. Agora calce o tênis (sem sair) e sente de novo.",
-      op:["Nem desviou o olhar, seguiu deitado","Acompanhou com o olhar, mas relaxou rápido","Ficou de pé, ofegando leve, lambendo o focinho","Correu até você, chorou ou arranhou o chão"] },
-    { label:"BOLSA", icone:ICONES.bolsa,
-      sub:"Última! Pegue a bolsa ou mochila. Depois você já vê o resultado.",
-      op:["Olhou e logo perdeu o interesse","Levantou a cabeça, observou, mas ficou quieto","Bocejou, lambeu os lábios, andou em círculo","Tentou alcançar você, latiu ou arranhou a porta"] }
-  ];
   function abrirTentativa(){
     if(e.notas.length>=3){ir("t-seguranca");return;}
     pararCron();
-    const n=e.notas.length+1, r=RODADAS[n-1];
-    $("tt-titulo").textContent=`Tentativa ${n} de 3`;
-    $("rodada-bolha").innerHTML=r.icone;$("rodada-label").textContent=r.label;
-    $("tt-sub").textContent=r.sub;
-    r.op.forEach((txt,i)=>{$("desc-"+i).textContent=txt;});
-    $("progresso-txt").textContent= n===1 ? "Vamos começar" : n===3 ? "Reta final" : `Faltam ${3-n+1} de 3`;
+    const n=e.notas.length+1,r=RODADAS[n-1];
+    $("tt-titulo").textContent=`Rodada ${n} de 3`;$("rodada-bolha").textContent=r.em;$("rodada-label").textContent=r.label;$("tt-sub").textContent=r.sub;
+    $("notas").innerHTML=r.op.map((t,i)=>`<button class="op" type="button" data-nota="${i}"><span class="n" style="background:${CORES[i]}">${i}</span><span><b>${REACOES[i].t}</b><small>${t}</small></span></button>`).join("");
+    $("notas").querySelectorAll("[data-nota]").forEach(b=>b.addEventListener("click",()=>{const nota=+b.dataset.nota;pararCron();flash(nota,()=>{e.notas.push(nota);e.medido=true;salvar();if(e.notas.length>=3){atualizarNomes();ir("t-seguranca");}else abrirTentativa();});}));
     document.querySelectorAll("#progresso span").forEach((s,i)=>{s.classList.toggle("feito",i<e.notas.length);s.classList.toggle("atual",i===e.notas.length);});
     atualizarNomes();ir("t-tentativa");
   }
-  document.querySelectorAll("[data-nota]").forEach(b=>b.addEventListener("click",()=>{
-    const nota=parseInt(b.dataset.nota,10);
-    pararCron();
-    flash(nota, ()=>{
-      e.notas.push(nota);salvar();
-      if(e.notas.length>=3){atualizarNomes();ir("t-seguranca");}else abrirTentativa();
-    });
-  }));
+  const FRASES=["Tranquilo. Registrado.","Atento, mas calmo. Registrado.","Inquieto. Registrado.","Foi difícil dessa vez. Registrado."];
+  function flash(nota,depois){if(REDUZIDO){depois();return;}$("flash-n").style.background=CORES[nota];$("flash-n").textContent=nota;$("flash-txt").textContent=FRASES[nota];$("flash").classList.add("ver");setTimeout(()=>{$("flash").classList.remove("ver");setTimeout(depois,180);},650);}
+  function pularPratica(){
+    const ids=["chave","tenis","bolsa"];
+    const memoria=ids.map(id=>(e.det[id]&&e.det[id].reac!=null)?e.det[id].reac:null);
+    const base=Math.max(0,...Object.values(e.det).map(d=>d.reac||0));
+    e.notas=ids.map((id,i)=>e.notas[i]!=null?e.notas[i]:(memoria[i]!=null?memoria[i]:Math.min(base,1)));
+    e.medido=false;salvar();atualizarNomes();ir("t-seguranca");
+  }
+  $("b-ir-tentativa").addEventListener("click",abrirTentativa);
+  $("b-continuar").addEventListener("click",abrirTentativa);
+  $("b-pular-pratica").addEventListener("click",pularPratica);
+  $("b-pular-pausa").addEventListener("click",pularPratica);
   $("b-depois").addEventListener("click",()=>{pararCron();$("pausa-n").textContent=e.notas.length;ir("t-pausa");});
 
-  document.querySelectorAll(".sim-nao").forEach(g=>g.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
-    g.querySelectorAll("button").forEach(x=>x.classList.toggle("escolhido",x===b));e[g.dataset.q]=b.dataset.v;salvar();
-    const ok=e.q1&&e.q2;$("b-resultado").disabled=!ok;$("b-resultado").style.opacity=ok?1:.5;
-  })));
-  $("b-resultado").addEventListener("click",()=>{
+  /* ---- Segurança ---- */
+  function syncSeg(){document.querySelectorAll(".sim-nao").forEach(g=>g.querySelectorAll("button").forEach(x=>x.classList.toggle("escolhido",e[g.dataset.q]===x.dataset.v)));$("b-resultado").disabled=!(e.q1&&e.q2);}
+  document.querySelectorAll(".sim-nao").forEach(g=>g.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{e[g.dataset.q]=b.dataset.v;salvar();syncSeg();})));
+  $("b-resultado").addEventListener("click",scanner);
+
+  /* ---- Cálculo do Raio-X ---- */
+  function calcular(){
+    const itens=e.hab.map(id=>{const h=HMAP[id],d=e.det[id]||{};let reac=d.reac!=null?d.reac:0;const ri=["chave","tenis","bolsa"].indexOf(id);if(ri>-1&&e.notas[ri]!=null)reac=Math.max(reac,e.notas[ri]);return {id,h,min:d.min!=null?d.min:h.min,reac};});
+    ["chave","tenis","bolsa"].forEach((id,i)=>{if(!e.hab.includes(id)&&e.notas[i]!=null&&e.medido)itens.push({id,h:HMAP[id],min:HMAP[id].min,reac:e.notas[i],extra:true});});
+    itens.sort((a,b)=>b.min-a.min||HABITOS.indexOf(a.h)-HABITOS.indexOf(b.h));
+    const alerta=itens.find(i=>i.reac>=1)||null;
+    const panico=itens.find(i=>i.reac>=2)||null;
+    const maxR=itens.reduce((m,i)=>Math.max(m,i.reac),0);
+    const gat=itens.filter(i=>i.reac===maxR&&maxR>0).sort((a,b)=>b.min-a.min)[0]||null;
+    const alertMin=alerta?alerta.min:0;
+    const horasAno=Math.round(alertMin*(e.dias||5)*52/60);
+    let d;
+    if(e.tol===0)d=1;else if(e.tol===5)d=4;else if(e.tol===20)d=8;else if(e.tol===60)d=12;else d=maxR>=2?1:3;
+    const totMax=Math.max(maxR,...e.notas);
+    if(totMax>=3)d=Math.min(d,2);else if(totMax>=2)d=Math.min(d,6);
+    const passos=Math.max(0,16-d);
+    const ritmo=(Math.max(maxR,...e.notas)>=3?2.5:Math.max(maxR,...e.notas)>=2?2:1.6);
+    const diasPrev=Math.max(10,Math.ceil(passos*ritmo));
+    const data=new Date(Date.now()+diasPrev*864e5);
+    const dataTxt=data.toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+    const repetiveis=itens.filter(i=>i.h.rep&&i.reac>=1).sort((a,b)=>b.reac-a.reac||b.min-a.min);
+    const sinal=repetiveis[0]?repetiveis[0].h:HMAP.chave;
+    const notaSinal=repetiveis[0]?repetiveis[0].reac:(e.notas[0]||0);
+    return {itens,alerta,panico,maxR,gat,alertMin,horasAno,degrau:d,dataTxt,diasPrev,sinal,notaSinal,totMax};
+  }
+  function perfil(r){return r.alertMin>=10?"rotina":r.maxR>=2?"sinais":r.totMax<=1?"porta":"misto";}
+  function minTxt(m){return m>=60?"1 hora ou mais":m===1?"menos de 1 minuto":m+" minutos";}
+
+  /* ---- Scanner ---- */
+  function scanner(){
+    ir("t-scan");
+    $("scan-alvo").innerHTML=fotoHTML();
+    $("scan-titulo").textContent=`Montando o Raio-X${nome()?" de "+nome():""}...`;
+    const lis=[...$("scan-passos").children];lis.forEach(l=>l.className="");
+    const passo=REDUZIDO?60:720;
+    lis.forEach((l,i)=>{setTimeout(()=>{l.classList.add("on");if(i>0)lis[i-1].classList.add("ok");},i*passo);});
+    setTimeout(()=>{lis[lis.length-1].classList.add("ok");},lis.length*passo);
+    setTimeout(()=>mostrarResultado(true),lis.length*passo+(REDUZIDO?50:450));
+  }
+
+  /* ---- Resultado ---- */
+  let R=null;
+  function mostrarResultado(animar){
+    R=calcular();const r=R;
+    atualizarNomes();
     ir("t-resultado");
-    $("carregando").style.display="block";$("conteudo-resultado").classList.remove("ver");
-    $("carregando-txt").textContent=`Calculando o resultado${nome()?" de "+nome():""}...`;
-    $("grafico").classList.remove("pronto");
-    setTimeout(mostrarResultado, REDUZIDO?80:900);
+    // Cabeçalho
+    $("r-marca").textContent=`Raio-X da Saída${nome()?" · "+nome():""}`;
+    if(r.alerta){
+      $("r-h1").innerHTML=`${esc(Cao())} começa a se preparar para ficar sozinho`;
+      $("r-big").hidden=false;
+      $("r-unid").innerHTML=(r.alertMin>=60?"minutos ou mais<br>":"minutos<br>")+"antes da porta";
+      let l2=`O primeiro ponteiro é <b>${r.alerta.h.em} ${r.alerta.h.curto}</b>.`;
+      if(r.panico&&r.panico.id!==r.alerta.id)l2+=` A preocupação de verdade aparece em <b>${r.panico.h.em} ${r.panico.h.curto}</b>, ${minTxt(r.panico.min)} antes de você sair.`;
+      else if(r.panico)l2+=` E ali a reação já é forte.`;
+      $("r-linha2").innerHTML=l2;
+    }else{
+      $("r-h1").innerHTML=`A sua rotina de saída quase não mexe com ${esc(cao())}`;
+      $("r-big").hidden=true;
+      $("r-linha2").innerHTML=r.totMax<=1?`Se ${esc(cao())} sofre sozinho, o desconforto provavelmente começa <b>depois que a porta fecha</b>. O ponto de partida dele é a Escada da Ausência.`:`Os sinais pesam pouco, mas o teste ao vivo mostrou reação. Vale observar de novo amanhã, em outro horário.`;
+    }
+    contar(animar?r.alertMin:null);
+    desenharDial(animar);
+    $("dial-foto").innerHTML=fotoHTML();
+    // Alerta vet
+    $("r-alerta").innerHTML=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta"><b>Antes de treinar, fale com um veterinário.</b> Machucados ao tentar sair, ficar sem comer sozinho ou uma mudança repentina de comportamento podem ter relação com dor ou doença. O treino pode ajudar depois, com orientação profissional ao lado.</div>`:"";
+    // Impacto
+    if(r.alerta&&r.horasAno>0){
+      const diasInteiros=Math.floor(r.horasAno/24);
+      $("sec-impacto").innerHTML=`<div class="kicker">O que ninguém conta</div><div class="impacto"><div class="num">${r.horasAno} horas</div><p>por ano é o tempo que ${esc(cao())} passa em alerta <b>antes</b> de a porta abrir, só somando os minutos da sua rotina de saída${diasInteiros>=1?`: <b>${diasInteiros===1?"mais de 1 dia inteiro":"mais de "+diasInteiros+" dias inteiros"}</b>`:""}.</p><p style="font-size:13px;opacity:.8">Conta feita com as suas respostas: ${r.alertMin>=60?"60+":r.alertMin} min × ${e.dias||5} dias por semana × 52 semanas. Sem contar o tempo em que você está fora.</p></div>`;
+    }else{
+      $("sec-impacto").innerHTML=`<div class="kicker">Boa notícia</div><div class="impacto"><div class="num">0 min</div><p>de alerta antes da porta. ${esc(Cao())} não lê a sua rotina como aviso. Isso deixa o treino mais simples: dá para ir direto para as ausências curtas.</p></div>`;
+    }
+    // Timeline
+    const tl=r.itens.map(i=>`<li><span class="pino" style="border-color:${CORES[i.reac]}">${i.h.em}</span><span class="txt"><b>${i.h.t}${i.extra?" <small>(teste ao vivo)</small>":""}</b><small>${i.min>=60?"1 h ou mais antes":i.min===1?"na hora de sair":i.min+" min antes"}</small></span><span class="tag" style="background:${CORES[i.reac]}">${ROT_NOTA[i.reac]}</span></li>`).join("");
+    $("timeline").innerHTML=tl+`<li class="porta"><span class="pino">🚪</span><span class="txt"><b>A porta fecha</b><small>${e.tol===0?"ele começa a sofrer quase na hora":e.tol===5?"ele aguenta uns 5 minutos":e.tol===20?"ele aguenta de 15 a 30 minutos":e.tol===60?"o problema aparece nas saídas longas":"tempo sozinho ainda não observado"}</small></span></li>`;
+    // Gatilho
+    if(r.gat){
+      const extraRep=r.gat.h.rep?`A boa notícia: dá para repetir ${r.gat.h.curto} sem sair, várias vezes por dia. É assim que ele perde a força.`:`Esse não dá para repetir dez vezes por dia, então o treino começa pelos sinais que vêm depois dele, e ${r.gat.h.curto} perde a força junto.`;
+      $("sec-gatilho").innerHTML=`<div class="kicker">Gatilho nº 1</div><div class="gatilho"><span class="em">${r.gat.h.em}</span><div><b>${r.gat.h.curto.charAt(0).toUpperCase()+r.gat.h.curto.slice(1)}</b><span class="sub">reação: ${ROT_NOTA[r.gat.reac].toLowerCase()} · ${r.gat.min>=60?"1 h+":r.gat.min===1?"na hora":r.gat.min+" min"} antes de sair</span></div></div><p style="margin-top:12px;font-size:15px">Cães aprendem sequências. Depois de muitas saídas, ${esc(cao())} entendeu que ${r.gat.h.curto} quase sempre termina em ficar sozinho. Para você é um detalhe; para ${esc(cao())} é o aviso. ${extraRep}</p>`;
+    }else{
+      $("sec-gatilho").innerHTML="";
+    }
+    // Escada
+    const d=r.degrau;
+    $("esc-titulo").textContent=`${Cao()} começa no degrau ${d} de 20: ${TEMPOS[d-1][0]} fora`;
+    $("esc-texto").textContent=d<=2?`Pode parecer pouco. É de propósito: o treino começa abaixo do ponto em que ${cao()} sente medo, para ele só colecionar saídas tranquilas.`:`Abaixo do limite atual de ${cao()}, para ele só colecionar saídas tranquilas. Cada 3 sessões calmas, sobe um degrau.`;
+    $("escada-vis").innerHTML=TEMPOS.map((t,i)=>`<i style="height:${18+i*4}%" class="${i+1<d?"passado":i+1===d?"aqui":i+1===16?"meta":""}" title="${t[0]}"></i>`).join("");
+    $("previsao").innerHTML=d<16?`<span class="ico">📅</span><span>Com uma rotina de sessões calmas, ${esc(cao())} pode chegar aos <b>30 minutos sozinho</b> por volta de <b>${r.dataTxt}</b>. É uma estimativa: cada cão tem o seu ritmo, e voltar um degrau faz parte.</span>`:`<span class="ico">📅</span><span>${esc(Cao())} já começa num degrau alto. O foco é consolidar e subir até as 2 horas com calma.</span>`;
+    // Sessão
+    montarSessao();
+    // Oferta
+    $("of-deg").textContent=d;
+    $("of-pers").innerHTML=r.alerta?`O Raio-X mostrou <b>onde</b> o problema de ${esc(cao())} começa: ${minTxt(r.alertMin)} antes da porta, em ${r.alerta.h.curto}. O Volto Já mostra <b>como</b> desmontar isso, um degrau por vez, medindo cada avanço.`:`O Raio-X mostrou que o ponto de partida de ${esc(cao())} é a ausência em si. O Volto Já leva ele do degrau ${d} até 2 horas sozinho com calma, medindo cada avanço.`;
+    // Cartão
+    gerarCartao();
+    // Captura salva
+    if(e.contato)mostrarPlano(true);
+    // Pixel e API
+    if(!e.lead){e.lead=1;salvar();px("Lead",{content_name:"Raio-X da Saída"});}
+    if(!e.resEnviado){e.resEnviado=1;salvar();enviar({tipo:"resultado"}).catch(()=>{});}
+    // Revelar seções
+    const obs="IntersectionObserver" in window&&!REDUZIDO?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("ver");obs.unobserve(x.target);}}),{threshold:.12}):null;
+    document.querySelectorAll("#t-resultado .reveal").forEach(s=>{if(obs)obs.observe(s);else s.classList.add("ver");});
+  }
+  function contar(alvo){
+    const el=$("r-num"),fim=R.alertMin;
+    if(alvo==null||REDUZIDO){el.textContent=fim>=60?"60":fim;return;}
+    const t0=performance.now(),dur=1700,f=Math.min(fim,60);
+    (function q(t){const p=Math.min(1,(t-t0)/dur),v=Math.round(f*(1-Math.pow(1-p,3)));el.textContent=v;if(p<1)requestAnimationFrame(q);})(t0);
+  }
+  function ang(min){return -Math.min(min,57)/60*360;}
+  function layout(itens){
+    const out=[],SEP=15,dist=(a,b)=>{let d=Math.abs(a-b)%360;return d>180?360-d:d;};
+    itens.forEach((it,k)=>{let a=ang(it.min),inner=false;
+      const livre=(ang,inn)=>!out.some(o=>o.inner===inn&&dist(o.a,ang)<SEP);
+      if(!livre(a,false)){if(livre(a,true))inner=true;else{let t=0;while(!livre(a,false)&&t<20){a+=SEP*.6;t++;}}}
+      out.push({it,k,a,inner});});
+    return out;
+  }
+  function pt(cx,cy,r,a){const rad=a*Math.PI/180;return [cx+r*Math.sin(rad),cy-r*Math.cos(rad)];}
+  function desenharDial(animar){
+    const C=170,RR=128;let s="";
+    for(let i=0;i<60;i++){const [x1,y1]=pt(C,C,i%5?RR-5:RR-11,i*6),[x2,y2]=pt(C,C,RR,i*6);s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(251,247,241,${i%5?.18:.4})" stroke-width="${i%5?1.2:2.4}"/>`;}
+    [[0,"porta"],[-15,"15"],[-30,"30"],[-45,"45"]].forEach(([m,t])=>{const [x,y]=pt(C,C,RR-26,ang(-m));s+=`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-family="Poppins" fill="rgba(251,247,241,.55)" font-weight="600">${m===0?"🚪":"−"+t}</text>`;});
+    s+=`<circle cx="${C}" cy="${C}" r="${RR+16}" fill="none" stroke="rgba(251,247,241,.08)" stroke-width="22"/>`;
+    if(R.alerta){
+      const a=Math.abs(ang(R.alertMin)),len=2*Math.PI*(RR+16)*(a/360),circ=2*Math.PI*(RR+16);
+      s+=`<defs><linearGradient id="gArco" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3A33B"/><stop offset="1" stop-color="#B5452B"/></linearGradient></defs>`;
+      s+=`<circle class="arco" id="arco" cx="${C}" cy="${C}" r="${RR+16}" fill="none" stroke="url(#gArco)" stroke-width="22" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)} ${circ.toFixed(1)}" stroke-dashoffset="${animar&&!REDUZIDO?len.toFixed(1):0}" transform="rotate(${-a-90} ${C} ${C})" opacity=".9"/>`;
+      const [hx,hy]=pt(C,C,RR-36,ang(R.alertMin));
+      s+=`<line x1="${C}" y1="${C}" x2="${hx}" y2="${hy}" stroke="#E3A33B" stroke-width="4" stroke-linecap="round"/>`;
+    }
+    layout(R.itens).forEach(({it:i,k,a,inner})=>{const [x,y]=pt(C,C,inner?RR-24:RR+16,a);
+      s+=`<g class="mk" data-k="${k}"><circle cx="${x}" cy="${y}" r="17" fill="#2E2A26" stroke="${CORES[i.reac]}" stroke-width="3.5"/><text x="${x}" y="${y+6}" text-anchor="middle" font-size="16">${i.h.em}</text></g>`;});
+    $("dial").innerHTML=s;
+    const mks=[...$("dial").querySelectorAll(".mk")];
+    if(animar&&!REDUZIDO){requestAnimationFrame(()=>requestAnimationFrame(()=>{const arco=$("arco");if(arco)arco.style.strokeDashoffset="0";mks.forEach((m,i)=>setTimeout(()=>m.classList.add("on"),250+i*160));}));}
+    else mks.forEach(m=>m.classList.add("on"));
+  }
+
+  /* ---- Sessão de hoje ---- */
+  function montarSessao(){
+    const r=R,s=r.sinal;
+    const acao={chave:"Pegue a chave",tenis:"Calce o tênis",bolsa:"Pegue a bolsa ou mochila",perfume:"Passe o perfume (ou só abra o frasco)",roupa:"Vista a roupa de sair"}[s.id];
+    const desfaz={chave:"devolva a chave ao lugar",tenis:"tire o tênis",bolsa:"devolva a bolsa ao lugar",perfume:"guarde o frasco",roupa:"siga a vida normal com ela"}[s.id];
+    const feitas=e.ses.feitas;
+    $("sessao").innerHTML=`<h3 style="margin:0 0 4px">${s.em} ${s.id==="chave"?"Chave Morta":"Sinal Morto: "+s.curto}</h3>
+      <p class="sub" style="margin:0">O sinal que mais mexe com ${esc(cao())} e que dá para repetir. A ideia: ele acontecer tantas vezes <b>sem</b> você sair que deixa de significar saída.</p>
+      <ol><li>${acao}.</li><li>Em vez de ir para a porta, sente no sofá ou vá até a cozinha.</li><li>Depois de uns 20 segundos, ${desfaz}. Sem olhar para ${esc(cao())}, sem falar nada.</li></ol>
+      <div class="reps" id="reps">${[1,2,3,4,5].map(n=>`<i class="${n<=feitas?"ok":""}">${n<=feitas?"✓":n}</i>`).join("")}</div>
+      <div id="ses-acao"></div>`;
+    pintarSessao();
+  }
+  function pintarSessao(){
+    const f=e.ses.feitas,box=$("ses-acao");
+    if(f<5){box.innerHTML=`<button class="btn btn-principal" id="b-rep">${f===0?"Fiz a repetição 1":"Fiz a repetição "+(f+1)}</button>`;
+      $("b-rep").addEventListener("click",()=>{e.ses.feitas++;salvar();const i=$("reps").children[e.ses.feitas-1];i.classList.add("ok");i.textContent="✓";try{navigator.vibrate&&navigator.vibrate(40);}catch(x){}pintarSessao();});}
+    else if(e.ses.nota==null){box.innerHTML=`<p style="font-weight:700;margin:4px 0 10px">Na 5ª repetição, como ${esc(cao())} reagiu?</p><div class="reacoes">${REACOES.map((rr,i)=>`<button class="op" type="button" data-v="${i}"><span class="n" style="background:${CORES[i]}">${i}</span><span><b>${rr.t}</b></span></button>`).join("")}</div>`;
+      box.querySelectorAll(".op").forEach(b=>b.addEventListener("click",()=>{e.ses.nota=+b.dataset.v;salvar();pintarSessao();try{if(window.gtag)gtag("event","sessao_concluida",{nota:e.ses.nota});}catch(x){}}));}
+    else{const a=R.notaSinal,b=e.ses.nota;
+      const msg=b<a?`Viu isso? Em 3 minutos, ${esc(cao())} já reagiu menos ao mesmo sinal. É o primeiro ponteiro perdendo a força. Repita amanhã, em outro horário.`:b===a?`Normal na primeira vez: o sinal tem anos de história. Repita 2 ou 3 vezes amanhã, em horários diferentes. A queda costuma aparecer nos primeiros dias.`:`Hoje ele estava mais sensível. Sem problema: amanhã faça só 3 repetições, mais espaçadas, e sem pressa.`;
+      box.innerHTML=`<div class="comparativo"><div><div class="n" style="background:${CORES[a]}">${a}</div><small>antes</small></div><div style="font-size:22px">→</div><div><div class="n" style="background:${CORES[b]}">${b}</div><small>depois de 5 repetições</small></div></div><p style="font-size:15px;margin:0">${msg}</p>`;}
+  }
+
+  /* ---- Cartão para stories (canvas 1080×1920) ---- */
+  let cartaoBlob=null;
+  async function gerarCartao(){
+    try{await document.fonts.ready;}catch(x){}
+    const W=1080,H=1920,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+    const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2E2A26");g.addColorStop(1,"#1A1714");x.fillStyle=g;x.fillRect(0,0,W,H);
+    const rg=x.createRadialGradient(W*.8,260,0,W*.8,260,700);rg.addColorStop(0,"rgba(227,163,59,.35)");rg.addColorStop(1,"rgba(227,163,59,0)");x.fillStyle=rg;x.fillRect(0,0,W,H);
+    x.textAlign="center";
+    x.fillStyle="#E3A33B";x.font="700 34px Poppins, sans-serif";x.fillText("RAIO-X DA SAÍDA",W/2,170);
+    x.fillStyle="#FBF7F1";x.font="700 64px Lora, Georgia, serif";
+    const titulo=R.alerta?`O relógio ${nome()?"d"+(/a$/i.test(nome())?"a ":"o ")+nome():"do meu cão"}`:`${nome()||"Meu cão"} e a porta`;
+    x.fillText(titulo.length>26?titulo.slice(0,25)+"…":titulo,W/2,260);
+    // dial
+    const C=[W/2,770],RR=330;
+    x.save();x.translate(C[0],C[1]);
+    for(let i=0;i<60;i++){const a=i*6*Math.PI/180;x.strokeStyle=`rgba(251,247,241,${i%5?.2:.45})`;x.lineWidth=i%5?3:6;x.beginPath();x.moveTo((RR-(i%5?14:28))*Math.sin(a),-(RR-(i%5?14:28))*Math.cos(a));x.lineTo(RR*Math.sin(a),-RR*Math.cos(a));x.stroke();}
+    x.strokeStyle="rgba(251,247,241,.08)";x.lineWidth=52;x.beginPath();x.arc(0,0,RR+42,0,Math.PI*2);x.stroke();
+    if(R.alerta){const a=Math.min(R.alertMin,57)/60*Math.PI*2;const gg=x.createLinearGradient(-RR,-RR,RR,RR);gg.addColorStop(0,"#E3A33B");gg.addColorStop(1,"#B5452B");x.strokeStyle=gg;x.lineCap="round";x.beginPath();x.arc(0,0,RR+42,-Math.PI/2-a,-Math.PI/2);x.stroke();}
+    x.font="56px sans-serif";x.fillText("🚪",0,-RR-100);
+    layout(R.itens).forEach(({it:i,a:ad,inner})=>{const aa=ad*Math.PI/180;const r=inner?RR-62:RR+42;const px=r*Math.sin(aa),py=-r*Math.cos(aa);x.fillStyle="#2E2A26";x.strokeStyle=CORES[i.reac];x.lineWidth=9;x.beginPath();x.arc(px,py,44,0,Math.PI*2);x.fill();x.stroke();x.font="44px sans-serif";x.fillStyle="#fff";x.textBaseline="middle";x.fillText(i.h.em,px,py+3);x.textBaseline="alphabetic";});
+    x.restore();
+    // foto
+    const FR=150;
+    await new Promise(res=>{
+      x.save();x.beginPath();x.arc(C[0],C[1],FR,0,Math.PI*2);x.closePath();x.fillStyle="#3A332D";x.fill();x.clip();
+      if(e.foto){const im=new Image();im.onload=()=>{x.drawImage(im,C[0]-FR,C[1]-FR,FR*2,FR*2);x.restore();res();};im.onerror=()=>{x.restore();res();};im.src=e.foto;}
+      else{x.fillStyle="#C9772E";const P=(cx,cy,rx,ry,rot)=>{x.beginPath();x.ellipse(C[0]+cx,C[1]+cy,rx,ry,rot,0,Math.PI*2);x.fill();};P(0,30,52,45,0);P(-62,-28,21,28,-.32);P(-24,-64,21,28,0);P(24,-64,21,28,0);P(62,-28,21,28,.32);x.restore();res();}
+    });
+    x.strokeStyle="#E3A33B";x.lineWidth=10;x.beginPath();x.arc(C[0],C[1],FR+8,0,Math.PI*2);x.stroke();
+    // número
+    x.textAlign="center";
+    if(R.alerta){
+      x.fillStyle="#E3A33B";x.font="700 230px Lora, Georgia, serif";x.fillText(String(Math.min(R.alertMin,60))+(R.alertMin>=60?"+":""),W/2,1420);
+      x.fillStyle="#FBF7F1";x.font="600 50px Poppins, sans-serif";x.fillText("minutos antes da porta",W/2,1500);
+      x.fillStyle="#D8CEC3";x.font="500 40px Poppins, sans-serif";x.fillText(`ele já sabe que vou sair`,W/2,1562);
+      x.fillStyle="rgba(227,163,59,.16)";roundRect(x,140,1615,W-280,96,48);x.fill();
+      x.fillStyle="#FBF7F1";x.font="600 40px Poppins, sans-serif";x.fillText(`1º ponteiro: ${R.alerta.h.em} ${R.alerta.h.curto}`,W/2,1677);
+    }else{
+      x.fillStyle="#E3A33B";x.font="700 120px Lora, Georgia, serif";x.fillText("0 min",W/2,1400);
+      x.fillStyle="#FBF7F1";x.font="600 46px Poppins, sans-serif";x.fillText("de alerta antes da porta",W/2,1480);
+      x.fillStyle="#D8CEC3";x.font="500 40px Poppins, sans-serif";x.fillText(`degrau de partida: ${R.degrau} de 20`,W/2,1550);
+    }
+    x.fillStyle="#E3A33B";x.font="700 40px Poppins, sans-serif";x.fillText("E o do seu cão? Faça grátis:",W/2,1795);
+    x.fillStyle="#FBF7F1";x.font="600 40px Poppins, sans-serif";x.fillText(SITE_CARTAO,W/2,1850);
+    $("share-prev").src=c.toDataURL("image/jpeg",.85);
+    c.toBlob(b=>{cartaoBlob=b;},"image/png");
+  }
+  function roundRect(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath();}
+  $("b-share").addEventListener("click",async()=>{
+    try{if(window.fbq)fbq("trackCustom","CompartilhouCartao");if(window.gtag)gtag("event","share",{method:"cartao_raiox"});}catch(x){}
+    const nomeArq=`raio-x-${(nome()||"meu-cao").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g,"-")}.png`;
+    if(cartaoBlob&&navigator.canShare){const f=new File([cartaoBlob],nomeArq,{type:"image/png"});if(navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:"Raio-X da Saída",text:`O pânico ${nome()?"do "+nome():"do meu cão"} tem horário. Faça o do seu: https://${SITE_CARTAO}`});return;}catch(x){if(x&&x.name==="AbortError")return;}}}
+    const a=document.createElement("a");a.href=cartaoBlob?URL.createObjectURL(cartaoBlob):$("share-prev").src;a.download=nomeArq;document.body.appendChild(a);a.click();a.remove();
   });
 
-  function mostrarResultado(){
-    const n=e.notas, p=n[0], u=n[n.length-1], max=Math.max(...n), cao=nome()||"o seu cão", Cao=nome()||"O seu cão";
-    let titulo,texto,proximo;
-    if(p>=2&&u<p){titulo=`O gatilho ${nome()?("de "+nome()):"do seu cão"} está nos sinais de saída, e ele já reagiu ao exercício hoje`;
-      texto=`A nota começou em ${p} e terminou em ${u}, sem você sair de casa. Isso mostra que a chave, o tênis e a bolsa funcionam como um aviso de abandono, e que esse aviso pode perder a força.`;
-      proximo=`O próximo passo é continuar tirando o poder desses sinais, todos os dias, e começar a Escada da Ausência. É exatamente o que o Volto Já ensina, passo a passo.`;}
-    else if(p>=2){titulo=`O gatilho ${nome()?("de "+nome()):"do seu cão"} está nos sinais de saída`;
-      texto=`A nota começou em ${p} e não caiu hoje. É normal: o cão aprendeu durante muito tempo que esses sinais significam ficar sozinho, e desaprender leva alguns dias de repetição.`;
-      proximo=`Os sinais de saída são o seu ponto de partida. O Volto Já mostra como tirar a força deles em 7 dias e, ao mesmo tempo, começar a Escada da Ausência.`;}
-    else if(max<=1){titulo=`Os sinais de saída pesam pouco para ${cao}`;
-      texto=`${Cao} ficou tranquilo ou atento nas 3 tentativas. Se ele sofre quando fica sozinho, o pânico provavelmente começa depois que a porta fecha.`;
-      proximo=`Nesse caso, o ponto de partida é a Escada da Ausência: ausências tão curtas que ele nem percebe, aumentando um degrau por vez. O Volto Já traz a escada completa, com aplicativo para registrar.`;}
-    else{titulo=`${Cao} reage a alguns sinais, em alguns momentos`;
-      texto=`As notas variaram entre as tentativas. Vale observar em quais horários ou com quais sinais ele fica mais preocupado.`;
-      proximo=`O Volto Já ajuda a mapear esses sinais e combina o treino deles com a Escada da Ausência.`;}
-    $("r-titulo").textContent=titulo;$("r-texto").textContent=texto;$("r-proximo").textContent=proximo;
-    const cores=["#6E9B73","#9AAA4E","#E3A33B","#B5452B"];
-    const grafico=$("grafico");
-    grafico.innerHTML=n.map(v=>`<div style="--h:${20+v*40}px;background:${cores[v]}"><b>${v}</b></div>`).join("");
-    $("r-alerta").innerHTML=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta"><b>Antes de treinar, fale com um veterinário.</b> Machucados ao tentar sair, ficar sem comer sozinho ou uma mudança repentina de comportamento podem ter relação com dor ou doença. O treino pode ajudar depois, com orientação profissional ao lado.</div>`:"";
-    atualizarNomes();
-    $("carregando").style.display="none";
-    if(!e.lead){e.lead=1;salvar();px("Lead",{content_name:"Teste da Chave"});}
-    if(!e.resEnviado){e.resEnviado=1;salvar();enviar({tipo:"resultado"}).catch(()=>{});}
-    if(e.contato){mostrarPlano(true);}
-    $("conteudo-resultado").classList.add("ver");
-    requestAnimationFrame(()=>requestAnimationFrame(()=>grafico.classList.add("pronto")));
+  /* ---- Checkout, Pixel, API ---- */
+  try{const params=new URLSearchParams(location.search);const u=new URL(LINK_CHECKOUT);params.forEach((v,k)=>{if(!u.searchParams.has(k))u.searchParams.set(k,v)});$("b-comprar").href=u.toString();}catch(err){$("b-comprar").href=LINK_CHECKOUT;}
+  function px(ev,d){try{if(window.fbq)fbq("track",ev,d||{});}catch(x){}try{if(window.gtag){var g={Lead:"generate_lead",InitiateCheckout:"begin_checkout"}[ev];if(g)gtag("event",g,ev==="InitiateCheckout"?{value:27,currency:"BRL"}:{});}}catch(x){}}
+  $("b-comprar").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
+  function enviar(dados){
+    const r=R||calcular();
+    const corpo=JSON.stringify(Object.assign({sid:e.sid,nome_cao:e.nome,notas:e.notas,q1:e.q1,q2:e.q2,perfil:perfil(r),utm:e.utm||{},
+      relogio_min:r.alertMin,primeiro_ponteiro:r.alerta?r.alerta.id:"",panico_ponteiro:r.panico?r.panico.id:"",gatilho:r.gat?r.gat.id:"",degrau:r.degrau,dias_semana:e.dias,tolerancia:e.tol,medido:e.medido,rotina:e.hab.map(id=>[id,(e.det[id]||{}).min,(e.det[id]||{}).reac].join(":")).join("|")},dados));
+    return fetch(API_LEAD,{method:"POST",headers:{"Content-Type":"application/json"},body:corpo,keepalive:true});
   }
-  $("b-refazer").addEventListener("click",()=>{e={nome:e.nome,lead:e.lead,sid:e.sid,utm:e.utm,contato:e.contato,notas:[],q1:null,q2:null};salvar();document.querySelectorAll(".sim-nao button").forEach(b=>b.classList.remove("escolhido"));$("b-resultado").disabled=true;$("b-resultado").style.opacity=.5;abrirTentativa();});
 
-  /* ===== Captura: Plano dos 3 primeiros dias ===== */
+  /* ---- Captura ---- */
   let canal="whatsapp";
   document.querySelectorAll("[data-canal]").forEach(b=>b.addEventListener("click",()=>{
-    canal=b.dataset.canal;
-    document.querySelectorAll("[data-canal]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+    canal=b.dataset.canal;document.querySelectorAll("[data-canal]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
     const i=$("cap-contato");
     if(canal==="email"){i.type="email";i.inputMode="email";i.autocomplete="email";i.placeholder="seuemail@gmail.com";$("cap-label").textContent="Seu melhor e-mail";}
     else{i.type="tel";i.inputMode="tel";i.autocomplete="tel";i.placeholder="(47) 99999-9999";$("cap-label").textContent="Seu WhatsApp com DDD";}
     $("cap-erro").textContent="";i.focus();
   }));
-  function contatoValido(v){
-    if(canal==="email")return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);
-    const d=v.replace(/\D/g,"");return d.length===10||d.length===11||(d.length>=12&&d.length<=13&&d.indexOf("55")===0);
-  }
+  function contatoValido(v){if(canal==="email")return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);const d=v.replace(/\D/g,"");return d.length===10||d.length===11||(d.length>=12&&d.length<=13&&d.indexOf("55")===0);}
   $("cap-form").addEventListener("submit",async ev=>{
-    ev.preventDefault();
-    const v=$("cap-contato").value.trim();
+    ev.preventDefault();const v=$("cap-contato").value.trim();
     if(!contatoValido(v)){$("cap-erro").textContent=canal==="email"?"Confere o e-mail? Parece que falta alguma coisa.":"Confere o número? Coloque o DDD + o número, ex.: (47) 99999-9999.";$("cap-contato").focus();return;}
-    $("cap-erro").textContent="";
-    const btn=$("cap-enviar");btn.disabled=true;btn.textContent="Enviando...";
-    try{
-      const r=await enviar({tipo:"contato",canal:canal,contato:v,site:$("cap-site").value});
-      if(r.status===422){const j=await r.json().catch(()=>({}));$("cap-erro").textContent=(j.error||"Contato inválido")+". Confere e tenta de novo?";btn.disabled=false;btn.textContent="Quero o plano grátis";return;}
-    }catch(x){/* sem internet ou API fora: entrega o plano mesmo assim */}
+    $("cap-erro").textContent="";const btn=$("cap-enviar");btn.disabled=true;btn.textContent="Enviando...";
+    try{const r=await enviar({tipo:"contato",canal:canal,contato:v,site:$("cap-site").value});if(r.status===422){const j=await r.json().catch(()=>({}));$("cap-erro").textContent=(j.error||"Contato inválido")+". Confere e tenta de novo?";btn.disabled=false;btn.textContent="Quero o plano grátis";return;}}catch(x){}
     e.contato=canal;salvar();
     try{if(window.fbq)fbq("track","CompleteRegistration",{content_name:"Plano 3 dias"});}catch(x){}
     try{if(window.gtag)gtag("event","sign_up",{method:canal});}catch(x){}
     mostrarPlano(false);
   });
   function mostrarPlano(silencioso){
-    const cao=nome()||"seu cão", Cao=nome()||"Seu cão", p=perfil();
-    const foco = p==="porta"
-      ? `Como os sinais de saída pesaram pouco, o foco de ${cao} é a Escada da Ausência: ausências tão curtas que ele nem percebe.`
-      : `Como o pânico de ${cao} começa nos sinais de saída, os 3 dias atacam as duas frentes juntas: os sinais perdem a força enquanto a Escada começa.`;
+    const r=R||calcular(),d=r.degrau,s=r.sinal,c=esc(cao());
+    const t0=TEMPOS[d-1][0],t1=TEMPOS[Math.min(d,19)][0];
     const vet=(e.q1==="sim"||e.q2==="sim")?`<div class="alerta" style="margin-top:0"><b>Antes do Dia 1, converse com um veterinário.</b> Pelo que você respondeu, vale descartar dor ou outro problema de saúde primeiro.</div>`:"";
-    $("plano").innerHTML=`
-      <p class="ok">${silencioso?"Seu plano está salvo aqui":"Pronto! Seu plano está logo abaixo"} 👇 Nos próximos dias, o Simbas te manda os próximos passos.</p>
-      <h2>O plano dos 3 primeiros dias de ${cao}</h2>
-      <p class="sub">${foco}</p>
-      ${vet}
-      <div class="dia"><b class="t">Dia 1 · A chave perde o poder</b>
-        <p>Pegue a chave de 5 a 10 vezes ao longo do dia, <b>sem sair</b>. Pegue, vá até a cozinha ou sente no sofá, e devolva ao lugar. Sem olhar para ${cao}, sem falar nada.</p>
-        <p>Escolha um brinquedo que ${cao} vai ganhar <b>só</b> quando você sair. Guarde ele hoje.</p></div>
-      <div class="dia"><b class="t">Dia 2 · O primeiro degrau</b>
-        <p>Repita a chave sem sair, de 5 a 10 vezes.</p>
-        <p>Degrau 1 da Escada: saia, feche a porta, conte <b>5 segundos</b> e volte, sem festa na volta. Faça 3 vezes no dia, com pelo menos 30 minutos entre uma e outra. Dê uma nota de 0 a 3 para cada vez.</p></div>
-      <div class="dia"><b class="t">Dia 3 · Dois sinais juntos</b>
-        <p>Agora junte dois sinais, por exemplo chave + tênis, de 5 a 10 vezes, sem sair.</p>
-        <p>Na Escada: se as 3 saídas de ontem tiveram nota 0 ou 1, suba para <b>10 segundos</b>. Se apareceu nota 2, fique nos 5 segundos mais um dia.</p></div>
-      <div class="regra"><b>A regra que não pode quebrar:</b> nota 2, desça um degrau. Nota 3, desça dois. Subir devagar é o que faz ${cao} confiar.</div>
-      <p>Do dia 4 em diante, ${Cao} ainda tem 18 degraus até ficar 2 horas sozinho com calma. O caminho completo, com a Escada no celular, o áudio do Ritual Casa Calma e o guia de 54 páginas, está no Volto Já.</p>
+    $("plano").innerHTML=`<p class="ok">${silencioso?"Seu plano está salvo aqui":"Pronto! Seu plano está logo abaixo"} 👇 Nos próximos dias, o Simbas te manda os próximos passos.</p>
+      <h2>Os 3 primeiros dias de ${c}</h2>${vet}
+      <div class="dia"><b class="t">Dia 1 · ${s.em} ${s.curto.charAt(0).toUpperCase()+s.curto.slice(1)} perde o poder</b><p>Repita o exercício de hoje de 5 a 10 vezes, espalhado pelo dia, <b>sem sair</b>. Escolha um brinquedo que ${c} vai ganhar <b>só</b> quando você sair, e guarde ele.</p></div>
+      <div class="dia"><b class="t">Dia 2 · O degrau ${d}</b><p>Saia, feche a porta, conte <b>${t0}</b> e volte, sem festa na volta. Faça 3 vezes no dia, com pelo menos 30 minutos entre uma e outra. Dê uma nota de 0 a 3 para cada vez.</p></div>
+      <div class="dia"><b class="t">Dia 3 · Dois sinais juntos</b><p>Junte ${s.curto} com mais um sinal da sua rotina, de 5 a 10 vezes, sem sair. Na porta: se as 3 saídas de ontem tiveram nota 0 ou 1, suba para <b>${t1}</b>. Se apareceu nota 2, fique em ${t0} mais um dia.</p></div>
+      <div class="regra"><b>A regra que não pode quebrar:</b> nota 2, desça um degrau. Nota 3, desça dois. Subir devagar é o que faz ${c} confiar.</div>
+      <p>Do dia 4 em diante, ${c} ainda tem ${20-d} degraus até ficar 2 horas sozinho com calma. O caminho completo, com a Escada no celular, os áudios do Ritual Casa Calma e o guia de 54 páginas, está no Volto Já.</p>
       <a class="btn btn-principal" id="b-comprar-plano" href="${$("b-comprar").href}">Quero o caminho completo por R$ 27</a>`;
-    $("cap-form-wrap").hidden=true;$("plano").hidden=false;atualizarNomes();
+    $("cap-form-wrap").hidden=true;$("plano").hidden=false;
     $("b-comprar-plano").addEventListener("click",()=>px("InitiateCheckout",{value:27,currency:"BRL",content_name:"Volto Já"}));
     if(!silencioso)$("captura").scrollIntoView({behavior:REDUZIDO?"auto":"smooth",block:"start"});
   }
 
-  atualizarNomes(); if(e.nome) $("in-nome").value=e.nome;
-  if(e.notas.length>=3&&e.q1&&e.q2){ir("t-resultado");$("carregando").style.display="none";$("conteudo-resultado").classList.add("ver");mostrarResultado();$("grafico").classList.add("pronto");}
-  else if(e.notas.length>=3) ir("t-seguranca");
-  else if(e.notas.length>0){$("pausa-n").textContent=e.notas.length;ir("t-pausa");}
+  $("b-refazer").addEventListener("click",()=>{const k={nome:e.nome,foto:e.foto,sid:e.sid,utm:e.utm,lead:e.lead,contato:e.contato};e=Object.assign(vazio(),k);salvar();$("cap-form-wrap").hidden=false;$("plano").hidden=true;montarRotina();ir("t-rotina");});
+
+  /* ---- Retomar de onde parou ---- */
+  atualizarNomes();pintarFotos();if(e.nome)$("in-nome").value=e.nome;syncSeg();
+  if(e.notas.length>=3&&e.q1&&e.q2&&e.dias&&e.tol!=null){mostrarResultado(false);}
+  else if(e.notas.length>=3&&e.dias&&e.tol!=null){ir("t-seguranca");}
+  else if(e.dias&&e.tol!=null&&e.notas.length>0){$("pausa-n").textContent=e.notas.length;ir("t-pausa");}
+  else if(e.dias&&e.tol!=null){ir("t-pratica");}
+  else if(e.hab.length&&e.ci>0){montarRotina();abrirCard();}
   else ir("t-inicio");
 })();
 </script>

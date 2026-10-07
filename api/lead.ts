@@ -148,6 +148,16 @@ export async function POST(request: Request): Promise<Response> {
       nota_max: Math.max(...notas),
       alerta_vet: b.q1 === 'sim' || b.q2 === 'sim',
       perfil: txt(b.perfil, 20),
+      // Raio-X da Saída (v2)
+      relogio_min: Number.isFinite(Number(b.relogio_min)) ? Math.max(0, Math.min(60, Math.round(Number(b.relogio_min)))) : null,
+      primeiro_ponteiro: txt(b.primeiro_ponteiro, 20),
+      panico_ponteiro: txt(b.panico_ponteiro, 20),
+      gatilho: txt(b.gatilho, 20),
+      degrau: Number.isInteger(Number(b.degrau)) ? Number(b.degrau) : null,
+      dias_semana: Number.isInteger(Number(b.dias_semana)) ? Number(b.dias_semana) : null,
+      tolerancia: Number.isFinite(Number(b.tolerancia)) ? Number(b.tolerancia) : null,
+      medido: b.medido !== false,
+      rotina: txt(b.rotina, 300),
       ...utms(b.utm),
     };
 
@@ -203,7 +213,7 @@ export async function GET(request: Request): Promise<Response> {
       const lista = (await lerTodos('leads:index', 'lead:'))
         .sort((a, b) => String(a.criado_em).localeCompare(String(b.criado_em)));
       if (formato === 'csv') {
-        const cols = ['criado_em', 'canal', 'contato', 'nome_cao', 'notas', 'inicio_panico', 'alerta_vet', 'utm_source', 'utm_medium', 'utm_campaign'];
+        const cols = ['criado_em', 'canal', 'contato', 'nome_cao', 'notas', 'relogio_min', 'gatilho', 'degrau', 'inicio_panico', 'alerta_vet', 'utm_source', 'utm_medium', 'utm_campaign'];
         return new Response(csv(lista, cols), { status: 200, headers: { ...h, 'Content-Type': 'text/csv; charset=utf-8' } });
       }
       return json({ total: lista.length, contatos: lista }, 200, h);
@@ -213,7 +223,7 @@ export async function GET(request: Request): Promise<Response> {
 
     if (tipo === 'resultados') {
       if (formato === 'csv') {
-        const cols = ['em', 'nome_cao', 'notas', 'inicio_panico', 'nota_max', 'alerta_vet', 'utm_source', 'utm_medium', 'utm_campaign'];
+        const cols = ['em', 'nome_cao', 'notas', 'inicio_panico', 'nota_max', 'relogio_min', 'primeiro_ponteiro', 'gatilho', 'degrau', 'medido', 'rotina', 'alerta_vet', 'utm_source', 'utm_medium', 'utm_campaign'];
         return new Response(csv(testes, cols), { status: 200, headers: { ...h, 'Content-Type': 'text/csv; charset=utf-8' } });
       }
       return json({ total: testes.length, resultados: testes }, 200, h);
@@ -237,7 +247,9 @@ export async function GET(request: Request): Promise<Response> {
       contato_por_teste_pct: pct(contatos),
       inicio_do_panico: porInicio,
       nota_media: { chave: media(0), tenis: media(1), bolsa: media(2) },
-      com_nota_3_em_alguma_rodada_pct: pct(conta((t) => Number(t.nota_max) === 3)),
+      relogio_medio_min: (() => { const v = testes.map((t) => Number(t.relogio_min)).filter((n) => Number.isFinite(n)); return v.length ? Math.round(v.reduce((x, y) => x + y, 0) / v.length) : null; })(),
+      relogio_10min_ou_mais_pct: pct(conta((t) => Number(t.relogio_min) >= 10)),
+            com_nota_3_em_alguma_rodada_pct: pct(conta((t) => Number(t.nota_max) === 3)),
       alerta_veterinario_pct: pct(conta((t) => t.alerta_vet === true)),
       gerado_em: new Date().toISOString(),
     }, 200, h);
